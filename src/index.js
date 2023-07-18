@@ -18,10 +18,10 @@ export default {
     SubscriptionManagerComponent,
     SettingsPhoneFieldComponent,
     SettingsSaverComponent,
+    SettingsFooterComponent,
     createWidget,
     WidgetLifecycleEvents,
     WidgetComponent,
     Request,
     TemplateRenderHelpers,
-    SettingsFooterComponent,
 };
