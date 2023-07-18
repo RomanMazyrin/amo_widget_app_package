@@ -11,744 +11,158 @@
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 2965:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ BackendClient)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5274);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7354);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_0__);
-
-
-class BackendClient {
-  constructor(baseUrl, amoDomain) {
-    this.baseUrl = baseUrl;
-    this.amoDomain = amoDomain;
-  }
-  async get(actionUri, params = {}) {
-    const response = await axios__WEBPACK_IMPORTED_MODULE_1__/* ["default"].get */ .Z.get(`${this.baseUrl}/${actionUri}`, {
-      params: {
-        amo_subdomain: this.amoDomain,
-        ...params
-      }
-    });
-    return response;
-  }
-  async post(actionUri, params = {}) {
-    const resultParams = {
-      amo_subdomain: this.amoDomain,
-      ...params
-    };
-    const response = await axios__WEBPACK_IMPORTED_MODULE_1__/* ["default"].post */ .Z.post(`${this.baseUrl}/${actionUri}`, qs__WEBPACK_IMPORTED_MODULE_0___default().stringify(resultParams), {
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-      }
-    });
-    return response;
-  }
-}
-
-/***/ }),
-
-/***/ 6051:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ BaseApp)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
-/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(745);
-/* harmony import */ var _notificator_Notificator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4476);
-/* harmony import */ var _components_widget_settings_panel_description_SettingsDescription__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5520);
-/* harmony import */ var _components_widget_settings_panel_description_SettingsDescriptionModel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(6106);
-/* harmony import */ var _components_widget_settings_panel_footer_SettingsFooter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9853);
-/* harmony import */ var _components_widget_settings_panel_footer_SettingsFooterModel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7410);
-/* harmony import */ var _utils_random__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(136);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5893);
-
-
-
-
-
-
-
-
-
-class BaseApp {
-  constructor(widget, {
-    settingsButtons = [],
-    description = '',
-    styleFiles = [],
-    callbacks = {}
-  }) {
-    this.widget = widget;
-    const widgetSystemParams = this.widget.system();
-    this.amoDomain = widgetSystemParams.domain;
-    this.notificator = new _notificator_Notificator__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z({
-      widgetName: this.i18n('widget.name')
-    });
-    this.settingsFooterModel = new _components_widget_settings_panel_footer_SettingsFooterModel__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z({
-      ...this.i18n('settings_panel.settings_footer')
-    });
-    settingsButtons.forEach(btnModel => {
-      btnModel.setRenderer(text => this.renderTmpl(text, this.i18n('settings_panel.buttons')));
-    });
-    this.settingsDescriptionModel = new _components_widget_settings_panel_description_SettingsDescriptionModel__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z({
-      description,
-      videoInstructionLink: this.i18n('settings_panel.video_instruction_link'),
-      videoInstructionTitle: this.i18n('settings_panel.video_instruction_title'),
-      buttons: settingsButtons
-    });
-    this.callbacks = callbacks;
-    styleFiles.forEach(this.loadStyle.bind(this));
-  }
-  run() {
-    throw new Error(`Method cannot be called from ${this.constructor}. Must be redefined in child class`);
-  }
-  renderSettings() {
-    throw new Error(`Method cannot be called from ${this.constructor}. Must be redefined in child class`);
-  }
-  digitalPipeline() {
-    throw new Error(`Method cannot be called from ${this.constructor}. Must be redefined in child class`);
-  }
-  renderEntityTab() {
-    throw new Error(`Method cannot be called from ${this.constructor}. Must be redefined in child class`);
-  }
-  renderDescription(rootElement) {
-    const descriptionBlock = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__/* .createRoot */ .s)(rootElement);
-    descriptionBlock.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_widget_settings_panel_description_SettingsDescription__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-      model: this.settingsDescriptionModel
-    }));
-  }
-  renderFooter() {
-    const footerDescription = document.getElementById('widget_settings__fields_wrapper');
-    const footerInfoBlock = document.createElement('footer-info');
-    footerDescription.appendChild(footerInfoBlock);
-    (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__/* .createRoot */ .s)(footerInfoBlock).render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_widget_settings_panel_footer_SettingsFooter__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
-      model: this.settingsFooterModel
-    }));
-  }
-  renderBaseSettings() {
-    this.renderDescription(document.querySelector('.widget_settings_block__descr'));
-    this.renderFooter();
-  }
-  i18n(key, defaultValue = '') {
-    try {
-      return this.widget.i18n(key);
-    } catch (e) {
-      return defaultValue;
-    }
-  }
-  renderTmpl(tmpl = '', data = {}) {
-    return this.widget.render({
-      data: tmpl
-    }, data);
-  }
-  static renderReact(rootElement, Component) {
-    const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__/* .createRoot */ .s)(rootElement);
-    root.render(Component);
-  }
-  renderReact(rootElement, Component) {
-    this.constructor.renderReact(rootElement, Component);
-  }
-  renderReactRightPanel(Component) {
-    const elementId = _utils_random__WEBPACK_IMPORTED_MODULE_5__/* ["default"].randomStr */ .Z.randomStr(8);
-    this.widget.render_template({
-      caption: {
-        class_name: 'js-an-invoice-caption'
-      },
-      body: '',
-      render: `<div id=${elementId}></div>`
-    }, {
-      name: this.widget.widgetName,
-      w_code: this.widget.widgetName
-    });
-    this.renderReact(document.getElementById(elementId), Component);
-  }
-  loadStyle(src, onload = () => {}) {
-    const link = document.createElement('link');
-    const widgetRootPath = this.widget.params.path;
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.href = this.renderTmpl(src, {
-      rootPath: widgetRootPath
-    });
-    link.onload = onload;
-    document.head.appendChild(link);
-  }
-  static createWidgetApp(appParams = {}) {
-    const APP_CLASS = this;
-    function AppConstructor() {
-      const self = this;
-      self.app = null;
-      this.callbacks = {
-        render() {
-          if (self.app === null) {
-            self.app = new APP_CLASS(self, appParams);
-          }
-          self.app.run(self.app);
-          return true;
-        },
-        init() {
-          return true;
-        },
-        bind_actions() {
-          return true;
-        },
-        settings() {
-          if (self.app === null) {
-            self.app = new APP_CLASS(self, appParams);
-          }
-          self.app.renderBaseSettings();
-          self.app.renderSettings(self.app);
-          return true;
-        },
-        onSave() {
-          return true;
-        },
-        destroy() {},
-        loadPreloadedData() {
-          if (self.app === null) {
-            self.app = new APP_CLASS(self, appParams);
-          }
-          self.app.renderEntityTab(self.app);
-          return Promise.resolve({});
-        },
-        loadElements() {
-          return Promise.resolve({});
-        },
-        linkCard() {
-          return Promise.resolve({});
-        },
-        searchDataInCard() {
-          return Promise.resolve({});
-        },
-        dpSettings() {
-          if (self.app === null) {
-            self.app = new APP_CLASS(self, appParams);
-          }
-          self.app.digitalPipeline(self.app);
-        }
-      };
-    }
-    return AppConstructor;
-  }
-}
-
-/***/ }),
-
-/***/ 8248:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ SimpleApp)
-/* harmony export */ });
-/* harmony import */ var _BaseApp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6051);
-
-class SimpleApp extends _BaseApp__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
-  run() {
-    if (this.callbacks.run) {
-      this.callbacks.run(this);
-    }
-  }
-  renderSettings() {
-    if (this.callbacks.settings) {
-      this.callbacks.settings(this);
-    }
-  }
-  digitalPipeline() {
-    if (this.callbacks.dpSettings) {
-      this.callbacks.dpSettings(this);
-    }
-  }
-  renderEntityTab() {
-    if (this.callbacks.tab) {
-      this.callbacks.tab(this);
-    }
-  }
-}
-
-/***/ }),
-
-/***/ 6797:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ AppStatusManager)
-/* harmony export */ });
-/* harmony import */ var effector__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8116);
-/* harmony import */ var _SubscriptionStatusCheckers_SubscriptionStatus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5420);
-
-
-class AppStatusManager {
-  constructor(backendClient) {
-    this.subscriptionStatus = null;
-    this.backendClient = backendClient;
-    this.$appStatus = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createStore */ .MT)(null);
-    this.fetchStatusFx = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createEffect */ .GW)(async () => {
-      const status = await this.refreshStatus();
-      return status;
-    });
-    (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .sample */ .UP)({
-      clock: this.fetchStatusFx.doneData,
-      target: this.$appStatus
-    });
-  }
-  async getCanAppBeRun() {
-    const appStatus = await this.getStatus();
-    return !appStatus.getIsExpired() && appStatus.getIsDataFilled() && appStatus.getIsInstalled();
-  }
-  async refreshStatus() {
-    const axiosResponseObj = await this.backendClient.get('get-integration-status');
-    const serverResponseBody = axiosResponseObj.data;
-    this.subscriptionStatus = new _SubscriptionStatusCheckers_SubscriptionStatus__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z(serverResponseBody);
-    return this.subscriptionStatus;
-  }
-  async getStatus() {
-    if (!this.subscriptionStatus) {
-      await this.refreshStatus();
-    }
-    return this.subscriptionStatus;
-  }
-}
-
-/***/ }),
-
-/***/ 3138:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ SubscriptionApp)
-/* harmony export */ });
-/* harmony import */ var _BackendClient__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2965);
-/* harmony import */ var _BaseApp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6051);
-/* harmony import */ var _components_PhoneField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8169);
-/* harmony import */ var _components_widget_settings_panel_description_HelpForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1608);
-/* harmony import */ var _components_widget_settings_panel_description_HelpFormModel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3725);
-/* harmony import */ var _AppStatusManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6797);
-/* harmony import */ var _react_components_settings_description_models_SubscritionStatusInfoModel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1014);
-/* harmony import */ var _react_components_settings_description_SubscriptionStatusInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7676);
-
-
-
-
-
-
-
-
-class SubscriptionApp extends _BaseApp__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z {
-  constructor(widget, {
-    integrationBaseUrl,
-    ...base
-  }) {
-    super(widget, {
-      ...base
-    });
-    this.backendClient = new _BackendClient__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z(integrationBaseUrl, this.amoDomain);
-    this.appStatusManager = new _AppStatusManager__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z(this.backendClient);
-    this.appStatusManager.$appStatus.watch(subscriptionStatus => {
-      if (subscriptionStatus) {
-        if (subscriptionStatus.getIsExpired()) {
-          this.notificator.showMessage('error', this.renderStatusInfo(subscriptionStatus));
-        }
-        if (!subscriptionStatus.getIsDataFilled()) {
-          this.notificator.showMessage('error', this.i18n('errors.need_to_fill_settings_error'));
-        }
-      }
-    });
-    this.helpFormModel = new _components_widget_settings_panel_description_HelpFormModel__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z({
-      backendClient: this.backendClient,
-      successText: this.i18n('settings_panel.help_form.success_msg'),
-      submitButtonText: this.i18n('settings_panel.help_form.submit_button_text'),
-      titleText: this.i18n('settings_panel.help_form.title_text'),
-      contacts: this.i18n('settings_panel.help_form.contacts')
-    });
-    this.subscriptionStatusInfoModel = new _react_components_settings_description_models_SubscritionStatusInfoModel__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z({
-      $subscriptionStatus: this.appStatusManager.$appStatus,
-      expiredText: this.i18n('subscription_status_messages.subscription_info_model.expired_text'),
-      notExpiredText: this.i18n('subscription_status_messages.subscription_info_model.not_expired_text'),
-      renderStatusInfo: this.renderStatusInfo.bind(this)
-    });
-    this.settingsDescriptionModel.setExtraComponents([{
-      Component: _components_widget_settings_panel_description_HelpForm__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z,
-      model: this.helpFormModel
-    }, {
-      Component: _react_components_settings_description_SubscriptionStatusInfo__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z,
-      model: this.subscriptionStatusInfoModel
-    }]);
-    this.appStatusManager.fetchStatusFx();
-  }
-  bindSaveButtonsClickHandlers(buttonsList, phoneFieldOpts = {}) {
-    const buttonsListArray = buttonsList instanceof NodeList ? buttonsList : [buttonsList];
-    const phoneField = new _components_PhoneField__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z(document.querySelector(".widget_settings_block__controls__[name='phone']"), phoneFieldOpts, {
-      errorMsg: this.i18n('errors.need_to_fill_phone_field'),
-      errorInputStyle: {
-        border: 'solid red 1px'
-      }
-    });
-    buttonsListArray.forEach(button => {
-      button.addEventListener('click', e => {
-        const isPhoneValid = phoneField.validate();
-        if (!isPhoneValid) {
-          e.preventDefault();
-          e.stopPropagation();
-          return false;
-        }
-        const data = {};
-        document.querySelectorAll('#widget_settings__fields_wrapper input').forEach(input => {
-          data[input.getAttribute('name')] = input.value;
-        });
-        data.email = data.amouser;
-        data.phone = phoneField.getNumber();
-        this.backendClient.post('save-settings', data).finally(this.fetchAppStatusFx);
-        return true;
-      });
-    });
-  }
-  async runIfStatusOk(callback) {
-    const canBeRan = await this.appStatusManager.getCanAppBeRun();
-    if (canBeRan) {
-      callback();
-    }
-  }
-  run() {
-    this.runIfStatusOk(() => {
-      this.callbacks.run(this);
-    });
-  }
-  renderSettings() {
-    if (this.callbacks.settings) {
-      this.callbacks.settings(this);
-    }
-  }
-  digitalPipeline() {
-    if (this.callbacks.dpSettings) {
-      this.callbacks.dpSettings(this);
-    }
-  }
-  renderEntityTab() {
-    if (this.callbacks.tab) {
-      this.callbacks.tab(this);
-    }
-  }
-  renderBaseSettings() {
-    super.renderBaseSettings();
-    this.bindSaveButtonsClickHandlers(document.querySelectorAll('.install-widget__button, .js-widget-save'), {
-      initialCountry: 'RU',
-      preferredCountries: ['RU', 'UA', 'BY', 'KZ']
-    });
-  }
-  renderStatusInfo(subscriptionStatus) {
-    return this.renderTmpl(subscriptionStatus.getStatusText(), this.i18n('subscription_status_messages'));
-  }
-}
-
-/***/ }),
-
-/***/ 9788:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ DemoStatusChecker)
-/* harmony export */ });
-/* harmony import */ var _SubscriptionStatusChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4113);
-
-class DemoStatusChecker extends _SubscriptionStatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
-  getStatusText() {
-    return `{{demo}} ${this.getFormattedDate()}`;
-  }
-}
-
-/***/ }),
-
-/***/ 861:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ FreeStatusChecker)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4942);
-/* harmony import */ var _StatusChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8157);
-
-
-class FreeStatusChecker extends _StatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
-  getStatusText() {
-    return this.constructor.statusText;
-  }
-}
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)(FreeStatusChecker, "statusText", '{{free}}');
-
-/***/ }),
-
-/***/ 96:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ PurchaseStatusChecker)
-/* harmony export */ });
-/* harmony import */ var _StatusChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8157);
-
-class PurchaseStatusChecker extends _StatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
-  constructor(status) {
-    super();
-    this.subscriptionStatus = status;
-  }
-  getStatusText() {
-    if (this.subscriptionStatus === 'purchased') {
-      return '{{purchased}}';
-    }
-    return '{{not_purchased}}';
-  }
-}
-
-/***/ }),
-
-/***/ 8157:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ StatusChecker)
-/* harmony export */ });
-class StatusChecker {}
-
-/***/ }),
-
-/***/ 4113:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ SubscriptionStatusChecker)
-/* harmony export */ });
-/* harmony import */ var _StatusChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8157);
-
-const formatDate = dateStr => {
-  const d = dateStr.toString();
-  return d.length < 2 ? `0${d}` : d;
-};
-class SubscriptionStatusChecker extends _StatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
-  constructor(subscriptionTimestamp) {
-    super();
-    this.subscriptionStatus = parseInt(subscriptionTimestamp, 10);
-  }
-  getFormattedDate() {
-    const date = new Date(this.subscriptionStatus * 1000);
-    const dateStr = `${formatDate(date.getDate())}.${formatDate(date.getMonth() + 1)}.${formatDate(date.getFullYear())}`;
-    return dateStr;
-  }
-  getStatusText() {
-    return `{{subscription}} ${this.getFormattedDate()}`;
-  }
-}
-
-/***/ }),
-
-/***/ 5420:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ SubscriptionStatus)
-/* harmony export */ });
-/* harmony import */ var _SubscriptionCheckers_DemoStatusChecker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9788);
-/* harmony import */ var _SubscriptionCheckers_FreeStatusChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(861);
-/* harmony import */ var _SubscriptionCheckers_PurchaseStatusChecker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(96);
-/* harmony import */ var _SubscriptionCheckers_SubscriptionStatusChecker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4113);
-
-
-
-
-const StatusCheckers = {
-  purchase: _SubscriptionCheckers_PurchaseStatusChecker__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z,
-  subscription: _SubscriptionCheckers_SubscriptionStatusChecker__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z,
-  free: _SubscriptionCheckers_FreeStatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z,
-  demo: _SubscriptionCheckers_DemoStatusChecker__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z
-};
-class SubscriptionStatus {
-  constructor({
-    subscription_type: subscriptionType,
-    subscription_date_timestamp: subscriptionsDateTimestamp,
-    is_expired: isExpired,
-    is_installed: isInstalled,
-    user_data_filled_status: hasUserFilledData
-  }) {
-    this.subscriptionType = subscriptionType;
-    this.subscriptionDate = subscriptionsDateTimestamp;
-    this.isExpired = isExpired;
-    this.isInstalled = isInstalled;
-    this.hasUserFilledData = hasUserFilledData;
-    const StatusCheckerClass = StatusCheckers[this.subscriptionType];
-    if (StatusCheckerClass) {
-      this.statusChecker = new StatusCheckerClass(this.subscriptionDate);
-    } else {
-      this.statusChecker = new _SubscriptionCheckers_FreeStatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z();
-    }
-  }
-  getIsExpired() {
-    return this.isExpired;
-  }
-  getStatusText() {
-    return this.statusChecker.getStatusText();
-  }
-  getIsDataFilled() {
-    return this.hasUserFilledData;
-  }
-  getIsInstalled() {
-    return this.isInstalled;
-  }
-}
-
-/***/ }),
-
-/***/ 7676:
+/***/ 3556:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5697);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var effector_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4190);
-/* harmony import */ var _models_SubscritionStatusInfoModel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1014);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
-
-
-
-
-
-
-
-function SubscriptionStatusInfo({
-  model
-}) {
-  const status = (0,effector_react__WEBPACK_IMPORTED_MODULE_2__/* .useStore */ .oR)(model.$subscriptionStatus);
-  if (!status) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {});
-  }
-  const isInstalled = status ? status.getIsInstalled() : false;
-  const statusInfoContainerStyle = {
-    display: 'flex',
-    flexFlow: 'row nowrap',
-    justifyContent: 'center',
-    margin: '15px 0',
-    fontSize: '20px',
-    fontWeight: '900'
-  };
-  const subscriptionInfoStyle = {
-    color: 'blue',
-    marginLeft: '10px'
-  };
-  const expirationInfoStyle = {
-    color: status.getIsExpired() ? 'red' : 'green'
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    style: statusInfoContainerStyle,
-    children: isInstalled ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        style: expirationInfoStyle,
-        children: status.getIsExpired() ? model.expiredText : model.notExpiredText
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        style: subscriptionInfoStyle,
-        children: model.renderStatusInfo(status)
-      })]
-    }) : null
-  });
-}
-SubscriptionStatusInfo.propTypes = {
-  model: prop_types__WEBPACK_IMPORTED_MODULE_3___default().instanceOf(_models_SubscritionStatusInfoModel__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z).isRequired
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SubscriptionStatusInfo);
-
-/***/ }),
-
-/***/ 1014:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ SubscritionStatusInfoModel)
-/* harmony export */ });
-class SubscritionStatusInfoModel {
-  constructor({
-    $subscriptionStatus,
-    expiredText,
-    notExpiredText,
-    renderStatusInfo
-  }) {
-    this.$subscriptionStatus = $subscriptionStatus;
-    this.expiredText = expiredText;
-    this.notExpiredText = notExpiredText;
-    this.renderStatusInfo = renderStatusInfo;
-  }
-}
-
-/***/ }),
-
-/***/ 8169:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ PhoneField)
-/* harmony export */ });
-/* harmony import */ var intl_tel_input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8699);
-/* harmony import */ var intl_tel_input__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(intl_tel_input__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var intl_tel_input_build_js_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1553);
-/* harmony import */ var intl_tel_input_build_js_utils__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(intl_tel_input_build_js_utils__WEBPACK_IMPORTED_MODULE_1__);
-
-
-class PhoneField {
-  constructor(inputEl, params, {
-    errorMsg = '',
-    errorInputStyle = {}
-  } = {}) {
-    this.input = inputEl;
-    this.errorMsg = errorMsg;
-    this.errorInputStyle = errorInputStyle;
-    this.iph = intl_tel_input__WEBPACK_IMPORTED_MODULE_0___default()(this.input, params);
-    this.msgTag = document.createElement('span');
-    this.msgTag.style.color = 'red';
-    this.input.after(this.msgTag);
-  }
-  validate() {
-    const isValid = this.isValid();
-    if (!isValid) {
-      Object.entries(this.errorInputStyle).forEach(([attr, value]) => {
-        this.input.style[attr] = value;
-      });
-      this.msgTag.innerText = this.errorMsg;
-      this.msgTag.style.display = '';
-    } else {
-      this.input.style = {};
-      this.msgTag.innerText = '';
-      this.msgTag.style.display = 'none';
+const EventMixin = {
+  on(eventName, callback) {
+    if (!this.listeners) {
+      this.listeners = {};
     }
-    return isValid;
+    if (!this.listeners[eventName]) {
+      this.listeners[eventName] = [];
+    }
+    this.listeners[eventName].push(callback);
+  },
+  off(eventName, callback) {
+    if (!this.listeners || !this.listeners[eventName]) {
+      return;
+    }
+    if (!callback) {
+      delete this.listeners[eventName];
+    } else {
+      this.listeners[eventName] = this.listeners[eventName].filter(cb => cb !== callback);
+    }
+  },
+  trigger(eventName, eventData = {}) {
+    if (this.listeners && this.listeners[eventName]) {
+      this.listeners[eventName].forEach(callback => callback(eventName, eventData));
+    }
   }
-  isValid() {
-    return this.iph.isValidNumber();
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EventMixin);
+
+/***/ }),
+
+/***/ 5272:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ SettingsButtonsComponent)
+/* harmony export */ });
+/* harmony import */ var _helpers_SettingsPanelHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9304);
+/* harmony import */ var _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6816);
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3871);
+/* harmony import */ var _WidgetComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1892);
+/* harmony import */ var _buttons_ButtonModelFactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5256);
+/* harmony import */ var _buttons_ButtonsListView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9960);
+
+
+
+
+
+
+class SettingsButtonsComponent extends _WidgetComponent__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z {
+  constructor(widget, {
+    buttons = []
+  } = {}) {
+    super(widget);
+    this.buttons = buttons;
+    this.buttonModelsFactoryClass = new _buttons_ButtonModelFactory__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z();
   }
-  getNumber() {
-    return this.iph.getNumber();
+  getWidgetEventsCallbacks() {
+    return {
+      [_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_5__/* ["default"].EVENT_SETTINGS */ .Z.EVENT_SETTINGS]: this.settings.bind(this)
+    };
+  }
+  settings() {
+    const renderedButtonsConfig = _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_1__/* ["default"].deepRenderObjectWithWidgetData */ .Z.deepRenderObjectWithWidgetData(this.buttons, this.widget);
+    const props = {
+      buttons: this.buttonModelsFactoryClass.createFromConfigsArray(renderedButtonsConfig)
+    };
+    _helpers_SettingsPanelHelpers__WEBPACK_IMPORTED_MODULE_0__/* ["default"].appendReactComponentInDescriptionBlock */ .Z.appendReactComponentInDescriptionBlock(_buttons_ButtonsListView__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, props, 'action-buttons');
   }
 }
 
 /***/ }),
 
-/***/ 1608:
+/***/ 865:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ CallbackFormModel)
+/* harmony export */ });
+/* harmony import */ var effector__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8116);
+/* harmony import */ var _helpers_Request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4125);
+
+
+class CallbackFormModel {
+  constructor({
+    successText = '',
+    failText = '',
+    sendButtonText = '',
+    phoneFieldPlaceholder = '',
+    url = '',
+    extraRequestData = {}
+  }) {
+    this.successText = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createStore */ .MT)(successText);
+    this.failText = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createStore */ .MT)(failText);
+    this.sendButtonText = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createStore */ .MT)(sendButtonText);
+    this.phoneFieldPlaceholder = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createStore */ .MT)(phoneFieldPlaceholder);
+    this.formPhoneValue = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createStore */ .MT)('');
+    this.formSentSuccessfully = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createStore */ .MT)(false);
+    this.formSentWithError = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createStore */ .MT)(false);
+    (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .sample */ .UP)({
+      source: this.formSentSuccessfully,
+      filter: successfulState => successfulState,
+      fn: () => false,
+      target: [this.formSentWithError, this.failText]
+    });
+    (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .sample */ .UP)({
+      source: this.formSentWithError,
+      filter: errorState => errorState,
+      fn: () => false,
+      target: this.formSentSuccessfully
+    });
+    this.onFormSubmitted = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createEvent */ .yM)();
+    this.onChangePhoneInput = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createEvent */ .yM)();
+    this.formPhoneValue.on(this.onChangePhoneInput, (prev, e) => e.currentTarget.value);
+    this.sendFormFxHandler = async phone => {
+      const resultParams = {
+        ...extraRequestData,
+        phone
+      };
+      _helpers_Request__WEBPACK_IMPORTED_MODULE_0__/* ["default"].post */ .Z.post(url, resultParams);
+    };
+    this.sendFormFx = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createEffect */ .GW)(this.sendFormFxHandler);
+    (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .sample */ .UP)({
+      clock: this.onFormSubmitted,
+      source: this.formPhoneValue,
+      target: this.sendFormFx
+    });
+    (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .sample */ .UP)({
+      clock: this.sendFormFx.doneData,
+      fn: () => true,
+      target: this.formSentSuccessfully
+    });
+    (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .sample */ .UP)({
+      clock: this.sendFormFx.failData,
+      fn: () => true,
+      target: this.formSentWithError
+    });
+    this.onFormSubmitted.watch(e => e.preventDefault());
+  }
+}
+
+/***/ }),
+
+/***/ 3606:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -758,11 +172,11 @@ class PhoneField {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4184);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5697);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var effector_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4190);
-/* harmony import */ var _HelpFormModel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3725);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5893);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var effector_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4190);
+/* harmony import */ var _CallbackFormModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(865);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5893);
 
 
 
@@ -770,57 +184,22 @@ class PhoneField {
 
 
 
-function HelpForm({
+function CallbackFormView({
   model
 }) {
-  const successText = (0,effector_react__WEBPACK_IMPORTED_MODULE_3__/* .useStore */ .oR)(model.successText);
-  const errorText = (0,effector_react__WEBPACK_IMPORTED_MODULE_3__/* .useStore */ .oR)(model.errorText);
-  const titleText = (0,effector_react__WEBPACK_IMPORTED_MODULE_3__/* .useStore */ .oR)(model.titleText);
-  const contacts = (0,effector_react__WEBPACK_IMPORTED_MODULE_3__/* .useStore */ .oR)(model.contacts);
-  const formPhoneValue = (0,effector_react__WEBPACK_IMPORTED_MODULE_3__/* .useStore */ .oR)(model.formPhoneValue);
-  const contactPhone = contacts.phone ? contacts.phone : null;
-  const contactTelegram = contacts.telegram ? contacts.telegram : null;
-  const submitButtonText = (0,effector_react__WEBPACK_IMPORTED_MODULE_3__/* .useStore */ .oR)(model.submitButtonText);
-  const isFormPending = (0,effector_react__WEBPACK_IMPORTED_MODULE_3__/* .useStore */ .oR)(model.sendFormFx.pending);
-  const formSentSuccessfully = (0,effector_react__WEBPACK_IMPORTED_MODULE_3__/* .useStore */ .oR)(model.formSentSuccessfully);
-  const formSentWithError = (0,effector_react__WEBPACK_IMPORTED_MODULE_3__/* .useStore */ .oR)(model.formSentWithError);
-  const componentContainerStyle = {
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '20px',
-    backgroundColor: '#8e44ad'
-  };
-  const titleStyle = {
-    color: 'white',
-    marginBottom: '10px',
-    fontWeight: '900'
-  };
-  const contactButtonsContainerStyle = {
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%'
-  };
-  const contactButtonStyle = {
-    margin: '5px 0',
-    width: '100%',
-    whiteSpace: 'normal',
-    wordWrap: 'break-word'
-  };
-  const telegramContactButtonStyle = {
-    ...contactButtonStyle,
-    background: '#28a3e2',
-    color: 'white',
-    border: 'none'
-  };
+  const successText = (0,effector_react__WEBPACK_IMPORTED_MODULE_4__/* .useStore */ .oR)(model.successText);
+  const failText = (0,effector_react__WEBPACK_IMPORTED_MODULE_4__/* .useStore */ .oR)(model.failText);
+  const phoneFieldPlaceholder = (0,effector_react__WEBPACK_IMPORTED_MODULE_4__/* .useStore */ .oR)(model.phoneFieldPlaceholder);
+  const formPhoneValue = (0,effector_react__WEBPACK_IMPORTED_MODULE_4__/* .useStore */ .oR)(model.formPhoneValue);
+  const sendButtonText = (0,effector_react__WEBPACK_IMPORTED_MODULE_4__/* .useStore */ .oR)(model.sendButtonText);
+  const isFormPending = (0,effector_react__WEBPACK_IMPORTED_MODULE_4__/* .useStore */ .oR)(model.sendFormFx.pending);
+  const formSentSuccessfully = (0,effector_react__WEBPACK_IMPORTED_MODULE_4__/* .useStore */ .oR)(model.formSentSuccessfully);
+  const formSentWithError = (0,effector_react__WEBPACK_IMPORTED_MODULE_4__/* .useStore */ .oR)(model.formSentWithError);
   const formContainerStyle = {
     display: 'block',
     textAlign: 'center',
     marginTop: '10px',
-    width: '100%'
+    width: '350px'
   };
   const formStyle = {
     display: 'flex',
@@ -855,161 +234,141 @@ function HelpForm({
     ...formMessageStyle,
     background: '#27ae60'
   };
-  const contactsActionsStyle = {
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '60%'
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    style: componentContainerStyle,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      style: titleStyle,
-      children: titleText
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      style: contactsActionsStyle,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        style: contactButtonsContainerStyle,
-        children: [contactPhone ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-          href: `tel:${contactPhone}`,
-          target: "_blank",
-          rel: "noreferrer",
-          style: {
-            width: '100%'
-          },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            style: contactButtonStyle,
-            className: "button-input",
-            type: "button",
-            children: contactPhone
-          })
-        }) : null, contactTelegram ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-          href: `https://t.me/${contactTelegram.username}`,
-          target: "_blank",
-          rel: "noreferrer",
-          style: {
-            width: '100%'
-          },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            type: "button",
-            style: telegramContactButtonStyle,
-            className: "button-input",
-            children: contactTelegram.label
-          })
-        }) : null]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        style: formContainerStyle,
-        children: [formSentSuccessfully ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          style: successMessageStyle,
-          children: successText
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
-          onSubmit: model.onFormSubmitted,
-          style: formStyle,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "text",
-            className: "text-input",
-            style: formInputStyle,
-            name: "phone",
-            placeholder: "+7 (999) 555-55-55",
-            onChange: model.onChangePhoneInput,
-            value: formPhoneValue
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            className: submitButtonClassNames,
-            style: submitButtonStyle,
-            type: "submit",
-            disabled: isFormPending,
-            children: submitButtonText
-          })]
-        }), formSentWithError ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          style: errorMessageStyle,
-          children: errorText
-        }) : null]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    style: formContainerStyle,
+    children: [formSentSuccessfully ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      style: successMessageStyle,
+      children: successText
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+      onSubmit: model.onFormSubmitted,
+      style: formStyle,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+        type: "text",
+        className: "text-input",
+        style: formInputStyle,
+        name: "phone",
+        placeholder: phoneFieldPlaceholder,
+        onChange: model.onChangePhoneInput,
+        value: formPhoneValue
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        className: submitButtonClassNames,
+        style: submitButtonStyle,
+        type: "submit",
+        disabled: isFormPending,
+        children: sendButtonText
       })]
-    })]
+    }), formSentWithError ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      style: errorMessageStyle,
+      children: failText
+    }) : null]
   });
 }
-HelpForm.propTypes = {
-  model: prop_types__WEBPACK_IMPORTED_MODULE_4___default().instanceOf(_HelpFormModel__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z).isRequired
+CallbackFormView.propTypes = {
+  model: prop_types__WEBPACK_IMPORTED_MODULE_5___default().instanceOf(_CallbackFormModel__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z).isRequired
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HelpForm);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CallbackFormView);
 
 /***/ }),
 
-/***/ 3725:
+/***/ 5302:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ HelpFormModel)
+/* harmony export */   "Z": () => (/* binding */ ContactButtonModelsFactory)
 /* harmony export */ });
-/* harmony import */ var effector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8116);
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2378);
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _buttons_ButtonModelFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5256);
 
-class HelpFormModel {
-  constructor({
-    titleText = '',
-    submitButtonText = '',
-    successText = '',
-    contacts = {},
-    extraRequestData = {},
-    backendClient
-  }) {
-    this.titleText = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(titleText);
-    this.contacts = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(contacts);
-    this.submitButtonText = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(submitButtonText);
-    this.extraRequestData = extraRequestData;
-    this.formPhoneValue = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)('');
-    this.backendClient = backendClient;
-    this.successText = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(successText);
-    this.errorText = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(null);
-    this.formSentSuccessfully = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(false);
-    this.formSentWithError = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(false);
-    (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .sample */ .UP)({
-      source: this.formSentSuccessfully,
-      filter: successfulState => successfulState,
-      fn: () => false,
-      target: [this.formSentWithError, this.errorText]
-    });
-    (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .sample */ .UP)({
-      source: this.formSentWithError,
-      filter: errorState => errorState,
-      fn: () => false,
-      target: this.formSentSuccessfully
-    });
-    this.onFormSubmitted = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createEvent */ .yM)();
-    this.onChangePhoneInput = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createEvent */ .yM)();
-    this.formPhoneValue.on(this.onChangePhoneInput, (prev, e) => e.currentTarget.value);
-    this.sendFormFxHandler = async phone => {
-      const response = await this.backendClient.post('help-order', {
-        ...this.extraRequestData,
-        phone
-      });
-      return response;
+
+const DEFAULT_CONTACT_BUTTON_PARAMS = {
+  target: '_blank',
+  classname: 'button-input',
+  style: {
+    width: '350px',
+    marginLeft: 0,
+    marginTop: '10px'
+  }
+};
+const DEFAULT_PARTICULAR_BUTTON_PARAMS = {
+  telegram: {
+    style: {
+      backgroundColor: '#0088cc',
+      color: 'white'
+    }
+  },
+  whatsapp: {
+    style: {
+      backgroundColor: '#128C7E',
+      color: 'white'
+    }
+  }
+};
+class ContactButtonModelsFactory extends _buttons_ButtonModelFactory__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z {
+  static createFromConfig(config) {
+    const defaultConfigForParticularType = DEFAULT_PARTICULAR_BUTTON_PARAMS[config.type] || {};
+    const resultConfig = {
+      ...config,
+      params: lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, DEFAULT_CONTACT_BUTTON_PARAMS, defaultConfigForParticularType, config.params)
     };
-    this.sendFormFx = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createEffect */ .GW)(this.sendFormFxHandler);
-    (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .sample */ .UP)({
-      clock: this.onFormSubmitted,
-      source: this.formPhoneValue,
-      target: this.sendFormFx
-    });
-    (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .sample */ .UP)({
-      clock: this.sendFormFx.doneData,
-      fn: () => true,
-      target: this.formSentSuccessfully
-    });
-    (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .sample */ .UP)({
-      clock: this.sendFormFx.failData,
-      fn: () => true,
-      target: this.formSentWithError
-    });
-    this.errorText.on(this.sendFormFx.failData, () => 'Error...');
-    this.onFormSubmitted.watch(e => e.preventDefault());
+    return super.createFromConfig(resultConfig);
   }
 }
 
 /***/ }),
 
-/***/ 3235:
+/***/ 1014:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ ContactFormModel)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+/* harmony import */ var _buttons_ButtonsListView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9960);
+/* harmony import */ var _CallbackFormModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(865);
+/* harmony import */ var _CallbackFormView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3606);
+/* harmony import */ var _ContactButtonModelsFactory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5302);
+/* harmony import */ var _TitleView__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5184);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5893);
+
+
+
+
+
+
+
+class ContactFormModel {
+  constructor({
+    text = null,
+    contactButtons = [],
+    callbackForm = {}
+  } = {}) {
+    if (text) {
+      this.TitleView = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_TitleView__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
+        text: text
+      });
+    }
+    if (contactButtons) {
+      const contactsButtonsListFactory = new _ContactButtonModelsFactory__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z();
+      const buttonsList = contactsButtonsListFactory.createFromConfigsArray(contactButtons);
+      this.ContactButtonsView = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_buttons_ButtonsListView__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, {
+        buttons: buttonsList
+      });
+    }
+    if (callbackForm) {
+      const callbackFormModel = new _CallbackFormModel__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z(callbackForm);
+      this.CallbackFormView = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_CallbackFormView__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
+        model: callbackFormModel
+      });
+    }
+  }
+}
+
+/***/ }),
+
+/***/ 3129:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1019,53 +378,90 @@ class HelpFormModel {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5697);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var effector_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4190);
-/* harmony import */ var _buttons_SettingsButtonModel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2858);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+/* harmony import */ var _ContactFormModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1014);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5893);
 
 
 
 
-
-function SettingsButton({
+function ContactFormView({
   model
 }) {
-  const text = (0,effector_react__WEBPACK_IMPORTED_MODULE_2__/* .useStore */ .oR)(model.$renderedText);
-  const backgroundColor = (0,effector_react__WEBPACK_IMPORTED_MODULE_2__/* .useStore */ .oR)(model.$backgroundColor);
-  const textColor = (0,effector_react__WEBPACK_IMPORTED_MODULE_2__/* .useStore */ .oR)(model.$textColor);
-  const isHidden = (0,effector_react__WEBPACK_IMPORTED_MODULE_2__/* .useStore */ .oR)(model.$isHidden);
-  const buttonStyle = {
-    backgroundColor,
-    color: textColor,
-    display: isHidden ? 'none' : 'inline-block',
-    width: '250px',
-    whiteSpace: 'normal',
-    wordWrap: 'break-word'
+  const {
+    TitleView,
+    ContactButtonsView,
+    CallbackFormView
+  } = model;
+  const componentContainerStyle = {
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '20px',
+    backgroundColor: '#8e44ad',
+    width: '100%',
+    boxSizing: 'border-box'
   };
-  const buttonContainerStyle = {
-    display: 'block',
-    textAlign: 'center',
-    margin: '10px 0'
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    style: buttonContainerStyle,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-      className: "button-input",
-      style: buttonStyle,
-      type: "button",
-      onClick: model.onClick,
-      children: text
-    })
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    style: componentContainerStyle,
+    children: [TitleView || null, ContactButtonsView || null, CallbackFormView || null]
   });
 }
-SettingsButton.propTypes = {
-  model: prop_types__WEBPACK_IMPORTED_MODULE_3___default().instanceOf(_buttons_SettingsButtonModel__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z).isRequired
+ContactFormView.propTypes = {
+  model: prop_types__WEBPACK_IMPORTED_MODULE_3___default().instanceOf(_ContactFormModel__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z).isRequired
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SettingsButton);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContactFormView);
 
 /***/ }),
 
-/***/ 5520:
+/***/ 1937:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ SettingsContactFormComponent)
+/* harmony export */ });
+/* harmony import */ var _helpers_SettingsPanelHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9304);
+/* harmony import */ var _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6816);
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3871);
+/* harmony import */ var _WidgetComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1892);
+/* harmony import */ var _ContactFormModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1014);
+/* harmony import */ var _ContactFormView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3129);
+
+
+
+
+
+
+class SettingsContactFormComponent extends _WidgetComponent__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z {
+  constructor(widget, contactFormConfig) {
+    super(widget);
+    this.contactFormConfig = contactFormConfig;
+  }
+  getWidgetEventsCallbacks() {
+    return {
+      [_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_5__/* ["default"].EVENT_SETTINGS */ .Z.EVENT_SETTINGS]: this.settings.bind(this)
+    };
+  }
+  settings() {
+    const renderedConfig = _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_1__/* ["default"].deepRenderObjectWithWidgetData */ .Z.deepRenderObjectWithWidgetData(this.contactFormConfig, this.widget);
+    if (renderedConfig.callbackForm) {
+      renderedConfig.callbackForm.extraRequestData = {
+        ...this.widget.system(),
+        amo_subdomain: this.widget.system().domain,
+        ...(renderedConfig.callbackForm.extraRequestData ?? {})
+      };
+    }
+    const props = {
+      model: new _ContactFormModel__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z(renderedConfig)
+    };
+    _helpers_SettingsPanelHelpers__WEBPACK_IMPORTED_MODULE_0__/* ["default"].appendReactComponentInDescriptionBlock */ .Z.appendReactComponentInDescriptionBlock(_ContactFormView__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, props, 'contact-form');
+  }
+}
+
+/***/ }),
+
+/***/ 5184:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1073,92 +469,68 @@ SettingsButton.propTypes = {
 /* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5697);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var effector_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4190);
-/* harmony import */ var _WidgetDescriptionText__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6514);
-/* harmony import */ var _VideoInstruction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3865);
-/* harmony import */ var _SettingsDescriptionModel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(6106);
-/* harmony import */ var _SettingsButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3235);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5893);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 
 
 
-
-
-
-
-
-
-function SettingsDescription({
-  model
+function TitleView({
+  text
 }) {
-  const description = (0,effector_react__WEBPACK_IMPORTED_MODULE_5__/* .useStore */ .oR)(model.description);
-  const videoLink = (0,effector_react__WEBPACK_IMPORTED_MODULE_5__/* .useStore */ .oR)(model.videoInstructionLink);
-  const extraComponentsData = (0,effector_react__WEBPACK_IMPORTED_MODULE_5__/* .useStore */ .oR)(model.extraComponents);
-  const videoInstructionTitle = (0,effector_react__WEBPACK_IMPORTED_MODULE_5__/* .useStore */ .oR)(model.videoInstructionTitle);
-  const buttons = model.buttons.map(buttonModel => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SettingsButton__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-    model: buttonModel
-  }));
-  const extraComponents = extraComponentsData.map(({
-    Component,
-    model: componentModel
-  }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Component, {
-    model: componentModel
-  }));
-  const settingsDescriptionContainerStyle = {
-    display: 'block'
+  const titleStyle = {
+    color: 'white',
+    marginBottom: '10px',
+    fontWeight: '900'
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    style: settingsDescriptionContainerStyle,
-    children: [description ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_WidgetDescriptionText__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, {
-      text: description
-    }) : null, videoLink ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VideoInstruction__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, {
-      link: videoLink,
-      title: videoInstructionTitle
-    }) : null, extraComponents, buttons]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    style: titleStyle,
+    children: text
   });
 }
-SettingsDescription.propTypes = {
-  model: prop_types__WEBPACK_IMPORTED_MODULE_6___default().instanceOf(_SettingsDescriptionModel__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z).isRequired
+TitleView.propTypes = {
+  text: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string.isRequired)
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SettingsDescription);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TitleView);
 
 /***/ }),
 
-/***/ 6106:
+/***/ 167:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ SettingsDescriptionModel)
+/* harmony export */   "Z": () => (/* binding */ SettingsFooterComponent)
 /* harmony export */ });
-/* harmony import */ var effector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8116);
+/* harmony import */ var _helpers_SettingsPanelHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9304);
+/* harmony import */ var _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6816);
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3871);
+/* harmony import */ var _WidgetComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1892);
+/* harmony import */ var _SettingsFooterView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8319);
 
-class SettingsDescriptionModel {
-  constructor({
-    description = '',
-    videoInstructionLink = null,
-    videoInstructionTitle = null,
-    buttons = [],
-    extraComponents = []
-  }) {
-    this.description = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(description);
-    this.videoInstructionLink = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(videoInstructionLink);
-    this.videoInstructionTitle = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(videoInstructionTitle);
-    this.buttons = buttons;
-    this.extraComponents = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(extraComponents);
-    this.setExtraComponents = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createEvent */ .yM)();
-    (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .sample */ .UP)({
-      clock: this.setExtraComponents,
-      target: this.extraComponents
-    });
+
+
+
+
+class SettingsFooterComponent extends _WidgetComponent__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z {
+  constructor(widget, config) {
+    super(widget);
+    this.config = config;
+  }
+  getWidgetEventsCallbacks() {
+    return {
+      [_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_4__/* ["default"].EVENT_SETTINGS */ .Z.EVENT_SETTINGS]: this.settings.bind(this)
+    };
+  }
+  settings() {
+    const renderedConfig = _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_1__/* ["default"].deepRenderObjectWithWidgetData */ .Z.deepRenderObjectWithWidgetData(this.config, this.widget);
+    _helpers_SettingsPanelHelpers__WEBPACK_IMPORTED_MODULE_0__/* ["default"].appentReactComponent */ .Z.appentReactComponent('#widget_settings__fields_wrapper', _SettingsFooterView__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, renderedConfig, 'widget-footer');
   }
 }
 
 /***/ }),
 
-/***/ 3865:
+/***/ 8319:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1173,7 +545,593 @@ class SettingsDescriptionModel {
 
 
 
-function VideoInstruction({
+function SettingsFooterView({
+  siteDomain = null,
+  email = null,
+  text = null,
+  fromYear = null
+}) {
+  const blockStyle = {
+    color: '#6b6d72',
+    fontSize: '13px',
+    borderTop: '1px solid #d3d7d8',
+    marginTop: '20px',
+    padding: '10px'
+  };
+  const siteLink = `https://${siteDomain}`;
+  const emailLink = `mailto:${email}`;
+  const currentYear = new Date().getFullYear();
+  const copyRightDates = `© ${fromYear} - ${currentYear}`;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    style: blockStyle,
+    children: [fromYear ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      children: copyRightDates
+    }) : null, text ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      children: text
+    }) : null, siteDomain ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+        href: siteLink,
+        children: siteDomain
+      })
+    }) : null, email ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+        href: emailLink,
+        children: email
+      })
+    }) : null]
+  });
+}
+SettingsFooterView.propTypes = {
+  siteDomain: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+  email: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+  text: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+  fromYear: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string)
+};
+SettingsFooterView.defaultProps = {
+  siteDomain: null,
+  email: null,
+  text: null,
+  fromYear: null
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SettingsFooterView);
+
+/***/ }),
+
+/***/ 919:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ PhoneField)
+/* harmony export */ });
+/* harmony import */ var intl_tel_input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8699);
+/* harmony import */ var intl_tel_input__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(intl_tel_input__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var intl_tel_input_build_js_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1553);
+/* harmony import */ var intl_tel_input_build_js_utils__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(intl_tel_input_build_js_utils__WEBPACK_IMPORTED_MODULE_1__);
+
+
+class PhoneField {
+  constructor(inputEl, params, {
+    errorMsg = '',
+    errorInputStyle = {}
+  } = {}) {
+    this.input = inputEl;
+    this.errorMsg = errorMsg;
+    this.errorInputStyle = errorInputStyle;
+    this.iph = intl_tel_input__WEBPACK_IMPORTED_MODULE_0___default()(this.input, params);
+    this.msgTag = document.createElement('span');
+    this.msgTag.style.color = 'red';
+    this.msgTag.style.marginLeft = '10px';
+    this.input.after(this.msgTag);
+  }
+  validate() {
+    const isValid = this.isValid();
+    if (!isValid) {
+      Object.entries(this.errorInputStyle).forEach(([attr, value]) => {
+        this.input.style[attr] = value;
+      });
+      this.msgTag.innerText = this.errorMsg;
+      this.msgTag.style.display = '';
+    } else {
+      this.input.style = {};
+      this.msgTag.innerText = '';
+      this.msgTag.style.display = 'none';
+    }
+    return isValid;
+  }
+  isValid() {
+    return this.iph.isValidNumber();
+  }
+  getNumber() {
+    return this.iph.getNumber();
+  }
+}
+
+/***/ }),
+
+/***/ 3703:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ SettingsPhoneFieldComponent)
+/* harmony export */ });
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3871);
+/* harmony import */ var _WidgetComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1892);
+/* harmony import */ var _PhoneField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(919);
+
+
+
+class SettingsPhoneFieldComponent extends _WidgetComponent__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z {
+  constructor(widget, {
+    langPath = null,
+    phoneFieldOpts = {},
+    phoneFieldName = 'phone'
+  } = {}) {
+    super(widget);
+    this.langPath = langPath ?? 'components.settings_phone_field';
+    this.phoneFieldOpts = phoneFieldOpts;
+    this.phoneFieldName = phoneFieldName;
+  }
+  getWidgetEventsCallbacks() {
+    return {
+      [_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__/* ["default"].EVENT_SETTINGS */ .Z.EVENT_SETTINGS]: this.settings.bind(this)
+    };
+  }
+  settings() {
+    const buttonsListArray = document.querySelectorAll('.install-widget__button, .js-widget-save');
+    const phoneInput = document.querySelector(`.widget_settings_block__controls__[name='${this.phoneFieldName}']`);
+    if (!phoneInput) {
+      return;
+    }
+    const phoneField = new _PhoneField__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z(phoneInput, this.phoneFieldOpts, {
+      errorMsg: this.widget.i18n(`${this.langPath}.need_to_fill`),
+      errorInputStyle: {
+        border: 'solid red 1px'
+      }
+    });
+    buttonsListArray.forEach(button => {
+      button.addEventListener('click', e => {
+        const isPhoneValid = phoneField.validate();
+        if (!isPhoneValid) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+        return true;
+      });
+    });
+  }
+}
+
+/***/ }),
+
+/***/ 1787:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ SettingsSaverComponent)
+/* harmony export */ });
+/* harmony import */ var _helpers_Request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4125);
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3871);
+/* harmony import */ var _WidgetComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1892);
+
+
+
+class SettingsSaverComponent extends _WidgetComponent__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z {
+  constructor(widget, {
+    url
+  }) {
+    super(widget);
+    this.url = url;
+  }
+  getWidgetEventsCallbacks() {
+    return {
+      [_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__/* ["default"].EVENT_SAVE */ .Z.EVENT_SAVE]: this.save.bind(this)
+    };
+  }
+  save() {
+    let data = {};
+    document.querySelectorAll('#widget_settings__fields_wrapper input').forEach(input => {
+      data[input.getAttribute('name')] = input.value;
+    });
+    const widgetSystemData = this.widget.system();
+    data = {
+      ...data,
+      ...widgetSystemData
+    };
+    data.email = data.amouser;
+    data.amo_subdomain = this.widget.system().domain;
+    _helpers_Request__WEBPACK_IMPORTED_MODULE_0__/* ["default"].post */ .Z.post(this.url, data);
+  }
+}
+
+/***/ }),
+
+/***/ 6192:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ SubscriptionManagerComponent)
+/* harmony export */ });
+/* harmony import */ var effector__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8116);
+/* harmony import */ var _helpers_Notificator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7791);
+/* harmony import */ var _helpers_Request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4125);
+/* harmony import */ var _helpers_SettingsPanelHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9304);
+/* harmony import */ var _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6816);
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(3871);
+/* harmony import */ var _WidgetComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1892);
+/* harmony import */ var _SubscriptionStatus__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9200);
+/* harmony import */ var _SubscriptionStatusSettingsPanel_SubscriptionStatusSettingsPanelModel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2577);
+/* harmony import */ var _SubscriptionStatusSettingsPanel_SubscriptionStatusSettingsView__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1717);
+
+
+
+
+
+
+
+
+
+
+class SubscriptionManagerComponent extends _WidgetComponent__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z {
+  constructor(widget, {
+    statusUrl = ''
+  }) {
+    super(widget);
+    this.statusUrl = statusUrl;
+    this.subscriptionStatus = null;
+    this.setSubscriptionStatus = (0,effector__WEBPACK_IMPORTED_MODULE_8__/* .createEvent */ .yM)();
+    this.$subscriptionStatus = (0,effector__WEBPACK_IMPORTED_MODULE_8__/* .createStore */ .MT)(null).on(this.setSubscriptionStatus, (_, status) => status);
+    this.notificator = null;
+  }
+  getWidgetEventsCallbacks() {
+    return {
+      [_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_9__/* ["default"].EVENT_INIT */ .Z.EVENT_INIT]: this.init.bind(this),
+      [_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_9__/* ["default"].EVENT_SETTINGS */ .Z.EVENT_SETTINGS]: this.settings.bind(this)
+    };
+  }
+  initNotificator() {
+    if (!this.notificator) {
+      this.notificator = new _helpers_Notificator__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z({
+        header: this.widget.i18n('widget.name')
+      });
+    }
+  }
+  async fetchStatus() {
+    const response = await _helpers_Request__WEBPACK_IMPORTED_MODULE_1__/* ["default"].get */ .Z.get(this.statusUrl, {
+      amo_subdomain: this.widget.system().domain
+    });
+    const responseData = response.data;
+    const status = new _SubscriptionStatus__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z(responseData);
+    this.setSubscriptionStatus(status);
+    return status;
+  }
+  getStatus() {
+    if (!this.subscriptionStatus) {
+      this.subscriptionStatus = this.fetchStatus();
+    }
+    return this.subscriptionStatus;
+  }
+  async init() {
+    this.initNotificator();
+    const subscriptionStatus = await this.getStatus();
+    if (subscriptionStatus) {
+      if (subscriptionStatus.getIsExpired()) {
+        this.notificator.showMessage('error', _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_3__/* ["default"].renderWithWidgetData */ .Z.renderWithWidgetData(subscriptionStatus.getStatusText(), this.widget));
+      }
+      if (!subscriptionStatus.getIsDataFilled()) {
+        this.notificator.showMessage('error', _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_3__/* ["default"].renderWithWidgetData */ .Z.renderWithWidgetData('{{lang.components.subscription_manager.need_to_fill_settings_error}}', this.widget));
+      }
+    }
+  }
+  async settings() {
+    this.initNotificator();
+    await this.getStatus();
+    const props = {
+      model: new _SubscriptionStatusSettingsPanel_SubscriptionStatusSettingsPanelModel__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z({
+        $subscriptionStatus: this.$subscriptionStatus,
+        widget: this.widget
+      })
+    };
+    _helpers_SettingsPanelHelpers__WEBPACK_IMPORTED_MODULE_2__/* ["default"].appendReactComponentInDescriptionBlock */ .Z.appendReactComponentInDescriptionBlock(_SubscriptionStatusSettingsPanel_SubscriptionStatusSettingsView__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, props, 'subscription-status');
+  }
+}
+
+/***/ }),
+
+/***/ 9200:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ SubscriptionStatus)
+/* harmony export */ });
+/* harmony import */ var _SubscriptionStatusCheckers_DemoStatusChecker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4669);
+/* harmony import */ var _SubscriptionStatusCheckers_FreeStatusChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1098);
+/* harmony import */ var _SubscriptionStatusCheckers_PurchaseStatusChecker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4537);
+/* harmony import */ var _SubscriptionStatusCheckers_SubscriptionStatusChecker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1408);
+
+
+
+
+const StatusCheckers = {
+  purchase: _SubscriptionStatusCheckers_PurchaseStatusChecker__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z,
+  subscription: _SubscriptionStatusCheckers_SubscriptionStatusChecker__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z,
+  free: _SubscriptionStatusCheckers_FreeStatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z,
+  demo: _SubscriptionStatusCheckers_DemoStatusChecker__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z
+};
+class SubscriptionStatus {
+  constructor({
+    subscription_type: subscriptionType,
+    subscription_date_timestamp: subscriptionsDateTimestamp,
+    is_expired: isExpired,
+    is_installed: isInstalled,
+    user_data_filled_status: hasUserFilledData
+  }) {
+    this.subscriptionType = subscriptionType;
+    this.subscriptionDate = subscriptionsDateTimestamp;
+    this.isExpired = isExpired;
+    this.isInstalled = isInstalled;
+    this.hasUserFilledData = hasUserFilledData;
+    const StatusCheckerClass = StatusCheckers[this.subscriptionType];
+    if (StatusCheckerClass) {
+      this.statusChecker = new StatusCheckerClass(this.subscriptionDate);
+    } else {
+      this.statusChecker = new _SubscriptionStatusCheckers_FreeStatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z();
+    }
+  }
+  getIsExpired() {
+    return this.isExpired;
+  }
+  getStatusText() {
+    return this.statusChecker.getStatusText();
+  }
+  getIsDataFilled() {
+    return this.hasUserFilledData;
+  }
+  getIsInstalled() {
+    return this.isInstalled;
+  }
+}
+
+/***/ }),
+
+/***/ 4669:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ DemoStatusChecker)
+/* harmony export */ });
+/* harmony import */ var _SubscriptionStatusChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1408);
+
+class DemoStatusChecker extends _SubscriptionStatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  getStatusText() {
+    return `{{lang.components.subscription_manager.statuses_texts.demo}} ${this.getFormattedDate()}`;
+  }
+}
+
+/***/ }),
+
+/***/ 1098:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ FreeStatusChecker)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4942);
+/* harmony import */ var _StatusChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2161);
+
+
+class FreeStatusChecker extends _StatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  getStatusText() {
+    return this.constructor.statusText;
+  }
+}
+(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)(FreeStatusChecker, "statusText", '{{lang.components.subscription_manager.statuses_texts.free}}');
+
+/***/ }),
+
+/***/ 4537:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ PurchaseStatusChecker)
+/* harmony export */ });
+/* harmony import */ var _StatusChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2161);
+
+class PurchaseStatusChecker extends _StatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  constructor(status) {
+    super();
+    this.subscriptionStatus = status;
+  }
+  getStatusText() {
+    if (this.subscriptionStatus === 'purchased') {
+      return '{{lang.components.subscription_manager.statuses_texts.purchased}}';
+    }
+    return '{{lang.components.subscription_manager.statuses_texts.not_purchased}}';
+  }
+}
+
+/***/ }),
+
+/***/ 2161:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ StatusChecker)
+/* harmony export */ });
+class StatusChecker {}
+
+/***/ }),
+
+/***/ 1408:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ SubscriptionStatusChecker)
+/* harmony export */ });
+/* harmony import */ var _StatusChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2161);
+
+const formatDate = dateStr => {
+  const d = dateStr.toString();
+  return d.length < 2 ? `0${d}` : d;
+};
+class SubscriptionStatusChecker extends _StatusChecker__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  constructor(subscriptionTimestamp) {
+    super();
+    this.subscriptionStatus = parseInt(subscriptionTimestamp, 10);
+  }
+  getFormattedDate() {
+    const date = new Date(this.subscriptionStatus * 1000);
+    const dateStr = `${formatDate(date.getDate())}.${formatDate(date.getMonth() + 1)}.${formatDate(date.getFullYear())}`;
+    return dateStr;
+  }
+  getStatusText() {
+    return `{{lang.components.subscription_manager.statuses_texts.subscription}} ${this.getFormattedDate()}`;
+  }
+}
+
+/***/ }),
+
+/***/ 2577:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ SubscriptionStatusSettingsPanelModel)
+/* harmony export */ });
+/* harmony import */ var _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6816);
+
+class SubscriptionStatusSettingsPanelModel {
+  constructor({
+    $subscriptionStatus,
+    widget
+  }) {
+    this.$subscriptionStatus = $subscriptionStatus;
+    this.widget = widget;
+  }
+  renderStatusText(status) {
+    return _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_0__/* ["default"].renderWithWidgetData */ .Z.renderWithWidgetData(status.getStatusText(), this.widget);
+  }
+}
+
+/***/ }),
+
+/***/ 1717:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var effector_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4190);
+/* harmony import */ var _SubscriptionStatusSettingsPanelModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2577);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5893);
+
+
+
+
+
+function SubscriptionStatusSettingsView({
+  model
+}) {
+  const status = (0,effector_react__WEBPACK_IMPORTED_MODULE_3__/* .useStore */ .oR)(model.$subscriptionStatus);
+  if (!status) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {});
+  }
+  const isInstalled = status ? status.getIsInstalled() : false;
+  const statusInfoContainerStyle = {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'center',
+    margin: '15px 0',
+    fontSize: '20px',
+    fontWeight: '900'
+  };
+  const subscriptionInfoStyle = {
+    color: status.getIsExpired() ? 'red' : 'green',
+    marginLeft: '10px'
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    style: statusInfoContainerStyle,
+    children: isInstalled ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      style: subscriptionInfoStyle,
+      children: model.renderStatusText(status)
+    }) : null
+  });
+}
+SubscriptionStatusSettingsView.propTypes = {
+  model: prop_types__WEBPACK_IMPORTED_MODULE_4___default().instanceOf(_SubscriptionStatusSettingsPanelModel__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z).isRequired
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SubscriptionStatusSettingsView);
+
+/***/ }),
+
+/***/ 6994:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ VideoInstructionComponent)
+/* harmony export */ });
+/* harmony import */ var _helpers_SettingsPanelHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9304);
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3871);
+/* harmony import */ var _WidgetComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1892);
+/* harmony import */ var _VideoInstructionView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6938);
+
+
+
+
+class VideoInstructionComponent extends _WidgetComponent__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z {
+  constructor(widget, {
+    langPath = null
+  } = {}) {
+    super(widget);
+    this.langPath = langPath ?? 'components.video_instruction';
+  }
+  getWidgetEventsCallbacks() {
+    return {
+      [_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_3__/* ["default"].EVENT_SETTINGS */ .Z.EVENT_SETTINGS]: this.settings.bind(this)
+    };
+  }
+  settings(eventName, widget) {
+    const props = {
+      link: widget.i18n(`${this.langPath}.link`),
+      title: widget.i18n(`${this.langPath}.title`)
+    };
+    _helpers_SettingsPanelHelpers__WEBPACK_IMPORTED_MODULE_0__/* ["default"].appendReactComponentInDescriptionBlock */ .Z.appendReactComponentInDescriptionBlock(_VideoInstructionView__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, props, 'video-instruction');
+  }
+}
+
+/***/ }),
+
+/***/ 6938:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+
+
+
+
+function VideoInstructionView({
   title = '',
   link = null
 }) {
@@ -1215,19 +1173,118 @@ function VideoInstruction({
     })]
   });
 }
-VideoInstruction.propTypes = {
+VideoInstructionView.propTypes = {
   link: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
   title: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string)
 };
-VideoInstruction.defaultProps = {
+VideoInstructionView.defaultProps = {
   link: null,
   title: ''
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VideoInstruction);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VideoInstructionView);
 
 /***/ }),
 
-/***/ 6514:
+/***/ 1892:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ WidgetComponent)
+/* harmony export */ });
+class WidgetComponent {
+  constructor(widget) {
+    this.widget = widget;
+    this.bindWidgetEvents();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getWidgetEventsCallbacks() {
+    return {};
+  }
+  bindWidgetEvents() {
+    const componentWidgetEventsCallbacks = this.getWidgetEventsCallbacks();
+    if (componentWidgetEventsCallbacks) {
+      Object.entries(componentWidgetEventsCallbacks).forEach(([event, callback]) => {
+        this.widget.on(event, callback);
+      });
+    }
+  }
+}
+
+/***/ }),
+
+/***/ 3871:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+class WidgetLifecycleEvents {
+  static get EVENT_RENDER() {
+    return 'EVENT_RENDER';
+  }
+  static get EVENT_INIT() {
+    return 'EVENT_INIT';
+  }
+  static get EVENT_SETTINGS() {
+    return 'EVENT_SETTINGS';
+  }
+  static get EVENT_DP() {
+    return 'EVENT_DP';
+  }
+  static get EVENT_TAB() {
+    return 'EVENT_TAB';
+  }
+  static get EVENT_SAVE() {
+    return 'EVENT_SAVE';
+  }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WidgetLifecycleEvents);
+
+/***/ }),
+
+/***/ 5256:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ ButtonModelFactory)
+/* harmony export */ });
+/* harmony import */ var _buttonModels_EmailButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(237);
+/* harmony import */ var _buttonModels_LinkButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5747);
+/* harmony import */ var _buttonModels_TelegramButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9090);
+/* harmony import */ var _buttonModels_WhatsappButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5454);
+
+
+
+
+const BUTTONS_TYPES_CLASSES = {
+  link: _buttonModels_LinkButton__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z,
+  telegram: _buttonModels_TelegramButton__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z,
+  whatsapp: _buttonModels_WhatsappButton__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z,
+  email: _buttonModels_EmailButton__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z
+};
+class ButtonModelFactory {
+  static createFromConfig(config) {
+    const btnConfig = {
+      ...config
+    };
+    const ButtonClass = BUTTONS_TYPES_CLASSES[btnConfig.type];
+    if (ButtonClass === undefined) {
+      throw new Error(`button type '${btnConfig.type}' does not exist`);
+    }
+    return new ButtonClass(btnConfig.params);
+  }
+  createFromConfigsArray(configsArray = []) {
+    return configsArray.map(this.constructor.createFromConfig);
+  }
+}
+
+/***/ }),
+
+/***/ 5970:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1237,151 +1294,34 @@ VideoInstruction.defaultProps = {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5697);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _buttonModels_ButtonModel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6686);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 
 
 
-function WidgetDescriptionText({
-  text = ''
+
+function ButtonView({
+  buttonModel
 }) {
-  const html = {
-    __html: text
-  };
-  const descriptionContainerStyle = {
-    display: 'block',
-    textAlign: 'left',
-    margin: '20px 0'
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    dangerouslySetInnerHTML: html,
-    style: descriptionContainerStyle
+  const ButtonComponent = buttonModel.getViewComponent();
+  return ButtonComponent ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(ButtonComponent, {
+    model: buttonModel
+  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+    style: buttonModel.style,
+    type: "button",
+    className: buttonModel.classname,
+    onClick: e => buttonModel.onClick(e),
+    children: buttonModel.text
   });
 }
-WidgetDescriptionText.propTypes = {
-  text: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string)
+ButtonView.propTypes = {
+  buttonModel: prop_types__WEBPACK_IMPORTED_MODULE_2___default().instanceOf(_buttonModels_ButtonModel__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z).isRequired
 };
-WidgetDescriptionText.defaultProps = {
-  text: null
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WidgetDescriptionText);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ButtonView);
 
 /***/ }),
 
-/***/ 6225:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ LinkSettingsButton)
-/* harmony export */ });
-/* harmony import */ var effector__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8116);
-/* harmony import */ var _SettingsButtonModel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2858);
-
-
-class LinkSettingsButton extends _SettingsButtonModel__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
-  constructor({
-    link,
-    ...baseParams
-  }) {
-    super(baseParams);
-    this.$link = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createStore */ .MT)(link);
-    this.$renderedLink = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createStore */ .MT)(null);
-    this.openLinkFx = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createEffect */ .GW)(async l => {
-      const w = window.open(l, '_blank');
-      w.focus();
-    });
-    (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .sample */ .UP)({
-      source: [this.$link, this.$renderer],
-      fn: ([l, r]) => {
-        if (r) {
-          return r(l);
-        }
-        return l;
-      },
-      target: this.$renderedLink
-    });
-    (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .sample */ .UP)({
-      source: this.$renderedLink,
-      clock: this.onClick,
-      target: this.openLinkFx
-    });
-  }
-}
-
-/***/ }),
-
-/***/ 9780:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ PrimarySettingsButton)
-/* harmony export */ });
-/* harmony import */ var effector__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8116);
-/* harmony import */ var _SettingsButtonModel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2858);
-
-
-class PrimarySettingsButton extends _SettingsButtonModel__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
-  constructor({
-    onClick,
-    ...baseParams
-  }) {
-    super(baseParams);
-    this.actionFx = (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .createEffect */ .GW)(async e => {
-      onClick(e);
-    });
-    (0,effector__WEBPACK_IMPORTED_MODULE_1__/* .sample */ .UP)({
-      clock: this.onClick,
-      target: this.actionFx
-    });
-  }
-}
-
-/***/ }),
-
-/***/ 2858:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ SettingsButtonModel)
-/* harmony export */ });
-/* harmony import */ var effector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8116);
-
-class SettingsButtonModel {
-  constructor({
-    text,
-    backgroundColor,
-    textColor
-  }) {
-    this.$text = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(text);
-    this.$renderedText = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)('');
-    this.$backgroundColor = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(backgroundColor);
-    this.$textColor = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(textColor);
-    this.$isHidden = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(false);
-    this.onClick = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createEvent */ .yM)();
-    this.$renderer = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createStore */ .MT)(null);
-    this.setRenderer = (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .createEvent */ .yM)();
-    (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .sample */ .UP)({
-      clock: this.setRenderer,
-      target: this.$renderer
-    });
-    (0,effector__WEBPACK_IMPORTED_MODULE_0__/* .sample */ .UP)({
-      source: [this.$text, this.$renderer],
-      fn: ([t, r]) => {
-        if (r) {
-          return r(t);
-        }
-        return t;
-      },
-      target: this.$renderedText
-    });
-  }
-}
-
-/***/ }),
-
-/***/ 9853:
+/***/ 9960:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1389,83 +1329,244 @@ class SettingsButtonModel {
 /* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5697);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _SettingsFooterModel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7410);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _ButtonView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5970);
+/* harmony import */ var _buttonModels_ButtonModel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6686);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5893);
 
 
 
 
 
-function SettingsFooter({
-  model
+function ButtonsListView({
+  buttons,
+  containerStyle = {}
 }) {
-  const year = new Date().getFullYear();
-  const siteLink = `https://${model.site}`;
-  const footerInfoContainerStyle = {
-    color: '#6b6d72',
-    fontSize: '13px',
-    borderTop: '1px solid #d3d7d8',
-    margin: '30px -30px 0px -30px',
-    padding: '10px 0 0 30px'
-  };
-  const contactLinksContainerStyle = {
+  const componentContainerStyle = {
     display: 'flex',
     flexFlow: 'column nowrap',
-    justifyContent: 'space-between'
+    alignItems: 'center',
+    margin: '20px 0',
+    textAlign: 'center',
+    ...containerStyle
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    style: footerInfoContainerStyle,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      children: ["\xA9 2013\u2013", year]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      children: model.text
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      style: contactLinksContainerStyle,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-        href: siteLink,
-        target: "_blank",
-        rel: "noreferrer",
-        children: model.site
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-        href: "mailto:info@deltasales.ru",
-        target: "_blank",
-        rel: "noreferrer",
-        children: model.email
-      })]
-    })]
+  const ButtonsList = buttons.map(btnModel => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ButtonView__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, {
+    buttonModel: btnModel
+  }));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    style: componentContainerStyle,
+    children: ButtonsList
   });
 }
-SettingsFooter.propTypes = {
-  model: prop_types__WEBPACK_IMPORTED_MODULE_2___default().instanceOf(_SettingsFooterModel__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z).isRequired
+ButtonsListView.propTypes = {
+  buttons: prop_types__WEBPACK_IMPORTED_MODULE_3___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_3___default().instanceOf(_buttonModels_ButtonModel__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z)).isRequired,
+  containerStyle: prop_types__WEBPACK_IMPORTED_MODULE_3___default().objectOf((prop_types__WEBPACK_IMPORTED_MODULE_3___default().string))
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SettingsFooter);
+ButtonsListView.defaultProps = {
+  containerStyle: {}
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ButtonsListView);
 
 /***/ }),
 
-/***/ 7410:
+/***/ 6686:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ SettingsFooterModel)
+/* harmony export */   "Z": () => (/* binding */ ButtonModel)
 /* harmony export */ });
-class SettingsFooterModel {
+class ButtonModel {
   constructor({
-    email,
-    site,
-    text
+    text = '',
+    style = {},
+    classname = ''
   }) {
-    this.email = email;
-    this.site = site;
     this.text = text;
+    this.style = {
+      ...style
+    };
+    this.classname = classname;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getViewComponent() {
+    return null;
   }
 }
 
 /***/ }),
 
-/***/ 4476:
+/***/ 237:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ EmailButton)
+/* harmony export */ });
+/* harmony import */ var _LinkButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5747);
+
+class EmailButton extends _LinkButton__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  constructor({
+    email,
+    ...base
+  } = {}) {
+    super(base);
+    this.href = `mailto:${email}`;
+  }
+}
+
+/***/ }),
+
+/***/ 5747:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ LinkButton)
+/* harmony export */ });
+/* harmony import */ var _ButtonModel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6686);
+
+class LinkButton extends _ButtonModel__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  constructor({
+    href = '',
+    target = '',
+    ...base
+  } = {}) {
+    super(base);
+    this.href = href;
+    this.target = target;
+  }
+  onClick() {
+    window.open(this.href, this.target).focus();
+  }
+}
+
+/***/ }),
+
+/***/ 9090:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ TelegramButton)
+/* harmony export */ });
+/* harmony import */ var _LinkButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5747);
+
+class TelegramButton extends _LinkButton__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  constructor({
+    username,
+    ...base
+  } = {}) {
+    super(base);
+    this.href = `https://t.me/${username}`;
+  }
+}
+
+/***/ }),
+
+/***/ 5454:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ WhatsappButton)
+/* harmony export */ });
+/* harmony import */ var _LinkButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5747);
+
+class WhatsappButton extends _LinkButton__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  constructor({
+    phone,
+    ...base
+  } = {}) {
+    super(base);
+    this.href = `https://web.whatsapp.com/send?phone=${phone}`;
+  }
+}
+
+/***/ }),
+
+/***/ 4471:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EventMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3556);
+/* harmony import */ var _helpers_ObjectUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(854);
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3871);
+
+
+
+const buildComponents = (components, widget) => _helpers_ObjectUtils__WEBPACK_IMPORTED_MODULE_1__/* ["default"].objMap */ .Z.objMap(components, componentConfig => {
+  const {
+    class: ComponentClass,
+    params
+  } = componentConfig;
+  return new ComponentClass(widget, params);
+});
+const createWidget = config => {
+  function WIDGET_CONSTRUCTOR() {
+    Object.assign(this, _EventMixin__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z);
+    const self = this;
+    self.components = config.components ? buildComponents(config.components, this) : {};
+    if (config.events) {
+      Object.entries(config.events).forEach(([event, callback]) => {
+        this.on(event, callback);
+      });
+    }
+    this.component = componentName => this.components[componentName];
+    this.renderTmpl = (tmpl = '', data = {}) => this.render({
+      data: tmpl
+    }, data);
+    this.callbacks = {
+      render() {
+        self.trigger(_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__/* ["default"].EVENT_RENDER */ .Z.EVENT_RENDER, self);
+        return true;
+      },
+      init() {
+        self.trigger(_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__/* ["default"].EVENT_INIT */ .Z.EVENT_INIT, self);
+        return true;
+      },
+      bind_actions() {
+        return true;
+      },
+      settings() {
+        self.trigger(_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__/* ["default"].EVENT_SETTINGS */ .Z.EVENT_SETTINGS, self);
+        return true;
+      },
+      onSave() {
+        self.trigger(_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__/* ["default"].EVENT_SAVE */ .Z.EVENT_SAVE, self);
+        return true;
+      },
+      destroy() {},
+      loadPreloadedData() {
+        self.trigger(_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__/* ["default"].EVENT_TAB */ .Z.EVENT_TAB, self);
+        return Promise.resolve({});
+      },
+      loadElements() {
+        return Promise.resolve({});
+      },
+      linkCard() {
+        return Promise.resolve({});
+      },
+      searchDataInCard() {
+        return Promise.resolve({});
+      },
+      dpSettings() {
+        self.trigger(_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__/* ["default"].EVENT_DP */ .Z.EVENT_DP, self);
+      }
+    };
+  }
+  return WIDGET_CONSTRUCTOR;
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createWidget);
+
+/***/ }),
+
+/***/ 7791:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1479,12 +1580,12 @@ class SettingsFooterModel {
 
 class Notificator {
   constructor({
-    widgetName
+    header
   }) {
-    this.widgetName = widgetName;
+    this.header = header;
   }
   showMessage(type, text) {
-    (toastr__WEBPACK_IMPORTED_MODULE_0___default())[type](text, this.widgetName, {
+    (toastr__WEBPACK_IMPORTED_MODULE_0___default())[type](text, this.header, {
       closeButton: false,
       debug: false,
       newestOnTop: false,
@@ -1506,27 +1607,114 @@ class Notificator {
 
 /***/ }),
 
-/***/ 136:
+/***/ 854:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "Z": () => (/* binding */ ObjectUtils)
 /* harmony export */ });
-const randomStr = length => {
-  let result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  const charactersLength = characters.length;
-  let counter = 0;
-  while (counter < length) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    counter += 1;
+class ObjectUtils {
+  static objMap(obj, func) {
+    return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, func(v)]));
   }
-  return result;
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  randomStr
-});
+}
+
+/***/ }),
+
+/***/ 4125:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ Request)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5274);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(129);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_0__);
+
+
+class Request {
+  static async post(url, data = {}) {
+    const response = await axios__WEBPACK_IMPORTED_MODULE_1__/* ["default"].post */ .Z.post(url, qs__WEBPACK_IMPORTED_MODULE_0___default().stringify(data), {
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      }
+    });
+    return response;
+  }
+  static async get(url, data = {}) {
+    const response = await axios__WEBPACK_IMPORTED_MODULE_1__/* ["default"].get */ .Z.get(url, {
+      params: {
+        ...data
+      }
+    });
+    return response;
+  }
+}
+
+/***/ }),
+
+/***/ 9304:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ SettingsPanelHelpers)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(745);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5893);
+
+
+
+class SettingsPanelHelpers {
+  static appendReactComponentInDescriptionBlock(Component, props, elementBlockName) {
+    this.appentReactComponent('.widget_settings_block__descr', Component, props, elementBlockName);
+  }
+  static appentReactComponent(selector, Component, props, elementBlockName) {
+    const descriptionContainer = document.querySelector(selector);
+    const elementBlock = document.createElement(elementBlockName);
+    descriptionContainer.appendChild(elementBlock);
+    (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__/* .createRoot */ .s)(elementBlock).render(
+    /*#__PURE__*/
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Component, {
+      ...props
+    }));
+  }
+}
+
+/***/ }),
+
+/***/ 6816:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ TemplateRenderHelpers)
+/* harmony export */ });
+/* harmony import */ var lodash_clonedeepwith__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(905);
+/* harmony import */ var lodash_clonedeepwith__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_clonedeepwith__WEBPACK_IMPORTED_MODULE_0__);
+
+class TemplateRenderHelpers {
+  static deepRenderObjectWithWidgetData(object, widget) {
+    return lodash_clonedeepwith__WEBPACK_IMPORTED_MODULE_0___default()(object, value => {
+      if (typeof value === 'string') {
+        return this.renderWithWidgetData(value, widget);
+      }
+      return undefined;
+    });
+  }
+  static renderWithWidgetData(tmpl, widget) {
+    const templatesData = {
+      lang: widget.langs,
+      system: widget.system(),
+      rootPath: widget.params.path
+    };
+    return widget.renderTmpl(tmpl, templatesData);
+  }
+}
 
 /***/ }),
 
@@ -1692,7 +1880,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(8716), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(129), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(8105), __webpack_require__.b);
 var ___CSS_LOADER_URL_IMPORT_2___ = new URL(/* asset import */ __webpack_require__(3218), __webpack_require__.b);
 var ___CSS_LOADER_URL_IMPORT_3___ = new URL(/* asset import */ __webpack_require__(5275), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
@@ -1842,15 +2030,6 @@ module.exports = function (url, options) {
 module.exports = function (i) {
   return i[1];
 };
-
-/***/ }),
-
-/***/ 6230:
-/***/ ((module) => {
-
-/* eslint-env browser */
-module.exports = typeof self == 'object' ? self.FormData : window.FormData;
-
 
 /***/ }),
 
@@ -15236,6 +15415,3757 @@ return jQuery;
 
 /***/ }),
 
+/***/ 905:
+/***/ ((module, exports, __webpack_require__) => {
+
+/* module decorator */ module = __webpack_require__.nmd(module);
+/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as the size to enable large array optimizations. */
+var LARGE_ARRAY_SIZE = 200;
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    promiseTag = '[object Promise]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    symbolTag = '[object Symbol]',
+    weakMapTag = '[object WeakMap]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to match `RegExp` flags from their coerced string values. */
+var reFlags = /\w*$/;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+
+/** Used to identify `toStringTag` values supported by `_.clone`. */
+var cloneableTags = {};
+cloneableTags[argsTag] = cloneableTags[arrayTag] =
+cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] =
+cloneableTags[boolTag] = cloneableTags[dateTag] =
+cloneableTags[float32Tag] = cloneableTags[float64Tag] =
+cloneableTags[int8Tag] = cloneableTags[int16Tag] =
+cloneableTags[int32Tag] = cloneableTags[mapTag] =
+cloneableTags[numberTag] = cloneableTags[objectTag] =
+cloneableTags[regexpTag] = cloneableTags[setTag] =
+cloneableTags[stringTag] = cloneableTags[symbolTag] =
+cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] =
+cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+cloneableTags[errorTag] = cloneableTags[funcTag] =
+cloneableTags[weakMapTag] = false;
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof __webpack_require__.g == 'object' && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+/** Detect free variable `exports`. */
+var freeExports =  true && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && "object" == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/**
+ * Adds the key-value `pair` to `map`.
+ *
+ * @private
+ * @param {Object} map The map to modify.
+ * @param {Array} pair The key-value pair to add.
+ * @returns {Object} Returns `map`.
+ */
+function addMapEntry(map, pair) {
+  // Don't return `map.set` because it's not chainable in IE 11.
+  map.set(pair[0], pair[1]);
+  return map;
+}
+
+/**
+ * Adds `value` to `set`.
+ *
+ * @private
+ * @param {Object} set The set to modify.
+ * @param {*} value The value to add.
+ * @returns {Object} Returns `set`.
+ */
+function addSetEntry(set, value) {
+  // Don't return `set.add` because it's not chainable in IE 11.
+  set.add(value);
+  return set;
+}
+
+/**
+ * A specialized version of `_.forEach` for arrays without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns `array`.
+ */
+function arrayEach(array, iteratee) {
+  var index = -1,
+      length = array ? array.length : 0;
+
+  while (++index < length) {
+    if (iteratee(array[index], index, array) === false) {
+      break;
+    }
+  }
+  return array;
+}
+
+/**
+ * Appends the elements of `values` to `array`.
+ *
+ * @private
+ * @param {Array} array The array to modify.
+ * @param {Array} values The values to append.
+ * @returns {Array} Returns `array`.
+ */
+function arrayPush(array, values) {
+  var index = -1,
+      length = values.length,
+      offset = array.length;
+
+  while (++index < length) {
+    array[offset + index] = values[index];
+  }
+  return array;
+}
+
+/**
+ * A specialized version of `_.reduce` for arrays without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @param {*} [accumulator] The initial value.
+ * @param {boolean} [initAccum] Specify using the first element of `array` as
+ *  the initial value.
+ * @returns {*} Returns the accumulated value.
+ */
+function arrayReduce(array, iteratee, accumulator, initAccum) {
+  var index = -1,
+      length = array ? array.length : 0;
+
+  if (initAccum && length) {
+    accumulator = array[++index];
+  }
+  while (++index < length) {
+    accumulator = iteratee(accumulator, array[index], index, array);
+  }
+  return accumulator;
+}
+
+/**
+ * The base implementation of `_.times` without support for iteratee shorthands
+ * or max array length checks.
+ *
+ * @private
+ * @param {number} n The number of times to invoke `iteratee`.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the array of results.
+ */
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+  return result;
+}
+
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+/**
+ * Checks if `value` is a host object in IE < 9.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
+ */
+function isHostObject(value) {
+  // Many host objects are `Object` objects that can coerce to strings
+  // despite having improperly defined `toString` methods.
+  var result = false;
+  if (value != null && typeof value.toString != 'function') {
+    try {
+      result = !!(value + '');
+    } catch (e) {}
+  }
+  return result;
+}
+
+/**
+ * Converts `map` to its key-value pairs.
+ *
+ * @private
+ * @param {Object} map The map to convert.
+ * @returns {Array} Returns the key-value pairs.
+ */
+function mapToArray(map) {
+  var index = -1,
+      result = Array(map.size);
+
+  map.forEach(function(value, key) {
+    result[++index] = [key, value];
+  });
+  return result;
+}
+
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
+}
+
+/**
+ * Converts `set` to an array of its values.
+ *
+ * @private
+ * @param {Object} set The set to convert.
+ * @returns {Array} Returns the values.
+ */
+function setToArray(set) {
+  var index = -1,
+      result = Array(set.size);
+
+  set.forEach(function(value) {
+    result[++index] = value;
+  });
+  return result;
+}
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype,
+    funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = root['__core-js_shared__'];
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objectToString = objectProto.toString;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/** Built-in value references. */
+var Buffer = moduleExports ? root.Buffer : undefined,
+    Symbol = root.Symbol,
+    Uint8Array = root.Uint8Array,
+    getPrototype = overArg(Object.getPrototypeOf, Object),
+    objectCreate = Object.create,
+    propertyIsEnumerable = objectProto.propertyIsEnumerable,
+    splice = arrayProto.splice;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeGetSymbols = Object.getOwnPropertySymbols,
+    nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined,
+    nativeKeys = overArg(Object.keys, Object);
+
+/* Built-in method references that are verified to be native. */
+var DataView = getNative(root, 'DataView'),
+    Map = getNative(root, 'Map'),
+    Promise = getNative(root, 'Promise'),
+    Set = getNative(root, 'Set'),
+    WeakMap = getNative(root, 'WeakMap'),
+    nativeCreate = getNative(Object, 'create');
+
+/** Used to detect maps, sets, and weakmaps. */
+var dataViewCtorString = toSource(DataView),
+    mapCtorString = toSource(Map),
+    promiseCtorString = toSource(Promise),
+    setCtorString = toSource(Set),
+    weakMapCtorString = toSource(WeakMap);
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
+
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Hash(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+}
+
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function hashDelete(key) {
+  return this.has(key) && delete this.__data__[key];
+}
+
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function hashGet(key) {
+  var data = this.__data__;
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
+}
+
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? data[key] !== undefined : hasOwnProperty.call(data, key);
+}
+
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+function hashSet(key, value) {
+  var data = this.__data__;
+  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
+  return this;
+}
+
+// Add methods to `Hash`.
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function ListCache(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+function listCacheClear() {
+  this.__data__ = [];
+}
+
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  return true;
+}
+
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  return index < 0 ? undefined : data[index][1];
+}
+
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+
+// Add methods to `ListCache`.
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function MapCache(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+function mapCacheClear() {
+  this.__data__ = {
+    'hash': new Hash,
+    'map': new (Map || ListCache),
+    'string': new Hash
+  };
+}
+
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function mapCacheDelete(key) {
+  return getMapData(this, key)['delete'](key);
+}
+
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+function mapCacheSet(key, value) {
+  getMapData(this, key).set(key, value);
+  return this;
+}
+
+// Add methods to `MapCache`.
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+
+/**
+ * Creates a stack cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Stack(entries) {
+  this.__data__ = new ListCache(entries);
+}
+
+/**
+ * Removes all key-value entries from the stack.
+ *
+ * @private
+ * @name clear
+ * @memberOf Stack
+ */
+function stackClear() {
+  this.__data__ = new ListCache;
+}
+
+/**
+ * Removes `key` and its value from the stack.
+ *
+ * @private
+ * @name delete
+ * @memberOf Stack
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function stackDelete(key) {
+  return this.__data__['delete'](key);
+}
+
+/**
+ * Gets the stack value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Stack
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function stackGet(key) {
+  return this.__data__.get(key);
+}
+
+/**
+ * Checks if a stack value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Stack
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function stackHas(key) {
+  return this.__data__.has(key);
+}
+
+/**
+ * Sets the stack `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Stack
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the stack cache instance.
+ */
+function stackSet(key, value) {
+  var cache = this.__data__;
+  if (cache instanceof ListCache) {
+    var pairs = cache.__data__;
+    if (!Map || (pairs.length < LARGE_ARRAY_SIZE - 1)) {
+      pairs.push([key, value]);
+      return this;
+    }
+    cache = this.__data__ = new MapCache(pairs);
+  }
+  cache.set(key, value);
+  return this;
+}
+
+// Add methods to `Stack`.
+Stack.prototype.clear = stackClear;
+Stack.prototype['delete'] = stackDelete;
+Stack.prototype.get = stackGet;
+Stack.prototype.has = stackHas;
+Stack.prototype.set = stackSet;
+
+/**
+ * Creates an array of the enumerable property names of the array-like `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @param {boolean} inherited Specify returning inherited property names.
+ * @returns {Array} Returns the array of property names.
+ */
+function arrayLikeKeys(value, inherited) {
+  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
+  // Safari 9 makes `arguments.length` enumerable in strict mode.
+  var result = (isArray(value) || isArguments(value))
+    ? baseTimes(value.length, String)
+    : [];
+
+  var length = result.length,
+      skipIndexes = !!length;
+
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) &&
+        !(skipIndexes && (key == 'length' || isIndex(key, length)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+/**
+ * Assigns `value` to `key` of `object` if the existing value is not equivalent
+ * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * for equality comparisons.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function assignValue(object, key, value) {
+  var objValue = object[key];
+  if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) ||
+      (value === undefined && !(key in object))) {
+    object[key] = value;
+  }
+}
+
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+
+/**
+ * The base implementation of `_.assign` without support for multiple sources
+ * or `customizer` functions.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @returns {Object} Returns `object`.
+ */
+function baseAssign(object, source) {
+  return object && copyObject(source, keys(source), object);
+}
+
+/**
+ * The base implementation of `_.clone` and `_.cloneDeep` which tracks
+ * traversed objects.
+ *
+ * @private
+ * @param {*} value The value to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @param {boolean} [isFull] Specify a clone including symbols.
+ * @param {Function} [customizer] The function to customize cloning.
+ * @param {string} [key] The key of `value`.
+ * @param {Object} [object] The parent object of `value`.
+ * @param {Object} [stack] Tracks traversed objects and their clone counterparts.
+ * @returns {*} Returns the cloned value.
+ */
+function baseClone(value, isDeep, isFull, customizer, key, object, stack) {
+  var result;
+  if (customizer) {
+    result = object ? customizer(value, key, object, stack) : customizer(value);
+  }
+  if (result !== undefined) {
+    return result;
+  }
+  if (!isObject(value)) {
+    return value;
+  }
+  var isArr = isArray(value);
+  if (isArr) {
+    result = initCloneArray(value);
+    if (!isDeep) {
+      return copyArray(value, result);
+    }
+  } else {
+    var tag = getTag(value),
+        isFunc = tag == funcTag || tag == genTag;
+
+    if (isBuffer(value)) {
+      return cloneBuffer(value, isDeep);
+    }
+    if (tag == objectTag || tag == argsTag || (isFunc && !object)) {
+      if (isHostObject(value)) {
+        return object ? value : {};
+      }
+      result = initCloneObject(isFunc ? {} : value);
+      if (!isDeep) {
+        return copySymbols(value, baseAssign(result, value));
+      }
+    } else {
+      if (!cloneableTags[tag]) {
+        return object ? value : {};
+      }
+      result = initCloneByTag(value, tag, baseClone, isDeep);
+    }
+  }
+  // Check for circular references and return its corresponding clone.
+  stack || (stack = new Stack);
+  var stacked = stack.get(value);
+  if (stacked) {
+    return stacked;
+  }
+  stack.set(value, result);
+
+  if (!isArr) {
+    var props = isFull ? getAllKeys(value) : keys(value);
+  }
+  arrayEach(props || value, function(subValue, key) {
+    if (props) {
+      key = subValue;
+      subValue = value[key];
+    }
+    // Recursively populate clone (susceptible to call stack limits).
+    assignValue(result, key, baseClone(subValue, isDeep, isFull, customizer, key, value, stack));
+  });
+  return result;
+}
+
+/**
+ * The base implementation of `_.create` without support for assigning
+ * properties to the created object.
+ *
+ * @private
+ * @param {Object} prototype The object to inherit from.
+ * @returns {Object} Returns the new object.
+ */
+function baseCreate(proto) {
+  return isObject(proto) ? objectCreate(proto) : {};
+}
+
+/**
+ * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
+ * `keysFunc` and `symbolsFunc` to get the enumerable property names and
+ * symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @param {Function} symbolsFunc The function to get the symbols of `object`.
+ * @returns {Array} Returns the array of property names and symbols.
+ */
+function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+  var result = keysFunc(object);
+  return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
+}
+
+/**
+ * The base implementation of `getTag`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  return objectToString.call(value);
+}
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = (isFunction(value) || isHostObject(value)) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+
+/**
+ * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function baseKeys(object) {
+  if (!isPrototype(object)) {
+    return nativeKeys(object);
+  }
+  var result = [];
+  for (var key in Object(object)) {
+    if (hasOwnProperty.call(object, key) && key != 'constructor') {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+/**
+ * Creates a clone of  `buffer`.
+ *
+ * @private
+ * @param {Buffer} buffer The buffer to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Buffer} Returns the cloned buffer.
+ */
+function cloneBuffer(buffer, isDeep) {
+  if (isDeep) {
+    return buffer.slice();
+  }
+  var result = new buffer.constructor(buffer.length);
+  buffer.copy(result);
+  return result;
+}
+
+/**
+ * Creates a clone of `arrayBuffer`.
+ *
+ * @private
+ * @param {ArrayBuffer} arrayBuffer The array buffer to clone.
+ * @returns {ArrayBuffer} Returns the cloned array buffer.
+ */
+function cloneArrayBuffer(arrayBuffer) {
+  var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
+  new Uint8Array(result).set(new Uint8Array(arrayBuffer));
+  return result;
+}
+
+/**
+ * Creates a clone of `dataView`.
+ *
+ * @private
+ * @param {Object} dataView The data view to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Object} Returns the cloned data view.
+ */
+function cloneDataView(dataView, isDeep) {
+  var buffer = isDeep ? cloneArrayBuffer(dataView.buffer) : dataView.buffer;
+  return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
+}
+
+/**
+ * Creates a clone of `map`.
+ *
+ * @private
+ * @param {Object} map The map to clone.
+ * @param {Function} cloneFunc The function to clone values.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Object} Returns the cloned map.
+ */
+function cloneMap(map, isDeep, cloneFunc) {
+  var array = isDeep ? cloneFunc(mapToArray(map), true) : mapToArray(map);
+  return arrayReduce(array, addMapEntry, new map.constructor);
+}
+
+/**
+ * Creates a clone of `regexp`.
+ *
+ * @private
+ * @param {Object} regexp The regexp to clone.
+ * @returns {Object} Returns the cloned regexp.
+ */
+function cloneRegExp(regexp) {
+  var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
+  result.lastIndex = regexp.lastIndex;
+  return result;
+}
+
+/**
+ * Creates a clone of `set`.
+ *
+ * @private
+ * @param {Object} set The set to clone.
+ * @param {Function} cloneFunc The function to clone values.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Object} Returns the cloned set.
+ */
+function cloneSet(set, isDeep, cloneFunc) {
+  var array = isDeep ? cloneFunc(setToArray(set), true) : setToArray(set);
+  return arrayReduce(array, addSetEntry, new set.constructor);
+}
+
+/**
+ * Creates a clone of the `symbol` object.
+ *
+ * @private
+ * @param {Object} symbol The symbol object to clone.
+ * @returns {Object} Returns the cloned symbol object.
+ */
+function cloneSymbol(symbol) {
+  return symbolValueOf ? Object(symbolValueOf.call(symbol)) : {};
+}
+
+/**
+ * Creates a clone of `typedArray`.
+ *
+ * @private
+ * @param {Object} typedArray The typed array to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Object} Returns the cloned typed array.
+ */
+function cloneTypedArray(typedArray, isDeep) {
+  var buffer = isDeep ? cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
+  return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
+}
+
+/**
+ * Copies the values of `source` to `array`.
+ *
+ * @private
+ * @param {Array} source The array to copy values from.
+ * @param {Array} [array=[]] The array to copy values to.
+ * @returns {Array} Returns `array`.
+ */
+function copyArray(source, array) {
+  var index = -1,
+      length = source.length;
+
+  array || (array = Array(length));
+  while (++index < length) {
+    array[index] = source[index];
+  }
+  return array;
+}
+
+/**
+ * Copies properties of `source` to `object`.
+ *
+ * @private
+ * @param {Object} source The object to copy properties from.
+ * @param {Array} props The property identifiers to copy.
+ * @param {Object} [object={}] The object to copy properties to.
+ * @param {Function} [customizer] The function to customize copied values.
+ * @returns {Object} Returns `object`.
+ */
+function copyObject(source, props, object, customizer) {
+  object || (object = {});
+
+  var index = -1,
+      length = props.length;
+
+  while (++index < length) {
+    var key = props[index];
+
+    var newValue = customizer
+      ? customizer(object[key], source[key], key, object, source)
+      : undefined;
+
+    assignValue(object, key, newValue === undefined ? source[key] : newValue);
+  }
+  return object;
+}
+
+/**
+ * Copies own symbol properties of `source` to `object`.
+ *
+ * @private
+ * @param {Object} source The object to copy symbols from.
+ * @param {Object} [object={}] The object to copy symbols to.
+ * @returns {Object} Returns `object`.
+ */
+function copySymbols(source, object) {
+  return copyObject(source, getSymbols(source), object);
+}
+
+/**
+ * Creates an array of own enumerable property names and symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names and symbols.
+ */
+function getAllKeys(object) {
+  return baseGetAllKeys(object, keys, getSymbols);
+}
+
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+/**
+ * Creates an array of the own enumerable symbol properties of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of symbols.
+ */
+var getSymbols = nativeGetSymbols ? overArg(nativeGetSymbols, Object) : stubArray;
+
+/**
+ * Gets the `toStringTag` of `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+var getTag = baseGetTag;
+
+// Fallback for data views, maps, sets, and weak maps in IE 11,
+// for data views in Edge < 14, and promises in Node.js.
+if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
+    (Map && getTag(new Map) != mapTag) ||
+    (Promise && getTag(Promise.resolve()) != promiseTag) ||
+    (Set && getTag(new Set) != setTag) ||
+    (WeakMap && getTag(new WeakMap) != weakMapTag)) {
+  getTag = function(value) {
+    var result = objectToString.call(value),
+        Ctor = result == objectTag ? value.constructor : undefined,
+        ctorString = Ctor ? toSource(Ctor) : undefined;
+
+    if (ctorString) {
+      switch (ctorString) {
+        case dataViewCtorString: return dataViewTag;
+        case mapCtorString: return mapTag;
+        case promiseCtorString: return promiseTag;
+        case setCtorString: return setTag;
+        case weakMapCtorString: return weakMapTag;
+      }
+    }
+    return result;
+  };
+}
+
+/**
+ * Initializes an array clone.
+ *
+ * @private
+ * @param {Array} array The array to clone.
+ * @returns {Array} Returns the initialized clone.
+ */
+function initCloneArray(array) {
+  var length = array.length,
+      result = array.constructor(length);
+
+  // Add properties assigned by `RegExp#exec`.
+  if (length && typeof array[0] == 'string' && hasOwnProperty.call(array, 'index')) {
+    result.index = array.index;
+    result.input = array.input;
+  }
+  return result;
+}
+
+/**
+ * Initializes an object clone.
+ *
+ * @private
+ * @param {Object} object The object to clone.
+ * @returns {Object} Returns the initialized clone.
+ */
+function initCloneObject(object) {
+  return (typeof object.constructor == 'function' && !isPrototype(object))
+    ? baseCreate(getPrototype(object))
+    : {};
+}
+
+/**
+ * Initializes an object clone based on its `toStringTag`.
+ *
+ * **Note:** This function only supports cloning values with tags of
+ * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+ *
+ * @private
+ * @param {Object} object The object to clone.
+ * @param {string} tag The `toStringTag` of the object to clone.
+ * @param {Function} cloneFunc The function to clone values.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Object} Returns the initialized clone.
+ */
+function initCloneByTag(object, tag, cloneFunc, isDeep) {
+  var Ctor = object.constructor;
+  switch (tag) {
+    case arrayBufferTag:
+      return cloneArrayBuffer(object);
+
+    case boolTag:
+    case dateTag:
+      return new Ctor(+object);
+
+    case dataViewTag:
+      return cloneDataView(object, isDeep);
+
+    case float32Tag: case float64Tag:
+    case int8Tag: case int16Tag: case int32Tag:
+    case uint8Tag: case uint8ClampedTag: case uint16Tag: case uint32Tag:
+      return cloneTypedArray(object, isDeep);
+
+    case mapTag:
+      return cloneMap(object, isDeep, cloneFunc);
+
+    case numberTag:
+    case stringTag:
+      return new Ctor(object);
+
+    case regexpTag:
+      return cloneRegExp(object);
+
+    case setTag:
+      return cloneSet(object, isDeep, cloneFunc);
+
+    case symbolTag:
+      return cloneSymbol(object);
+  }
+}
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return !!length &&
+    (typeof value == 'number' || reIsUint.test(value)) &&
+    (value > -1 && value % 1 == 0 && value < length);
+}
+
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+
+/**
+ * Checks if `value` is likely a prototype object.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ */
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
+
+  return value === proto;
+}
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to process.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+/**
+ * This method is like `_.cloneWith` except that it recursively clones `value`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to recursively clone.
+ * @param {Function} [customizer] The function to customize cloning.
+ * @returns {*} Returns the deep cloned value.
+ * @see _.cloneWith
+ * @example
+ *
+ * function customizer(value) {
+ *   if (_.isElement(value)) {
+ *     return value.cloneNode(true);
+ *   }
+ * }
+ *
+ * var el = _.cloneDeepWith(document.body, customizer);
+ *
+ * console.log(el === document.body);
+ * // => false
+ * console.log(el.nodeName);
+ * // => 'BODY'
+ * console.log(el.childNodes.length);
+ * // => 20
+ */
+function cloneDeepWith(value, customizer) {
+  return baseClone(value, true, true, customizer);
+}
+
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+
+/**
+ * Checks if `value` is likely an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+function isArguments(value) {
+  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
+  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
+    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
+}
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+
+/**
+ * This method is like `_.isArrayLike` except that it also checks if `value`
+ * is an object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array-like object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArrayLikeObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLikeObject(document.body.children);
+ * // => true
+ *
+ * _.isArrayLikeObject('abc');
+ * // => false
+ *
+ * _.isArrayLikeObject(_.noop);
+ * // => false
+ */
+function isArrayLikeObject(value) {
+  return isObjectLike(value) && isArrayLike(value);
+}
+
+/**
+ * Checks if `value` is a buffer.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
+ * @example
+ *
+ * _.isBuffer(new Buffer(2));
+ * // => true
+ *
+ * _.isBuffer(new Uint8Array(2));
+ * // => false
+ */
+var isBuffer = nativeIsBuffer || stubFalse;
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 8-9 which returns 'object' for typed array and other constructors.
+  var tag = isObject(value) ? objectToString.call(value) : '';
+  return tag == funcTag || tag == genTag;
+}
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+function isLength(value) {
+  return typeof value == 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+
+/**
+ * Creates an array of the own enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects. See the
+ * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * for more details.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keys(new Foo);
+ * // => ['a', 'b'] (iteration order is not guaranteed)
+ *
+ * _.keys('hi');
+ * // => ['0', '1']
+ */
+function keys(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+}
+
+/**
+ * This method returns a new empty array.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {Array} Returns the new empty array.
+ * @example
+ *
+ * var arrays = _.times(2, _.stubArray);
+ *
+ * console.log(arrays);
+ * // => [[], []]
+ *
+ * console.log(arrays[0] === arrays[1]);
+ * // => false
+ */
+function stubArray() {
+  return [];
+}
+
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = cloneDeepWith;
+
+
+/***/ }),
+
+/***/ 2378:
+/***/ ((module, exports, __webpack_require__) => {
+
+/* module decorator */ module = __webpack_require__.nmd(module);
+/**
+ * Lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as the size to enable large array optimizations. */
+var LARGE_ARRAY_SIZE = 200;
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/** Used to detect hot functions by number of calls within a span of milliseconds. */
+var HOT_COUNT = 800,
+    HOT_SPAN = 16;
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    asyncTag = '[object AsyncFunction]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    nullTag = '[object Null]',
+    objectTag = '[object Object]',
+    proxyTag = '[object Proxy]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    undefinedTag = '[object Undefined]',
+    weakMapTag = '[object WeakMap]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+
+/** Used to identify `toStringTag` values of typed arrays. */
+var typedArrayTags = {};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
+typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
+typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
+typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
+typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] =
+typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] =
+typedArrayTags[dataViewTag] = typedArrayTags[dateTag] =
+typedArrayTags[errorTag] = typedArrayTags[funcTag] =
+typedArrayTags[mapTag] = typedArrayTags[numberTag] =
+typedArrayTags[objectTag] = typedArrayTags[regexpTag] =
+typedArrayTags[setTag] = typedArrayTags[stringTag] =
+typedArrayTags[weakMapTag] = false;
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof __webpack_require__.g == 'object' && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+/** Detect free variable `exports`. */
+var freeExports =  true && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && "object" == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Detect free variable `process` from Node.js. */
+var freeProcess = moduleExports && freeGlobal.process;
+
+/** Used to access faster Node.js helpers. */
+var nodeUtil = (function() {
+  try {
+    // Use `util.types` for Node.js 10+.
+    var types = freeModule && freeModule.require && freeModule.require('util').types;
+
+    if (types) {
+      return types;
+    }
+
+    // Legacy `process.binding('util')` for Node.js < 10.
+    return freeProcess && freeProcess.binding && freeProcess.binding('util');
+  } catch (e) {}
+}());
+
+/* Node.js helper references. */
+var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+
+/**
+ * A faster alternative to `Function#apply`, this function invokes `func`
+ * with the `this` binding of `thisArg` and the arguments of `args`.
+ *
+ * @private
+ * @param {Function} func The function to invoke.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {Array} args The arguments to invoke `func` with.
+ * @returns {*} Returns the result of `func`.
+ */
+function apply(func, thisArg, args) {
+  switch (args.length) {
+    case 0: return func.call(thisArg);
+    case 1: return func.call(thisArg, args[0]);
+    case 2: return func.call(thisArg, args[0], args[1]);
+    case 3: return func.call(thisArg, args[0], args[1], args[2]);
+  }
+  return func.apply(thisArg, args);
+}
+
+/**
+ * The base implementation of `_.times` without support for iteratee shorthands
+ * or max array length checks.
+ *
+ * @private
+ * @param {number} n The number of times to invoke `iteratee`.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the array of results.
+ */
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+  return result;
+}
+
+/**
+ * The base implementation of `_.unary` without support for storing metadata.
+ *
+ * @private
+ * @param {Function} func The function to cap arguments for.
+ * @returns {Function} Returns the new capped function.
+ */
+function baseUnary(func) {
+  return function(value) {
+    return func(value);
+  };
+}
+
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
+}
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype,
+    funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = root['__core-js_shared__'];
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Used to infer the `Object` constructor. */
+var objectCtorString = funcToString.call(Object);
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/** Built-in value references. */
+var Buffer = moduleExports ? root.Buffer : undefined,
+    Symbol = root.Symbol,
+    Uint8Array = root.Uint8Array,
+    allocUnsafe = Buffer ? Buffer.allocUnsafe : undefined,
+    getPrototype = overArg(Object.getPrototypeOf, Object),
+    objectCreate = Object.create,
+    propertyIsEnumerable = objectProto.propertyIsEnumerable,
+    splice = arrayProto.splice,
+    symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+var defineProperty = (function() {
+  try {
+    var func = getNative(Object, 'defineProperty');
+    func({}, '', {});
+    return func;
+  } catch (e) {}
+}());
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined,
+    nativeMax = Math.max,
+    nativeNow = Date.now;
+
+/* Built-in method references that are verified to be native. */
+var Map = getNative(root, 'Map'),
+    nativeCreate = getNative(Object, 'create');
+
+/**
+ * The base implementation of `_.create` without support for assigning
+ * properties to the created object.
+ *
+ * @private
+ * @param {Object} proto The object to inherit from.
+ * @returns {Object} Returns the new object.
+ */
+var baseCreate = (function() {
+  function object() {}
+  return function(proto) {
+    if (!isObject(proto)) {
+      return {};
+    }
+    if (objectCreate) {
+      return objectCreate(proto);
+    }
+    object.prototype = proto;
+    var result = new object;
+    object.prototype = undefined;
+    return result;
+  };
+}());
+
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Hash(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+  this.size = 0;
+}
+
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function hashDelete(key) {
+  var result = this.has(key) && delete this.__data__[key];
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function hashGet(key) {
+  var data = this.__data__;
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
+}
+
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty.call(data, key);
+}
+
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+function hashSet(key, value) {
+  var data = this.__data__;
+  this.size += this.has(key) ? 0 : 1;
+  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
+  return this;
+}
+
+// Add methods to `Hash`.
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function ListCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+function listCacheClear() {
+  this.__data__ = [];
+  this.size = 0;
+}
+
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  --this.size;
+  return true;
+}
+
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  return index < 0 ? undefined : data[index][1];
+}
+
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    ++this.size;
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+
+// Add methods to `ListCache`.
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function MapCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+function mapCacheClear() {
+  this.size = 0;
+  this.__data__ = {
+    'hash': new Hash,
+    'map': new (Map || ListCache),
+    'string': new Hash
+  };
+}
+
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function mapCacheDelete(key) {
+  var result = getMapData(this, key)['delete'](key);
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+function mapCacheSet(key, value) {
+  var data = getMapData(this, key),
+      size = data.size;
+
+  data.set(key, value);
+  this.size += data.size == size ? 0 : 1;
+  return this;
+}
+
+// Add methods to `MapCache`.
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+
+/**
+ * Creates a stack cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Stack(entries) {
+  var data = this.__data__ = new ListCache(entries);
+  this.size = data.size;
+}
+
+/**
+ * Removes all key-value entries from the stack.
+ *
+ * @private
+ * @name clear
+ * @memberOf Stack
+ */
+function stackClear() {
+  this.__data__ = new ListCache;
+  this.size = 0;
+}
+
+/**
+ * Removes `key` and its value from the stack.
+ *
+ * @private
+ * @name delete
+ * @memberOf Stack
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function stackDelete(key) {
+  var data = this.__data__,
+      result = data['delete'](key);
+
+  this.size = data.size;
+  return result;
+}
+
+/**
+ * Gets the stack value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Stack
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function stackGet(key) {
+  return this.__data__.get(key);
+}
+
+/**
+ * Checks if a stack value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Stack
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function stackHas(key) {
+  return this.__data__.has(key);
+}
+
+/**
+ * Sets the stack `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Stack
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the stack cache instance.
+ */
+function stackSet(key, value) {
+  var data = this.__data__;
+  if (data instanceof ListCache) {
+    var pairs = data.__data__;
+    if (!Map || (pairs.length < LARGE_ARRAY_SIZE - 1)) {
+      pairs.push([key, value]);
+      this.size = ++data.size;
+      return this;
+    }
+    data = this.__data__ = new MapCache(pairs);
+  }
+  data.set(key, value);
+  this.size = data.size;
+  return this;
+}
+
+// Add methods to `Stack`.
+Stack.prototype.clear = stackClear;
+Stack.prototype['delete'] = stackDelete;
+Stack.prototype.get = stackGet;
+Stack.prototype.has = stackHas;
+Stack.prototype.set = stackSet;
+
+/**
+ * Creates an array of the enumerable property names of the array-like `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @param {boolean} inherited Specify returning inherited property names.
+ * @returns {Array} Returns the array of property names.
+ */
+function arrayLikeKeys(value, inherited) {
+  var isArr = isArray(value),
+      isArg = !isArr && isArguments(value),
+      isBuff = !isArr && !isArg && isBuffer(value),
+      isType = !isArr && !isArg && !isBuff && isTypedArray(value),
+      skipIndexes = isArr || isArg || isBuff || isType,
+      result = skipIndexes ? baseTimes(value.length, String) : [],
+      length = result.length;
+
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) &&
+        !(skipIndexes && (
+           // Safari 9 has enumerable `arguments.length` in strict mode.
+           key == 'length' ||
+           // Node.js 0.10 has enumerable non-index properties on buffers.
+           (isBuff && (key == 'offset' || key == 'parent')) ||
+           // PhantomJS 2 has enumerable non-index properties on typed arrays.
+           (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
+           // Skip index properties.
+           isIndex(key, length)
+        ))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+/**
+ * This function is like `assignValue` except that it doesn't assign
+ * `undefined` values.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function assignMergeValue(object, key, value) {
+  if ((value !== undefined && !eq(object[key], value)) ||
+      (value === undefined && !(key in object))) {
+    baseAssignValue(object, key, value);
+  }
+}
+
+/**
+ * Assigns `value` to `key` of `object` if the existing value is not equivalent
+ * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * for equality comparisons.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function assignValue(object, key, value) {
+  var objValue = object[key];
+  if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) ||
+      (value === undefined && !(key in object))) {
+    baseAssignValue(object, key, value);
+  }
+}
+
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+
+/**
+ * The base implementation of `assignValue` and `assignMergeValue` without
+ * value checks.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function baseAssignValue(object, key, value) {
+  if (key == '__proto__' && defineProperty) {
+    defineProperty(object, key, {
+      'configurable': true,
+      'enumerable': true,
+      'value': value,
+      'writable': true
+    });
+  } else {
+    object[key] = value;
+  }
+}
+
+/**
+ * The base implementation of `baseForOwn` which iterates over `object`
+ * properties returned by `keysFunc` and invokes `iteratee` for each property.
+ * Iteratee functions may exit iteration early by explicitly returning `false`.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @returns {Object} Returns `object`.
+ */
+var baseFor = createBaseFor();
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? getRawTag(value)
+    : objectToString(value);
+}
+
+/**
+ * The base implementation of `_.isArguments`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ */
+function baseIsArguments(value) {
+  return isObjectLike(value) && baseGetTag(value) == argsTag;
+}
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+
+/**
+ * The base implementation of `_.isTypedArray` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ */
+function baseIsTypedArray(value) {
+  return isObjectLike(value) &&
+    isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
+}
+
+/**
+ * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function baseKeysIn(object) {
+  if (!isObject(object)) {
+    return nativeKeysIn(object);
+  }
+  var isProto = isPrototype(object),
+      result = [];
+
+  for (var key in object) {
+    if (!(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+/**
+ * The base implementation of `_.merge` without support for multiple sources.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @param {number} srcIndex The index of `source`.
+ * @param {Function} [customizer] The function to customize merged values.
+ * @param {Object} [stack] Tracks traversed source values and their merged
+ *  counterparts.
+ */
+function baseMerge(object, source, srcIndex, customizer, stack) {
+  if (object === source) {
+    return;
+  }
+  baseFor(source, function(srcValue, key) {
+    stack || (stack = new Stack);
+    if (isObject(srcValue)) {
+      baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
+    }
+    else {
+      var newValue = customizer
+        ? customizer(safeGet(object, key), srcValue, (key + ''), object, source, stack)
+        : undefined;
+
+      if (newValue === undefined) {
+        newValue = srcValue;
+      }
+      assignMergeValue(object, key, newValue);
+    }
+  }, keysIn);
+}
+
+/**
+ * A specialized version of `baseMerge` for arrays and objects which performs
+ * deep merges and tracks traversed objects enabling objects with circular
+ * references to be merged.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @param {string} key The key of the value to merge.
+ * @param {number} srcIndex The index of `source`.
+ * @param {Function} mergeFunc The function to merge values.
+ * @param {Function} [customizer] The function to customize assigned values.
+ * @param {Object} [stack] Tracks traversed source values and their merged
+ *  counterparts.
+ */
+function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, stack) {
+  var objValue = safeGet(object, key),
+      srcValue = safeGet(source, key),
+      stacked = stack.get(srcValue);
+
+  if (stacked) {
+    assignMergeValue(object, key, stacked);
+    return;
+  }
+  var newValue = customizer
+    ? customizer(objValue, srcValue, (key + ''), object, source, stack)
+    : undefined;
+
+  var isCommon = newValue === undefined;
+
+  if (isCommon) {
+    var isArr = isArray(srcValue),
+        isBuff = !isArr && isBuffer(srcValue),
+        isTyped = !isArr && !isBuff && isTypedArray(srcValue);
+
+    newValue = srcValue;
+    if (isArr || isBuff || isTyped) {
+      if (isArray(objValue)) {
+        newValue = objValue;
+      }
+      else if (isArrayLikeObject(objValue)) {
+        newValue = copyArray(objValue);
+      }
+      else if (isBuff) {
+        isCommon = false;
+        newValue = cloneBuffer(srcValue, true);
+      }
+      else if (isTyped) {
+        isCommon = false;
+        newValue = cloneTypedArray(srcValue, true);
+      }
+      else {
+        newValue = [];
+      }
+    }
+    else if (isPlainObject(srcValue) || isArguments(srcValue)) {
+      newValue = objValue;
+      if (isArguments(objValue)) {
+        newValue = toPlainObject(objValue);
+      }
+      else if (!isObject(objValue) || isFunction(objValue)) {
+        newValue = initCloneObject(srcValue);
+      }
+    }
+    else {
+      isCommon = false;
+    }
+  }
+  if (isCommon) {
+    // Recursively merge objects and arrays (susceptible to call stack limits).
+    stack.set(srcValue, newValue);
+    mergeFunc(newValue, srcValue, srcIndex, customizer, stack);
+    stack['delete'](srcValue);
+  }
+  assignMergeValue(object, key, newValue);
+}
+
+/**
+ * The base implementation of `_.rest` which doesn't validate or coerce arguments.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @returns {Function} Returns the new function.
+ */
+function baseRest(func, start) {
+  return setToString(overRest(func, start, identity), func + '');
+}
+
+/**
+ * The base implementation of `setToString` without support for hot loop shorting.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var baseSetToString = !defineProperty ? identity : function(func, string) {
+  return defineProperty(func, 'toString', {
+    'configurable': true,
+    'enumerable': false,
+    'value': constant(string),
+    'writable': true
+  });
+};
+
+/**
+ * Creates a clone of  `buffer`.
+ *
+ * @private
+ * @param {Buffer} buffer The buffer to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Buffer} Returns the cloned buffer.
+ */
+function cloneBuffer(buffer, isDeep) {
+  if (isDeep) {
+    return buffer.slice();
+  }
+  var length = buffer.length,
+      result = allocUnsafe ? allocUnsafe(length) : new buffer.constructor(length);
+
+  buffer.copy(result);
+  return result;
+}
+
+/**
+ * Creates a clone of `arrayBuffer`.
+ *
+ * @private
+ * @param {ArrayBuffer} arrayBuffer The array buffer to clone.
+ * @returns {ArrayBuffer} Returns the cloned array buffer.
+ */
+function cloneArrayBuffer(arrayBuffer) {
+  var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
+  new Uint8Array(result).set(new Uint8Array(arrayBuffer));
+  return result;
+}
+
+/**
+ * Creates a clone of `typedArray`.
+ *
+ * @private
+ * @param {Object} typedArray The typed array to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Object} Returns the cloned typed array.
+ */
+function cloneTypedArray(typedArray, isDeep) {
+  var buffer = isDeep ? cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
+  return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
+}
+
+/**
+ * Copies the values of `source` to `array`.
+ *
+ * @private
+ * @param {Array} source The array to copy values from.
+ * @param {Array} [array=[]] The array to copy values to.
+ * @returns {Array} Returns `array`.
+ */
+function copyArray(source, array) {
+  var index = -1,
+      length = source.length;
+
+  array || (array = Array(length));
+  while (++index < length) {
+    array[index] = source[index];
+  }
+  return array;
+}
+
+/**
+ * Copies properties of `source` to `object`.
+ *
+ * @private
+ * @param {Object} source The object to copy properties from.
+ * @param {Array} props The property identifiers to copy.
+ * @param {Object} [object={}] The object to copy properties to.
+ * @param {Function} [customizer] The function to customize copied values.
+ * @returns {Object} Returns `object`.
+ */
+function copyObject(source, props, object, customizer) {
+  var isNew = !object;
+  object || (object = {});
+
+  var index = -1,
+      length = props.length;
+
+  while (++index < length) {
+    var key = props[index];
+
+    var newValue = customizer
+      ? customizer(object[key], source[key], key, object, source)
+      : undefined;
+
+    if (newValue === undefined) {
+      newValue = source[key];
+    }
+    if (isNew) {
+      baseAssignValue(object, key, newValue);
+    } else {
+      assignValue(object, key, newValue);
+    }
+  }
+  return object;
+}
+
+/**
+ * Creates a function like `_.assign`.
+ *
+ * @private
+ * @param {Function} assigner The function to assign values.
+ * @returns {Function} Returns the new assigner function.
+ */
+function createAssigner(assigner) {
+  return baseRest(function(object, sources) {
+    var index = -1,
+        length = sources.length,
+        customizer = length > 1 ? sources[length - 1] : undefined,
+        guard = length > 2 ? sources[2] : undefined;
+
+    customizer = (assigner.length > 3 && typeof customizer == 'function')
+      ? (length--, customizer)
+      : undefined;
+
+    if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+      customizer = length < 3 ? undefined : customizer;
+      length = 1;
+    }
+    object = Object(object);
+    while (++index < length) {
+      var source = sources[index];
+      if (source) {
+        assigner(object, source, index, customizer);
+      }
+    }
+    return object;
+  });
+}
+
+/**
+ * Creates a base function for methods like `_.forIn` and `_.forOwn`.
+ *
+ * @private
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new base function.
+ */
+function createBaseFor(fromRight) {
+  return function(object, iteratee, keysFunc) {
+    var index = -1,
+        iterable = Object(object),
+        props = keysFunc(object),
+        length = props.length;
+
+    while (length--) {
+      var key = props[fromRight ? length : ++index];
+      if (iteratee(iterable[key], key, iterable) === false) {
+        break;
+      }
+    }
+    return object;
+  };
+}
+
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+/**
+ * Initializes an object clone.
+ *
+ * @private
+ * @param {Object} object The object to clone.
+ * @returns {Object} Returns the initialized clone.
+ */
+function initCloneObject(object) {
+  return (typeof object.constructor == 'function' && !isPrototype(object))
+    ? baseCreate(getPrototype(object))
+    : {};
+}
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  var type = typeof value;
+  length = length == null ? MAX_SAFE_INTEGER : length;
+
+  return !!length &&
+    (type == 'number' ||
+      (type != 'symbol' && reIsUint.test(value))) &&
+        (value > -1 && value % 1 == 0 && value < length);
+}
+
+/**
+ * Checks if the given arguments are from an iteratee call.
+ *
+ * @private
+ * @param {*} value The potential iteratee value argument.
+ * @param {*} index The potential iteratee index or key argument.
+ * @param {*} object The potential iteratee object argument.
+ * @returns {boolean} Returns `true` if the arguments are from an iteratee call,
+ *  else `false`.
+ */
+function isIterateeCall(value, index, object) {
+  if (!isObject(object)) {
+    return false;
+  }
+  var type = typeof index;
+  if (type == 'number'
+        ? (isArrayLike(object) && isIndex(index, object.length))
+        : (type == 'string' && index in object)
+      ) {
+    return eq(object[index], value);
+  }
+  return false;
+}
+
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+
+/**
+ * Checks if `value` is likely a prototype object.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ */
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
+
+  return value === proto;
+}
+
+/**
+ * This function is like
+ * [`Object.keys`](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * except that it includes inherited enumerable properties.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function nativeKeysIn(object) {
+  var result = [];
+  if (object != null) {
+    for (var key in Object(object)) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+/**
+ * A specialized version of `baseRest` which transforms the rest array.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @param {Function} transform The rest array transform.
+ * @returns {Function} Returns the new function.
+ */
+function overRest(func, start, transform) {
+  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
+  return function() {
+    var args = arguments,
+        index = -1,
+        length = nativeMax(args.length - start, 0),
+        array = Array(length);
+
+    while (++index < length) {
+      array[index] = args[start + index];
+    }
+    index = -1;
+    var otherArgs = Array(start + 1);
+    while (++index < start) {
+      otherArgs[index] = args[index];
+    }
+    otherArgs[start] = transform(array);
+    return apply(func, this, otherArgs);
+  };
+}
+
+/**
+ * Gets the value at `key`, unless `key` is "__proto__" or "constructor".
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function safeGet(object, key) {
+  if (key === 'constructor' && typeof object[key] === 'function') {
+    return;
+  }
+
+  if (key == '__proto__') {
+    return;
+  }
+
+  return object[key];
+}
+
+/**
+ * Sets the `toString` method of `func` to return `string`.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var setToString = shortOut(baseSetToString);
+
+/**
+ * Creates a function that'll short out and invoke `identity` instead
+ * of `func` when it's called `HOT_COUNT` or more times in `HOT_SPAN`
+ * milliseconds.
+ *
+ * @private
+ * @param {Function} func The function to restrict.
+ * @returns {Function} Returns the new shortable function.
+ */
+function shortOut(func) {
+  var count = 0,
+      lastCalled = 0;
+
+  return function() {
+    var stamp = nativeNow(),
+        remaining = HOT_SPAN - (stamp - lastCalled);
+
+    lastCalled = stamp;
+    if (remaining > 0) {
+      if (++count >= HOT_COUNT) {
+        return arguments[0];
+      }
+    } else {
+      count = 0;
+    }
+    return func.apply(undefined, arguments);
+  };
+}
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to convert.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+
+/**
+ * Checks if `value` is likely an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
+  return isObjectLike(value) && hasOwnProperty.call(value, 'callee') &&
+    !propertyIsEnumerable.call(value, 'callee');
+};
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+
+/**
+ * This method is like `_.isArrayLike` except that it also checks if `value`
+ * is an object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array-like object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArrayLikeObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLikeObject(document.body.children);
+ * // => true
+ *
+ * _.isArrayLikeObject('abc');
+ * // => false
+ *
+ * _.isArrayLikeObject(_.noop);
+ * // => false
+ */
+function isArrayLikeObject(value) {
+  return isObjectLike(value) && isArrayLike(value);
+}
+
+/**
+ * Checks if `value` is a buffer.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
+ * @example
+ *
+ * _.isBuffer(new Buffer(2));
+ * // => true
+ *
+ * _.isBuffer(new Uint8Array(2));
+ * // => false
+ */
+var isBuffer = nativeIsBuffer || stubFalse;
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  if (!isObject(value)) {
+    return false;
+  }
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+  var tag = baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+function isLength(value) {
+  return typeof value == 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+/**
+ * Checks if `value` is a plain object, that is, an object created by the
+ * `Object` constructor or one with a `[[Prototype]]` of `null`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.8.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ * }
+ *
+ * _.isPlainObject(new Foo);
+ * // => false
+ *
+ * _.isPlainObject([1, 2, 3]);
+ * // => false
+ *
+ * _.isPlainObject({ 'x': 0, 'y': 0 });
+ * // => true
+ *
+ * _.isPlainObject(Object.create(null));
+ * // => true
+ */
+function isPlainObject(value) {
+  if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
+    return false;
+  }
+  var proto = getPrototype(value);
+  if (proto === null) {
+    return true;
+  }
+  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+  return typeof Ctor == 'function' && Ctor instanceof Ctor &&
+    funcToString.call(Ctor) == objectCtorString;
+}
+
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ * @example
+ *
+ * _.isTypedArray(new Uint8Array);
+ * // => true
+ *
+ * _.isTypedArray([]);
+ * // => false
+ */
+var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+
+/**
+ * Converts `value` to a plain object flattening inherited enumerable string
+ * keyed properties of `value` to own properties of the plain object.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to convert.
+ * @returns {Object} Returns the converted plain object.
+ * @example
+ *
+ * function Foo() {
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.assign({ 'a': 1 }, new Foo);
+ * // => { 'a': 1, 'b': 2 }
+ *
+ * _.assign({ 'a': 1 }, _.toPlainObject(new Foo));
+ * // => { 'a': 1, 'b': 2, 'c': 3 }
+ */
+function toPlainObject(value) {
+  return copyObject(value, keysIn(value));
+}
+
+/**
+ * Creates an array of the own and inherited enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keysIn(new Foo);
+ * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+ */
+function keysIn(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
+}
+
+/**
+ * This method is like `_.assign` except that it recursively merges own and
+ * inherited enumerable string keyed properties of source objects into the
+ * destination object. Source properties that resolve to `undefined` are
+ * skipped if a destination value exists. Array and plain object properties
+ * are merged recursively. Other objects and value types are overridden by
+ * assignment. Source objects are applied from left to right. Subsequent
+ * sources overwrite property assignments of previous sources.
+ *
+ * **Note:** This method mutates `object`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.5.0
+ * @category Object
+ * @param {Object} object The destination object.
+ * @param {...Object} [sources] The source objects.
+ * @returns {Object} Returns `object`.
+ * @example
+ *
+ * var object = {
+ *   'a': [{ 'b': 2 }, { 'd': 4 }]
+ * };
+ *
+ * var other = {
+ *   'a': [{ 'c': 3 }, { 'e': 5 }]
+ * };
+ *
+ * _.merge(object, other);
+ * // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
+ */
+var merge = createAssigner(function(object, source, srcIndex) {
+  baseMerge(object, source, srcIndex);
+});
+
+/**
+ * Creates a function that returns `value`.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Util
+ * @param {*} value The value to return from the new function.
+ * @returns {Function} Returns the new constant function.
+ * @example
+ *
+ * var objects = _.times(2, _.constant({ 'a': 1 }));
+ *
+ * console.log(objects);
+ * // => [{ 'a': 1 }, { 'a': 1 }]
+ *
+ * console.log(objects[0] === objects[1]);
+ * // => true
+ */
+function constant(value) {
+  return function() {
+    return value;
+  };
+}
+
+/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = merge;
+
+
+/***/ }),
+
 /***/ 631:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
@@ -15902,7 +19832,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 7354:
+/***/ 129:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -17172,6 +21102,7 @@ if (true) {
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
+var __webpack_unused_export__;
 /**
  * @license React
  * react-jsx-runtime.production.min.js
@@ -17182,7 +21113,7 @@ if (true) {
  * LICENSE file in the root directory of this source tree.
  */
 var f=__webpack_require__(7294),k=Symbol.for("react.element"),l=Symbol.for("react.fragment"),m=Object.prototype.hasOwnProperty,n=f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,p={key:!0,ref:!0,__self:!0,__source:!0};
-function q(c,a,g){var b,d={},e=null,h=null;void 0!==g&&(e=""+g);void 0!==a.key&&(e=""+a.key);void 0!==a.ref&&(h=a.ref);for(b in a)m.call(a,b)&&!p.hasOwnProperty(b)&&(d[b]=a[b]);if(c&&c.defaultProps)for(b in a=c.defaultProps,a)void 0===d[b]&&(d[b]=a[b]);return{$$typeof:k,type:c,key:e,ref:h,props:d,_owner:n.current}}exports.Fragment=l;exports.jsx=q;exports.jsxs=q;
+function q(c,a,g){var b,d={},e=null,h=null;void 0!==g&&(e=""+g);void 0!==a.key&&(e=""+a.key);void 0!==a.ref&&(h=a.ref);for(b in a)m.call(a,b)&&!p.hasOwnProperty(b)&&(d[b]=a[b]);if(c&&c.defaultProps)for(b in a=c.defaultProps,a)void 0===d[b]&&(d[b]=a[b]);return{$$typeof:k,type:c,key:e,ref:h,props:d,_owner:n.current}}__webpack_unused_export__=l;exports.jsx=q;exports.jsxs=q;
 
 
 /***/ }),
@@ -18328,7 +22259,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADg
 
 /***/ }),
 
-/***/ 129:
+/***/ 8105:
 /***/ ((module) => {
 
 "use strict";
@@ -18585,8 +22516,12 @@ const isXHRAdapterSupported = typeof XMLHttpRequest !== 'undefined';
       }
     }
 
-    if (_utils_js__WEBPACK_IMPORTED_MODULE_2__/* ["default"].isFormData */ .Z.isFormData(requestData) && (_platform_index_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"].isStandardBrowserEnv */ .Z.isStandardBrowserEnv || _platform_index_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"].isStandardBrowserWebWorkerEnv */ .Z.isStandardBrowserWebWorkerEnv)) {
-      requestHeaders.setContentType(false); // Let the browser set it
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_2__/* ["default"].isFormData */ .Z.isFormData(requestData)) {
+      if (_platform_index_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"].isStandardBrowserEnv */ .Z.isStandardBrowserEnv || _platform_index_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"].isStandardBrowserWebWorkerEnv */ .Z.isStandardBrowserWebWorkerEnv) {
+        requestHeaders.setContentType(false); // Let the browser set it
+      } else {
+        requestHeaders.setContentType('multipart/form-data;', false); // mobile/desktop app frameworks
+      }
     }
 
     let request = new XMLHttpRequest();
@@ -19149,11 +23084,17 @@ class Axios {
       }, false);
     }
 
-    if (paramsSerializer !== undefined) {
-      _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].assertOptions */ .Z.assertOptions(paramsSerializer, {
-        encode: validators.function,
-        serialize: validators.function
-      }, true);
+    if (paramsSerializer != null) {
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"].isFunction */ .Z.isFunction(paramsSerializer)) {
+        config.paramsSerializer = {
+          serialize: paramsSerializer
+        }
+      } else {
+        _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].assertOptions */ .Z.assertOptions(paramsSerializer, {
+          encode: validators.function,
+          serialize: validators.function
+        }, true);
+      }
     }
 
     // Set config.method
@@ -19443,13 +23384,15 @@ function parseTokens(str) {
   return tokens;
 }
 
-function isValidHeaderName(str) {
-  return /^[-_a-zA-Z]+$/.test(str.trim());
-}
+const isValidHeaderName = (str) => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
 
-function matchHeaderValue(context, value, header, filter) {
+function matchHeaderValue(context, value, header, filter, isHeaderNameFilter) {
   if (_utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].isFunction */ .Z.isFunction(filter)) {
     return filter.call(this, value, header);
+  }
+
+  if (isHeaderNameFilter) {
+    value = header;
   }
 
   if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].isString */ .Z.isString(value)) return;
@@ -19555,7 +23498,7 @@ class AxiosHeaders {
     if (header) {
       const key = _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].findKey */ .Z.findKey(this, header);
 
-      return !!(key && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
+      return !!(key && this[key] !== undefined && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
     }
 
     return false;
@@ -19588,8 +23531,20 @@ class AxiosHeaders {
     return deleted;
   }
 
-  clear() {
-    return Object.keys(this).forEach(this.delete.bind(this));
+  clear(matcher) {
+    const keys = Object.keys(this);
+    let i = keys.length;
+    let deleted = false;
+
+    while (i--) {
+      const key = keys[i];
+      if(!matcher || matchHeaderValue(this, this[key], key, matcher, true)) {
+        delete this[key];
+        deleted = true;
+      }
+    }
+
+    return deleted;
   }
 
   normalize(format) {
@@ -19680,7 +23635,7 @@ class AxiosHeaders {
   }
 }
 
-AxiosHeaders.accessor(['Content-Type', 'Content-Length', 'Accept', 'Accept-Encoding', 'User-Agent']);
+AxiosHeaders.accessor(['Content-Type', 'Content-Length', 'Accept', 'Accept-Encoding', 'User-Agent', 'Authorization']);
 
 _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].freezeMethods */ .Z.freezeMethods(AxiosHeaders.prototype);
 _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].freezeMethods */ .Z.freezeMethods(AxiosHeaders);
@@ -20011,7 +23966,7 @@ function mergeConfig(config1, config2) {
     headers: (a, b) => mergeDeepProperties(headersToObject(a), headersToObject(b), true)
   };
 
-  _utils_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"].forEach */ .Z.forEach(Object.keys(config1).concat(Object.keys(config2)), function computeConfigValue(prop) {
+  _utils_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"].forEach */ .Z.forEach(Object.keys(Object.assign({}, config1, config2)), function computeConfigValue(prop) {
     const merge = mergeMap[prop] || mergeDeepProperties;
     const configValue = merge(config1[prop], config2[prop], prop);
     (_utils_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"].isUndefined */ .Z.isUndefined(configValue) && merge !== mergeDirectKeys) || (config[prop] = configValue);
@@ -20306,20 +24261,6 @@ _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].forEach */ .Z.forEach(['pos
 
 /***/ }),
 
-/***/ 5779:
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var form_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6230);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (form_data__WEBPACK_IMPORTED_MODULE_0__);
-
-
-/***/ }),
-
 /***/ 2112:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
@@ -20327,7 +24268,7 @@ _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].forEach */ .Z.forEach(['pos
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "q": () => (/* binding */ VERSION)
 /* harmony export */ });
-const VERSION = "1.2.3";
+const VERSION = "1.4.0";
 
 /***/ }),
 
@@ -21115,11 +25056,12 @@ function spread(callback) {
 /* harmony export */ });
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8113);
 /* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1333);
-/* harmony import */ var _env_classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5779);
+/* harmony import */ var _platform_node_classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4198);
 
 
 
 
+// temporary hotfix to avoid circular references until AxiosURLSearchParams is refactored
 
 
 /**
@@ -21178,17 +25120,6 @@ const predicates = _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].toFlatOb
 });
 
 /**
- * If the thing is a FormData object, return true, otherwise return false.
- *
- * @param {unknown} thing - The thing to check.
- *
- * @returns {boolean}
- */
-function isSpecCompliant(thing) {
-  return thing && _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].isFunction */ .Z.isFunction(thing.append) && thing[Symbol.toStringTag] === 'FormData' && thing[Symbol.iterator];
-}
-
-/**
  * Convert a data object to FormData
  *
  * @param {Object} obj
@@ -21217,7 +25148,7 @@ function toFormData(obj, formData, options) {
   }
 
   // eslint-disable-next-line no-param-reassign
-  formData = formData || new (_env_classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z || FormData)();
+  formData = formData || new (_platform_node_classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z || FormData)();
 
   // eslint-disable-next-line no-param-reassign
   options = _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].toFlatObject */ .Z.toFlatObject(options, {
@@ -21235,7 +25166,7 @@ function toFormData(obj, formData, options) {
   const dots = options.dots;
   const indexes = options.indexes;
   const _Blob = options.Blob || typeof Blob !== 'undefined' && Blob;
-  const useBlob = _Blob && isSpecCompliant(formData);
+  const useBlob = _Blob && _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].isSpecCompliantForm */ .Z.isSpecCompliantForm(formData);
 
   if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].isFunction */ .Z.isFunction(visitor)) {
     throw new TypeError('visitor must be a function');
@@ -21280,7 +25211,7 @@ function toFormData(obj, formData, options) {
         value = JSON.stringify(value);
       } else if (
         (_utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].isArray */ .Z.isArray(value) && isFlatArray(value)) ||
-        (_utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].isFileList */ .Z.isFileList(value) || _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].endsWith */ .Z.endsWith(key, '[]') && (arr = _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].toArray */ .Z.toArray(value))
+        ((_utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].isFileList */ .Z.isFileList(value) || _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].endsWith */ .Z.endsWith(key, '[]')) && (arr = _utils_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"].toArray */ .Z.toArray(value))
         )) {
         // eslint-disable-next-line no-param-reassign
         key = removeBrackets(key);
@@ -21485,6 +25416,20 @@ function assertOptions(options, schema, allowUnknown) {
 
 /***/ }),
 
+/***/ 2004:
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (typeof Blob !== 'undefined' ? Blob : null);
+
+
+/***/ }),
+
 /***/ 1951:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
@@ -21494,7 +25439,7 @@ function assertOptions(options, schema, allowUnknown) {
 /* harmony export */ });
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FormData);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (typeof FormData !== 'undefined' ? FormData : null);
 
 
 /***/ }),
@@ -21524,6 +25469,8 @@ function assertOptions(options, schema, allowUnknown) {
 /* harmony export */ });
 /* harmony import */ var _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3358);
 /* harmony import */ var _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1951);
+/* harmony import */ var _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2004);
+
 
 
 
@@ -21581,7 +25528,7 @@ const isStandardBrowserEnv = (() => {
   classes: {
     URLSearchParams: _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z,
     FormData: _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z,
-    Blob
+    Blob: _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z
   },
   isStandardBrowserEnv,
   isStandardBrowserWebWorkerEnv,
@@ -21789,12 +25736,16 @@ const isStream = (val) => isObject(val) && isFunction(val.pipe);
  * @returns {boolean} True if value is an FormData, otherwise false
  */
 const isFormData = (thing) => {
-  const pattern = '[object FormData]';
+  let kind;
   return thing && (
-    (typeof FormData === 'function' && thing instanceof FormData) ||
-    toString.call(thing) === pattern ||
-    (isFunction(thing.toString) && thing.toString() === pattern)
-  );
+    (typeof FormData === 'function' && thing instanceof FormData) || (
+      isFunction(thing.append) && (
+        (kind = kindOf(thing)) === 'formdata' ||
+        // detect form-data instance
+        (kind === 'object' && isFunction(thing.toString) && thing.toString() === '[object FormData]')
+      )
+    )
+  )
 }
 
 /**
@@ -22113,7 +26064,7 @@ const matchAll = (regExp, str) => {
 const isHTMLForm = kindOfTest('HTMLFormElement');
 
 const toCamelCase = str => {
-  return str.toLowerCase().replace(/[_-\s]([a-z\d])(\w*)/g,
+  return str.toLowerCase().replace(/[-_\s]([a-z\d])(\w*)/g,
     function replacer(m, p1, p2) {
       return p1.toUpperCase() + p2;
     }
@@ -22197,6 +26148,37 @@ const toFiniteNumber = (value, defaultValue) => {
   return Number.isFinite(value) ? value : defaultValue;
 }
 
+const ALPHA = 'abcdefghijklmnopqrstuvwxyz'
+
+const DIGIT = '0123456789';
+
+const ALPHABET = {
+  DIGIT,
+  ALPHA,
+  ALPHA_DIGIT: ALPHA + ALPHA.toUpperCase() + DIGIT
+}
+
+const generateString = (size = 16, alphabet = ALPHABET.ALPHA_DIGIT) => {
+  let str = '';
+  const {length} = alphabet;
+  while (size--) {
+    str += alphabet[Math.random() * length|0]
+  }
+
+  return str;
+}
+
+/**
+ * If the thing is a FormData object, return true, otherwise return false.
+ *
+ * @param {unknown} thing - The thing to check.
+ *
+ * @returns {boolean}
+ */
+function isSpecCompliantForm(thing) {
+  return !!(thing && isFunction(thing.append) && thing[Symbol.toStringTag] === 'FormData' && thing[Symbol.iterator]);
+}
+
 const toJSONObject = (obj) => {
   const stack = new Array(10);
 
@@ -22227,6 +26209,11 @@ const toJSONObject = (obj) => {
 
   return visit(obj, 0);
 }
+
+const isAsyncFn = kindOfTest('AsyncFunction');
+
+const isThenable = (thing) =>
+  thing && (isObject(thing) || isFunction(thing)) && isFunction(thing.then) && isFunction(thing.catch);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   isArray,
@@ -22274,7 +26261,12 @@ const toJSONObject = (obj) => {
   findKey,
   global: _global,
   isContextDefined,
-  toJSONObject
+  ALPHABET,
+  generateString,
+  isSpecCompliantForm,
+  toJSONObject,
+  isAsyncFn,
+  isThenable
 });
 
 
@@ -22285,14 +26277,14 @@ const toJSONObject = (obj) => {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "oR": () => (/* binding */ s)
+/* harmony export */   "oR": () => (/* binding */ a)
 /* harmony export */ });
 /* unused harmony exports Provider, connect, createComponent, createContextComponent, createGate, createReactState, createStoreConsumer, useEvent, useGate, useList, useStoreMap, useUnit */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7294);
 /* harmony import */ var effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8116);
 /* harmony import */ var use_sync_external_store_shim_with_selector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2798);
 /* harmony import */ var use_sync_external_store_shim_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1688);
-function e(e,t,n,r){let o=[effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__/* .step.run */ .Nb.run({fn:e=>t(e)})];if(r&&o.unshift(r),n){let t=(0,effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__/* .createNode */ .dS)({node:o}),r=e.graphite.id,u=n.additionalLinks,s=u[r]||[];return u[r]=s,s.push(t),()=>{let e=s.indexOf(t);-1!==e&&s.splice(e,1),(0,effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__/* .clearNode */ .PO)(t)}}{let t=(0,effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__/* .createNode */ .dS)({node:o,parent:[e],family:{owners:e}});return()=>{(0,effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__/* .clearNode */ .PO)(t)}}}function t(e,t){return t.displayName=e,t}function n(t,n){effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__.is.store(t)||E('expect useStore argument to be a store');let r=react__WEBPACK_IMPORTED_MODULE_1__.useCallback((r=>e(t,r,n)),[t,n]),o=react__WEBPACK_IMPORTED_MODULE_1__.useCallback((()=>M(t,n)),[t,n]);return N(r,o,o)}function r([t,n],r){let o,u,s,a,l=O;n?(o=n,s=t,a=[]):({fn:o,store:s,keys:a,defaultValue:u,updateFilter:l=O}=t),k.store(s)||E('useStoreMap expects a store'),Array.isArray(a)||E('useStoreMap expects an array as keys'),'function'!=typeof o&&E('useStoreMap expects a function');let i=h.useCallback((t=>e(s,t,r)),[s,r]),c=h.useCallback((()=>M(s,r)),[s,r]),f=h.useRef(),p=h.useRef(),d=h.useRef(a);return R(i,c,c,(e=>{if(f.current!==e||!((e,t)=>{if(!e||!t||e.length!==t.length)return 0;let n=1;for(let r=0;r<e.length;r++)if(e[r]!==t[r]){n=0;break}return n})(d.current,a)){let t=o(e,a);void 0===t&&void 0!==u&&(t=u),f.current=e,d.current=a,void 0!==t&&(p.current=t)}return p.current}),((e,t)=>!l(t,e)))}function o(e){let t=react__WEBPACK_IMPORTED_MODULE_1__.useContext(L);return e&&!t&&E('No scope found, consider adding <Provider> to app root'),t}function u(e,t){return((e,t)=>{if(!t)return e;let n=k.unit(e)||'object'!=typeof e?{event:e}:e;return h.useMemo((()=>{if(k.unit(e))return S(e,{scope:t});let n=Array.isArray(e)?[]:{};for(let r in e)n[r]=S(e[r],{scope:t});return n}),[t,...Object.keys(n),...Object.values(n)])})(e,o(null==t?void 0:t.forceScope))}function s(e,t){return n(e,o(null==t?void 0:t.forceScope))}function a(t,n){return((t,n)=>{let r=k.unit(t),o={};r?o={unit:t}:'@@unitShape'in t?'function'==typeof t['@@unitShape']?o=t['@@unitShape']():E('expect @@unitShape to be a function'):o=t;let u=Array.isArray(o),s=h.useRef({stale:1,justSubscribed:0,scope:n}),[a,l,i]=h.useMemo((()=>{s.current.stale=1;let e=Array.isArray(o)?[]:{},t=[],r=[];for(let u in o){let s=o[u];k.unit(s)||E('expect useUnit argument to be a unit'),k.event(s)||k.effect(s)?e[u]=n?S(s,{scope:n}):s:(e[u]=null,t.push(u),r.push(s))}return[e,t,r]}),[s,n,...Object.keys(o),...Object.values(o)]),c=h.useRef({value:a,storeKeys:l}),f=h.useCallback((t=>{let r=s.current;r.justSubscribed=1;let o=()=>{r.stale||(r.stale=1,t())},u=b.compute({priority:'sampler',batch:1}),a=i.map((t=>e(t,o,n,u)));return()=>{a.forEach((e=>e()))}}),[i,n,c,s]),p=h.useCallback((()=>{let e,t=c.current,o=s.current,f=0,p=t.value,d=t.storeKeys,m=n!==o.scope;if((l.length>0||d.length>0)&&(o.stale||o.justSubscribed||m)){f=!o.justSubscribed||m,e=u?[...a]:{...a},d.length!==l.length&&(f=1);for(let t=0;t<l.length;t++){let r=M(i[t],n),o=l[t];f||(f=d.includes(o)?p[o]!==r:1),e[o]=r}}return f&&(t.value=e),t.storeKeys=l,o.stale=0,o.justSubscribed=!f,o.scope=n,r?t.value.unit:t.value}),[f,i,n,c,s]);return N(f,p,p)})(t,o(null==n?void 0:n.forceScope))}function l(e,t){return r([e,t],o(null==e?void 0:e.forceScope))}function i(e,u,s){return((e,o,u)=>{let s,a,l,i=[];'object'==typeof o&&null!==o?(o.keys&&(i=o.keys),({fn:s,getKey:a,placeholder:l}=o)):s=o,k.store(e)||E('expect useList first argument to be a store'),'function'!=typeof s&&E("expect useList's renderItem to be a function"),Array.isArray(i)||E("expect useList's keys to be an array");let c=h.useMemo((()=>{let n=t(`${e.shortName||'Unknown'}.Item`,(t=>{let{index:n,keys:o,keyVal:s,value:a}=t;if(f.current[1])return f.current[0](a,s);let l=r([{store:e,keys:[n,...o],fn:(e,t)=>e[t[0]]}],u);return f.current[0](l,n)}));return h.memo(n)}),[e,u,!!a]),f=h.useRef([s,a]);f.current=[s,a];let p=h.useMemo((()=>i),i);if(a){let t=n(e,u);return 0===t.length&&l?l:t.map((e=>{let t=f.current[1](e);return h.createElement(c,{keyVal:t,key:t,keys:p,value:e})}))}{let t=r([{store:e,keys:[e],fn:e=>e.length}],u);return 0===t&&l?l:Array.from({length:t},((e,t)=>h.createElement(c,{index:t,key:t,keys:p})))}})(e,u,o(null==s?void 0:s.forceScope))}function c(e,n){function r(e){let t=h.useRef(e),r=s(o);K((()=>(a({props:t.current,state:o.getState()}),()=>{l({props:t.current,state:o.getState()})})),[]);let u=n(e,r);return t.current=e,u}let o;k.store(e)?o=e:'object'==typeof e&&null!==e?o=x(e):E('shape should be a store or object with stores');let u='Unknown';o&&o.shortName&&(u=o.shortName);let a=j(),l=j();return r.mounted=a,r.unmounted=l,t(`${u}.View`,r)}function f(e){return c(e,(({children:e},t)=>e(t)))}function p(e,t){let n=t?e:e[0];var r;(e=>{if(!e)throw Error('expect first argument be an object')})(z(r=n)||(e=>'function'==typeof e)(r));let o=n.or,u=n.and;if(u){let n=t?u:u[0];if(z(n)&&'and'in n){let n=p(u,t);e=n[0],o={...o,...n[1]}}else e=u}return[e,o]}function d(e,t={}){let n=h.useRef({value:null,count:0});K((()=>(e.open(n.current.value),()=>e.close(n.current.value))),[e]),((e,t)=>{if(e===t)return 1;if('object'==typeof e&&null!==e&&'object'==typeof t&&null!==t){let n=Object.keys(e),r=Object.keys(t);if(n.length!==r.length)return 0;for(let r=0;r<n.length;r++){let o=n[r];if(e[o]!==t[o])return 0}return 1}return 0})(n.current.value,t)||(n.current.value=t,n.current.count+=1),K((()=>{e.set(n.current.value)}),[n.current.count])}function m(e,t){let n=t&&z(r=t[0])&&(r.and||r.or)?t:[{and:t}];var r;let o,[[u,s],a]=p(n),l={},i={},c=a;var f;return'string'==typeof u?(i={name:u},z(f=s)&&'sid'in f||(l=s||{})):(e=>z(e)&&('domain'in e||'defaultState'in e||'name'in e))(u)&&(i=u,l=u.defaultState||{},o=u.domain),{hook:e,domain:o,defaultState:l,mainConfig:i,maybeConfig:c}}function y(...e){return(({domain:e,defaultState:n,hook:r,mainConfig:o,maybeConfig:u})=>{function s(e){return r(s,e),null}let a=F({or:u,and:o}),l=`${e?`${e.compositeName.fullName}/`:''}${a.name||'gate'}`,i=j({name:`${l}.set`,sid:a.sid?`${a.sid}|set`:void 0}),c=j({name:`${l}.open`,sid:a.sid?`${a.sid}|open`:void 0}),f=j({name:`${l}.close`,sid:a.sid?`${a.sid}|close`:void 0}),p=C(Boolean(0),{name:`${l}.status`,serialize:'ignore'}).on(c,(()=>Boolean(1))).on(f,(()=>Boolean(0))),d=C(n,{name:`${l}.state`,sid:a.sid}).on(i,((e,t)=>t)).on(c,((e,t)=>t)).reset(f);if(e){let{hooks:t}=e;$({target:[t.store,t.store,t.event,t.event,t.event],params:[p,d,c,f,i]})}return s.open=c,s.close=f,s.status=p,s.state=d,s.set=i,t(`Gate:${l}`,s)})(m(d,e))}let E=e=>{throw Error(e)};const{useSyncExternalStore:N}=use_sync_external_store_shim_index_js__WEBPACK_IMPORTED_MODULE_3__,{useSyncExternalStoreWithSelector:R}=use_sync_external_store_shim_with_selector_js__WEBPACK_IMPORTED_MODULE_2__,M=(e,t)=>t?t.getState(e):e.getState(),O=(e,t)=>e!==t,L=react__WEBPACK_IMPORTED_MODULE_1__.createContext(null);let{Provider:U}=L,K='undefined'!=typeof window?react__WEBPACK_IMPORTED_MODULE_1__.useLayoutEffect:react__WEBPACK_IMPORTED_MODULE_1__.useEffect,V=e=>console.error(`${e} is deprecated`),B=(e,n,r)=>(V('createContextComponent'),t(`${e.shortName||'Unknown'}.ContextComponent`,(t=>{let o=h.useContext(n),u=s(e);return r(t,u,o)}))),I=e=>n=>{let r=e;return'function'!=typeof e&&(r=n,n=e),t(`Connect(${r.displayName||r.name||'Unknown'})`,(e=>h.createElement(r,{...e,...s(n)})))},P=(e,t)=>(V('createReactState'),I(t)(e)),z=e=>'object'==typeof e&&null!==e,F=(e,t={})=>(z(e)&&(F(e.or,t),(e=>{for(let o in e)r=o,(e=>void 0===e)(n=e[o])||'or'===r||'and'===r||(t[r]=n);var n,r})(e),F(e.and,t)),t);
+function e(e,t,n,r){let o=[effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__/* .step.run */ .Nb.run({fn:e=>t(e)})];if(r&&o.unshift(r),n){let t=(0,effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__/* .createNode */ .dS)({node:o}),r=e.graphite.id,u=n.additionalLinks,s=u[r]||[];return u[r]=s,s.push(t),()=>{let e=s.indexOf(t);-1!==e&&s.splice(e,1),(0,effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__/* .clearNode */ .PO)(t)}}{let t=(0,effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__/* .createNode */ .dS)({node:o,parent:[e],family:{owners:e}});return()=>{(0,effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__/* .clearNode */ .PO)(t)}}}function t(e,t){return t.displayName=e,t}function n(t,n){effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__.is.store(t)||R('expect useStore argument to be a store');let r=react__WEBPACK_IMPORTED_MODULE_1__.useCallback((r=>e(t,r,n)),[t,n]),o=react__WEBPACK_IMPORTED_MODULE_1__.useCallback((()=>V(t,n)),[t,n]);return O(r,o,o)}function r(t,n){let r=x.unit(t),o={};r?o={unit:t}:'@@unitShape'in t?'function'==typeof t['@@unitShape']?o=t['@@unitShape']():R('expect @@unitShape to be a function'):o=t;let u=Array.isArray(o),s=b.useRef({stale:1,justSubscribed:0,scope:n}),[l,a,i,c,f]=b.useMemo((()=>{s.current.stale=1;let e=Array.isArray(o)?[]:{},t=[],r=[],u=[],l=[];for(let s in o){let a=o[s];x.unit(a)||R('expect useUnit argument to be a unit'),x.event(a)||x.effect(a)?(e[s]=n?j(a,{scope:n}):a,u.push(s),l.push(a)):(e[s]=null,t.push(s),r.push(a))}return[e,t,r,u,l]}),[s,n,...Object.keys(o),...Object.values(o)]),p=b.useRef({value:l,storeKeys:a,eventKeys:c,eventValues:f}),d=b.useCallback((t=>{let r=s.current;r.justSubscribed=1;let o=()=>{r.stale||(r.stale=1,t())},u=g.compute({priority:'sampler',batch:1}),l=i.map((t=>e(t,o,n,u)));return()=>{l.forEach((e=>e()))}}),[i,n,p,s]),m=b.useCallback((()=>{let e,t=p.current,o=s.current,d=0,m=t.value,y=t.storeKeys,h=t.eventKeys,v=t.eventValues,b=n!==o.scope;if(o.stale||o.justSubscribed||b){d=!o.justSubscribed||b,e=u?[...l]:{...l},y.length===a.length&&h.length===c.length||(d=1);for(let t=0;t<a.length;t++){let r=V(i[t],n),o=a[t];d||(d=y.includes(o)?m[o]!==r:1),e[o]=r}for(let e=0;e<c.length;e++){let t=f[e],n=c[e];d||(d=h.includes(n)?v[h.indexOf(n)]!==t:1)}}return d&&(t.value=e),t.storeKeys=a,t.eventKeys=c,t.eventValues=f,o.stale=0,o.justSubscribed=!d,o.scope=n,r?t.value.unit:t.value}),[d,i,f,n,p,s]);return O(d,m,m)}function o([t,n],r){let o,u,s,l,a=L;n?(o=n,s=t,l=[]):({fn:o,store:s,keys:l,defaultValue:u,updateFilter:a=L}=t),x.store(s)||R('useStoreMap expects a store'),Array.isArray(l)||R('useStoreMap expects an array as keys'),'function'!=typeof o&&R('useStoreMap expects a function');let i=b.useCallback((t=>e(s,t,r)),[s,r]),c=b.useCallback((()=>V(s,r)),[s,r]),f=b.useRef(),p=b.useRef(),d=b.useRef(l);return K(i,c,c,(e=>{if(f.current!==e||!((e,t)=>{if(!e||!t||e.length!==t.length)return 0;let n=1;for(let r=0;r<e.length;r++)if(e[r]!==t[r]){n=0;break}return n})(d.current,l)){let t=o(e,l);void 0===t&&void 0!==u&&(t=u),f.current=e,d.current=l,void 0!==t&&(p.current=t)}return p.current}),((e,t)=>!a(t,e)))}function u(e,t={},n){let{open:o,close:u,set:s}=r({open:e.open,close:e.close,set:e.set},n),l=b.useMemo((()=>({open:o,close:u,set:s})),[e,o]),a=b.useRef({value:null,count:0});M((()=>(l.open(a.current.value),()=>l.close(a.current.value))),[l]),((e,t)=>{if(e===t)return 1;if('object'==typeof e&&null!==e&&'object'==typeof t&&null!==t){let n=Object.keys(e),r=Object.keys(t);if(n.length!==r.length)return 0;for(let r=0;r<n.length;r++){let o=n[r];if(e[o]!==t[o])return 0}return 1}return 0})(a.current.value,t)||(a.current.value=t,a.current.count+=1),M((()=>{l.set(a.current.value)}),[a.current.count])}function s(e){let t=react__WEBPACK_IMPORTED_MODULE_1__.useContext(U);return e&&!t&&R('No scope found, consider adding <Provider> to app root'),t}function l(e,t){return((e,t)=>{if(!t)return e;let n=x.unit(e)||'object'!=typeof e?{event:e}:e;return b.useMemo((()=>{if(x.unit(e))return j(e,{scope:t});let n=Array.isArray(e)?[]:{};for(let r in e)n[r]=j(e[r],{scope:t});return n}),[t,...Object.keys(n),...Object.values(n)])})(e,s(null==t?void 0:t.forceScope))}function a(e,t){return n(e,s(null==t?void 0:t.forceScope))}function i(e,t){return r(e,s(null==t?void 0:t.forceScope))}function c(e,t){return o([e,t],s(null==e?void 0:e.forceScope))}function f(e,r,u){return((e,r,u)=>{let s,l,a,i=[];'object'==typeof r&&null!==r?(r.keys&&(i=r.keys),({fn:s,getKey:l,placeholder:a}=r)):s=r,x.store(e)||R('expect useList first argument to be a store'),'function'!=typeof s&&R("expect useList's renderItem to be a function"),Array.isArray(i)||R("expect useList's keys to be an array");let c=b.useMemo((()=>{let n=t(`${e.shortName||'Unknown'}.Item`,(t=>{let{index:n,keys:r,keyVal:s,value:l}=t;if(f.current[1])return f.current[0](l,s);let a=o([{store:e,keys:[n,...r],fn:(e,t)=>e[t[0]]}],u);return f.current[0](a,n)}));return b.memo(n)}),[e,u,!!l]),f=b.useRef([s,l]);f.current=[s,l];let p=b.useMemo((()=>i),i);if(l){let t=n(e,u);return 0===t.length&&a?a:t.map((e=>{let t=f.current[1](e);return b.createElement(c,{keyVal:t,key:t,keys:p,value:e})}))}{let t=o([{store:e,keys:[e],fn:e=>e.length}],u);return 0===t&&a?a:Array.from({length:t},((e,t)=>b.createElement(c,{index:t,key:t,keys:p})))}})(e,r,s(null==u?void 0:u.forceScope))}function p(e,t={},n){return u(e,t,s(null==n?void 0:n.forceScope))}function d(e,n){function r(e){let t=b.useRef(e),r=a(o);M((()=>(s({props:t.current,state:o.getState()}),()=>{l({props:t.current,state:o.getState()})})),[]);let u=n(e,r);return t.current=e,u}let o;x.store(e)?o=e:'object'==typeof e&&null!==e?o=C(e):R('shape should be a store or object with stores');let u='Unknown';o&&o.shortName&&(u=o.shortName);let s=$(),l=$();return r.mounted=s,r.unmounted=l,t(`${u}.View`,r)}function m(e){return d(e,(({children:e},t)=>e(t)))}function y(e,t){let n=t?e:e[0];var r;(e=>{if(!e)throw Error('expect first argument be an object')})(G(r=n)||(e=>'function'==typeof e)(r));let o=n.or,u=n.and;if(u){let n=t?u:u[0];if(G(n)&&'and'in n){let n=y(u,t);e=n[0],o={...o,...n[1]}}else e=u}return[e,o]}function h(e,t){let n=t&&G(r=t[0])&&(r.and||r.or)?t:[{and:t}];var r;let o,[[u,s],l]=y(n),a={},i={},c=l;var f;return'string'==typeof u?(i={name:u},G(f=s)&&'sid'in f||(a=s||{})):(e=>G(e)&&('domain'in e||'defaultState'in e||'name'in e))(u)&&(i=u,a=u.defaultState||{},o=u.domain),{hook:e,domain:o,defaultState:a,mainConfig:i,maybeConfig:c}}function v(...e){return(({domain:e,defaultState:n,hook:r,mainConfig:o,maybeConfig:u})=>{function l(e){return r(l,e,s()),null}let a=W({or:u,and:o}),i=`${e?`${e.compositeName.fullName}/`:''}${a.name||'gate'}`,c=$({name:`${i}.set`,sid:a.sid?`${a.sid}|set`:void 0}),f=$({name:`${i}.open`,sid:a.sid?`${a.sid}|open`:void 0}),p=$({name:`${i}.close`,sid:a.sid?`${a.sid}|close`:void 0}),d=w(Boolean(0),{name:`${i}.status`,serialize:'ignore'}).on(f,(()=>Boolean(1))).on(p,(()=>Boolean(0))),m=w(n,{name:`${i}.state`,sid:a.sid}).on(c,((e,t)=>t)).on(f,((e,t)=>t)).reset(p);if(e){let{hooks:t}=e;A({target:[t.store,t.store,t.event,t.event,t.event],params:[d,m,f,p,c]})}return l.open=f,l.close=p,l.status=d,l.state=m,l.set=c,t(`Gate:${i}`,l)})(h(u,e))}let R=e=>{throw Error(e)},M='undefined'!=typeof window?react__WEBPACK_IMPORTED_MODULE_1__.useLayoutEffect:react__WEBPACK_IMPORTED_MODULE_1__.useEffect;const{useSyncExternalStore:O}=use_sync_external_store_shim_index_js__WEBPACK_IMPORTED_MODULE_3__,{useSyncExternalStoreWithSelector:K}=use_sync_external_store_shim_with_selector_js__WEBPACK_IMPORTED_MODULE_2__,V=(e,t)=>t?t.getState(e):e.getState(),L=(e,t)=>e!==t,U=react__WEBPACK_IMPORTED_MODULE_1__.createContext(null);let{Provider:B}=U,I=e=>console.error(`${e} is deprecated`),P=(e,n,r)=>(I('createContextComponent'),t(`${e.shortName||'Unknown'}.ContextComponent`,(t=>{let o=b.useContext(n),u=a(e);return r(t,u,o)}))),z=e=>n=>{let r=e;return'function'!=typeof e&&(r=n,n=e),t(`Connect(${r.displayName||r.name||'Unknown'})`,(e=>b.createElement(r,{...e,...a(n)})))},F=(e,t)=>(I('createReactState'),z(t)(e)),G=e=>'object'==typeof e&&null!==e,W=(e,t={})=>(G(e)&&(W(e.or,t),(e=>{for(let o in e)r=o,(e=>void 0===e)(n=e[o])||'or'===r||'and'===r||(t[r]=n);var n,r})(e),W(e.and,t)),t);
 //# sourceMappingURL=effector-react.mjs.map
 
 
@@ -22305,15 +26297,15 @@ function e(e,t,n,r){let o=[effector_effector_mjs__WEBPACK_IMPORTED_MODULE_0__/* 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "GW": () => (/* binding */ y),
 /* harmony export */   "MT": () => (/* binding */ p),
-/* harmony export */   "Nb": () => (/* binding */ Pe),
-/* harmony export */   "PO": () => (/* binding */ mt),
-/* harmony export */   "UP": () => (/* binding */ z),
-/* harmony export */   "dS": () => (/* binding */ a),
-/* harmony export */   "is": () => (/* binding */ ae),
-/* harmony export */   "yM": () => (/* binding */ d)
+/* harmony export */   "Nb": () => (/* binding */ Te),
+/* harmony export */   "PO": () => (/* binding */ vt),
+/* harmony export */   "UP": () => (/* binding */ x),
+/* harmony export */   "dS": () => (/* binding */ n),
+/* harmony export */   "is": () => (/* binding */ ne),
+/* harmony export */   "yM": () => (/* binding */ u)
 /* harmony export */ });
-/* unused harmony exports allSettled, attach, combine, createApi, createDomain, createStoreObject, createWatch, fork, forward, fromObservable, guard, hydrate, launch, merge, restore, scopeBind, serialize, setStoreName, split, version, withFactory, withRegion */
-function e(e,t){for(let r in e)t(e[r],r)}function t(e,t){e.forEach(t)}function r(e,t){if(!e)throw Error(t)}function n(e,t){me={parent:me,value:e,template:J(e,'template')||ge(),sidRoot:J(e,'sidRoot')||me&&me.sidRoot};try{return t()}finally{me=U(me)}}function a({node:e=[],from:r,source:n,parent:a=r||n,to:i,target:o,child:l=i||o,scope:s={},meta:f={},family:u={type:'regular'},regional:d}={}){let c=ve(a),p=ve(u.links),m=ve(u.owners),g=[];t(e,(e=>e&&le(g,e)));let h={id:ce(),seq:g,next:ve(l),meta:f,scope:s,family:{type:u.type||"crosslink",links:p,owners:m}};return t(p,(e=>le(L(e),h))),t(m,(e=>le(T(e),h))),t(c,(e=>le(e.next,h))),d&&me&&be(W(me),[h]),h}function i(e,r,n){let a,i=tt,o=null,l=Xe;if(e.target&&(r=e.params,n=e.defer,a=e.meta,i='page'in e?e.page:i,e.stack&&(o=e.stack),l=G(e)||l,e=e.target),l&&Xe&&l!==Xe&&(Xe=null),Array.isArray(e))for(let t=0;t<e.length;t++)Ge('pure',i,V(e[t]),o,r[t],l,a);else Ge('pure',i,V(e),o,r,l,a);if(n&&!Ye)return;let s,f,u,d,c,p,m={isRoot:Ye,currentPage:tt,scope:Xe,isWatch:Ze,isPure:et};Ye=0;e:for(;d=Ue();){let{idx:e,stack:r,type:n}=d;u=r.node,tt=c=r.page,Xe=G(r),c?p=c.reg:Xe&&(p=Xe.reg);let a=!!c,i=!!Xe,o={fail:0,scope:u.scope};s=f=0;for(let t=e;t<u.seq.length&&!s;t++){let l=u.seq[t];if(l.order){let{priority:a,barrierID:i}=l.order,o=i?c?`${c.fullID}_${i}`:i:0;if(t!==e||n!==a){i?Qe.has(o)||(Qe.add(o),Je(t,r,a,i)):Je(t,r,a);continue e}i&&Qe.delete(o)}switch(l.type){case'mov':{let e,t=l.data;switch(t.from){case _:e=W(r);break;case"a":case'b':e=r[t.from];break;case"value":e=t.store;break;case"store":if(p&&!p[t.store.id])if(a){let e=at(c,t.store.id);r.page=c=e,e?p=e.reg:i?(st(Xe,t.store,0,1,t.softRead),p=Xe.reg):p=void 0}else i&&st(Xe,t.store,0,1,t.softRead);e=Ve(p&&p[t.store.id]||t.store)}switch(t.to){case _:r.value=e;break;case"a":case'b':r[t.to]=e;break;case"store":ot(c,Xe,u,t.target).current=e}break}case'compute':let e=l.data;if(e.fn){Ze='watch'===J(u,'op'),et=e.pure;let t=e.safe?(0,e.fn)(W(r),o.scope,r):ft(o,e.fn,r);e.filter?f=!t:r.value=t,Ze=m.isWatch,et=m.isPure}}s=o.fail||f}if(!s){let e=W(r),n=G(r);if(t(u.next,(t=>{Ge('child',c,t,r,e,n)})),n){J(u,'needFxCounter')&&Ge('child',c,n.fxCount,r,e,n),J(u,'storeChange')&&Ge('child',c,n.storeChange,r,e,n),J(u,'warnSerialize')&&Ge('child',c,n.warnSerializeNode,r,e,n);let a=n.additionalLinks[u.id];a&&t(a,(t=>{Ge('child',c,t,r,e,n)}))}}}Ye=m.isRoot,tt=m.currentPage,Xe=G(m)}function o(t,r="combine"){let n=r+'(',a='',i=0;return e(t,(e=>{i<25&&(null!=e&&(n+=a,n+=X(e)?Q(e).fullName:e.toString()),i+=1,a=', ')})),n+')'}function l(e,t){e.shortName=t,Object.assign(Q(e),s(t,U(e)))}function s(e,t){let r,n,a=e;if(t){let a=Q(t);0===e.length?(r=a.path,n=a.fullName):(r=a.path.concat([e]),n=0===a.fullName.length?e:a.fullName+'/'+e)}else r=0===e.length?[]:[e],n=e;return{shortName:a,fullName:n,path:r}}function f(e,t){let r=t?e:e[0];xe(r);let n=r.or,a=r.and;if(a){let r=t?a:a[0];if(ke(r)&&'and'in r){let r=f(a,t);e=r[0],n={...n,...r[1]}}else e=a}return[e,n]}function u(e,...t){let r=ge();if(r){let n=r.handlers[e];if(n)return n(r,...t)}}function d(e,t){let r=ut({or:t,and:'string'==typeof e?{name:e}:e}),n=(e,...t)=>(se(!J(n,'derived'),'call of derived event','createEvent'),se(!et,'unit call from pure function','operators like sample'),tt?((e,t,r,n)=>{let a=tt,i=null;if(t)for(i=tt;i&&i.template!==t;)i=U(i);nt(i);let o=e.create(r,n);return nt(a),o})(n,o,e,t):n.create(e,t)),o=ge(),l=Object.assign(n,{graphite:a({meta:kt("event",n,r),regional:1}),create:e=>(i({target:n,params:e,scope:Xe}),e),watch:e=>bt(n,e),map:e=>wt(n,P,e,[Re()]),filter:e=>wt(n,"filter",e.fn?e:e.fn,[Re(Ae,1)]),filterMap:e=>wt(n,'filterMap',e,[Re(),De((e=>!Se(e)),1)]),prepend(e){let t=d('* \u2192 '+n.shortName,{parent:U(n)});return u('eventPrepend',V(t)),ht(t,n,[Re()],'prepend',e),vt(n,t),t}});return null!=r&&r.domain&&r.domain.hooks.event(l),l}function c(e,n,a,i){return Me(a,n,'first argument'),r(we(i),'second argument should be a function'),se(!J(e,'derived'),`${n} in derived store`,`${n} in store created via createStore`),t(Array.isArray(a)?a:[a],(t=>{e.off(t),H(e).set(t,gt(St(t,e,'on',Ce,i)))})),e}function p(e,n){let o=ut(n),l=_e(e),s=d({named:'updates',derived:1});u('storeBase',l);let f=l.id,m={subscribers:new Map,updates:s,defaultState:e,stateRef:l,getState(){let e,t=l;if(tt){let t=tt;for(;t&&!t.reg[f];)t=U(t);t&&(e=t)}return!e&&Xe&&(st(Xe,l,1),e=Xe),e&&(t=e.reg[f]),Ve(t)},setState:e=>i({target:m,params:e,defer:1,scope:Xe}),reset:(...e)=>(t(e,(e=>c(m,'.reset',e,(()=>m.defaultState)))),m),on:(e,t)=>c(m,'.on',e,t),off(e){let t=H(m).get(e);return t&&(t(),H(m).delete(e)),m},map(e,t){let r,n;ke(e)&&(r=e,e=e.fn),se(Se(t),'second argument of store.map','updateFilter');let a=m.getState();ge()?n=null:Se(a)||(n=e(a,t));let i=p(n,{name:`${m.shortName} \u2192 *`,derived:1,and:r}),o=St(m,i,P,je,e);return Le(B(i),{type:P,fn:e,from:l}),B(i).noInit=1,u('storeMap',l,o),i},watch(e,t){if(!t||!X(e)){let t=bt(m,e);return u('storeWatch',l,e)||e(m.getState()),t}return r(we(t),'second argument should be a function'),e.watch((e=>t(m.getState(),e)))}},g=kt("store",m,o),h=m.defaultConfig.updateFilter;m.graphite=a({scope:{state:l,fn:h},node:[De(((e,t,r)=>(r.scope&&!r.scope.reg[l.id]&&(r.b=1),e))),Ee(l),De(((e,t,{a:r,b:n})=>!Se(e)&&(e!==r||n)),1),h&&Re(je,1),Ne({from:_,target:l})],child:s,meta:g,regional:1});let y=J(m,'serialize'),b=J(m,'derived'),v='ignore'===y,k=!y||v?0:y,w=J(m,'sid');return w&&(v||K(m,'storeChange',1),l.sid=w,k&&(l.meta={...null==l?void 0:l.meta,serialize:k})),w||v||b||K(m,'warnSerialize',1),r(b||!Se(e),"current state can't be undefined, use null instead"),be(m,[s]),null!=o&&o.domain&&o.domain.hooks.store(m),b||(m.reinit=d(),m.reset(m.reinit)),m}function m(...e){let t,n,a;[e,a]=f(e);let i,o,l,s=e[e.length-1];if(we(s)?(n=e.slice(0,-1),t=s):n=e,1===n.length){let e=n[0];Z(e)||(i=e,o=1)}if(!o&&(i=n,t)){l=1;let e=t;t=t=>e(...t)}return r(ke(i),'shape should be an object'),xt(Array.isArray(i),!l,i,a,t)}function g(...e){return se(0,'createStoreObject','combine'),m(...e)}function h(){let e={};return e.req=new Promise(((t,r)=>{e.rs=t,e.rj=r})),e.req.catch((()=>{})),e}function y(e,t){let n=ut(we(e)?{handler:e}:e,t),o=d(we(e)?{handler:e}:e,t),l=V(o);K(l,'op',o.kind="effect"),o.use=e=>(r(we(e),'.use argument should be a function'),g.scope.handler=e,o),o.use.getCurrent=()=>g.scope.handler;let s=o.finally=d({named:'finally',derived:1}),f=o.done=s.filterMap({named:'done',fn({status:e,params:t,result:r}){if('done'===e)return{params:t,result:r}}}),u=o.fail=s.filterMap({named:'fail',fn({status:e,params:t,error:r}){if('fail'===e)return{params:t,error:r}}}),c=o.doneData=f.map({named:'doneData',fn:({result:e})=>e}),m=o.failData=u.map({named:'failData',fn:({error:e})=>e}),g=a({scope:{handlerId:J(l,'sid'),handler:o.defaultConfig.handler||(()=>r(0,`no handler used in ${o.getType()}`))},node:[De(((e,t,r)=>{let n=t,a=n.handler;if(G(r)){let e=G(r).handlers[n.handlerId];e&&(a=e)}return e.handler=a,e}),0,1),De((({params:e,req:t,handler:r,args:n=[e]},a,i)=>{let o=Mt(i),l=$t(e,t,1,s,i,o),f=$t(e,t,0,s,i,o),[u,d]=zt(r,f,n);u&&(ke(d)&&we(d.then)?d.then(l,f):l(d))}),0,1)],meta:{op:'fx',fx:'runner'}});l.scope.runner=g,le(l.seq,De(((e,{runner:t},r)=>{let n=U(r)?{params:e,req:{rs(e){},rj(e){}}}:e;return r.meta||(r.meta={fxID:pe()}),i({target:t,params:n,defer:1,scope:G(r),meta:r.meta}),n.params}),0,1)),o.create=e=>{let t=h(),r={params:e,req:t};if(Xe&&!Ze){let e=Xe;t.req.finally((()=>{rt(e)})).catch((()=>{}))}return i({target:o,params:r,scope:Xe}),t.req};let y=o.inFlight=p(0,{serialize:'ignore'}).on(o,(e=>e+1)).on(s,(e=>e-1)).map({fn:e=>e,named:'inFlight'});K(s,'needFxCounter','dec'),K(o,'needFxCounter',1);let b=o.pending=y.map({fn:e=>e>0,named:'pending'});return be(o,[s,f,u,c,m,b,y]),null!=n&&n.domain&&n.domain.hooks.effect(o),o}function b(e){let t;[e,t]=f(e,1);let{source:r,effect:n,mapParams:a}=e,o=y(e,t);K(o,'attached',1);let l,{runner:u}=V(o).scope,d=De(((e,t,n)=>{let l,{params:s,req:f,handler:u}=e,d=o.finally,c=Mt(n),p=$t(s,f,0,d,n,c),m=n.a,g=te(u),h=1;if(a?[h,l]=zt(a,p,[s,m]):l=r&&g?m:s,h){if(!g)return e.args=[m,l],1;i({target:u,params:{params:l,req:{rs:$t(s,f,1,d,n,c),rj:p}},page:n.page,defer:1,meta:n.meta})}}),1,1);if(r){let e;Z(r)?(e=r,be(e,[o])):(e=m(r),be(o,[e])),l=[Ee(B(e)),d]}else l=[d];u.seq.splice(1,0,...l),o.use(n);let c=U(n);return c&&(Object.assign(Q(o),s(o.shortName,c)),o.defaultConfig.parent=c),vt(n,o,"effect"),o}function v(...t){let[[r,n],a]=f(t),i={};return e(n,((e,t)=>{let n=i[t]=d(t,{parent:U(r),config:a});r.on(n,e),vt(r,n)})),i}function k(r,n){let o=ut({or:n,and:'string'==typeof r?{name:r}:r}),l=a({family:{type:"domain"},regional:1,parent:(null==o?void 0:o.domain)||(null==o?void 0:o.parent)}),s={history:{},graphite:l,hooks:{}};l.meta=kt("domain",s,{parent:(null==o?void 0:o.domain)||(null==o?void 0:o.parent),or:o}),e({Event:d,Effect:y,Store:p,Domain:k},((e,r)=>{let n=r.toLowerCase(),a=d({named:`on${r}`});s.hooks[n]=a;let o=new Set;s.history[`${n}s`]=o,a.create=e=>(i(a,e),e),le(V(a).seq,De(((e,t,r)=>(r.scope=null,e)))),a.watch((e=>{be(s,[e]),o.add(e),e.ownerSet||(e.ownerSet=o),U(e)||(e.parent=s)})),be(s,[a]),s[`onCreate${r}`]=e=>(t(o,e),a.watch(e)),s[`create${r}`]=s[n]=(t,r)=>{let n=ut({and:r,or:t});return null!=n&&n.domain?e(t,r):a(e(t,{parent:s,or:n}))}}));let f=U(s);return f&&e(s.hooks,((e,t)=>ht(e,f.hooks[t]))),null!=o&&o.domain&&o.domain.hooks.domain(s),s}function w(e){xe(e);let t=R in e?e[R]():e;r(t.subscribe,'expect observable to have .subscribe');let n=d(),a=gt(n);return t.subscribe({next:n,error:a,complete:a}),n}function S(e,t){Me(e,'merge','first argument');let r=d({name:o(e,'merge'),derived:1,and:t});return ht(e,r,[],'merge'),r}function x(e,n){let a=0;return t(Ct,(t=>{t in e&&(r(null!=e[t],At(n,t)),a=1)})),a}function z(...e){let t,r,n,a,[[i,o,l],s]=f(e),u=1;return Se(o)&&ke(i)&&x(i,"sample")&&(o=i.clock,l=i.fn,u=!i.greedy,a=i.filter,t=i.target,r=i.name,n=i.sid,i=i.source),It("sample",o,i,a,t,l,r,s,u,1,0,n)}function M(...e){let[[t,r],n]=f(e);return r||(r=t,t=r.source),x(r,'guard'),It('guard',r.clock,t,r.filter,r.target,null,r.name,n,!r.greedy,0,1)}function $(t,r,n){if(Z(t))return se(0,'restore($store)'),t;if(ee(t)||te(t)){let e=U(t),a=p(r,{parent:e,name:t.shortName,and:n});return ht(te(t)?t.doneData:t,a),e&&e.hooks.store(a),a}let a=Array.isArray(t)?[]:{};return e(t,((e,t)=>a[t]=Z(e)?e:p(e,{name:t}))),a}function j(...t){let n,i,o='split',[[l,s],c]=f(t),p=!s;p&&(n=l.cases,s=l.match,i=l.clock,l=l.source);let m=Z(s),g=!X(s)&&we(s),h=!m&&!g&&ke(s);r(X(l),'source must be a unit'),n||(n={}),p?e(n,((e,t)=>$e(o,e,`cases.${t}`))):(r(h,'match should be an object'),e(s,((e,t)=>n[t]=d({derived:1,and:c}))),n.__=d({derived:1,and:c}));let y,b=new Set([].concat(l,i||[],Object.values(n))),v=Object.keys(m||g?n:s);if(m||g)m&&b.add(s),y=[m&&Ee(B(s),0,1),Oe({safe:m,filter:1,pure:!m,fn(e,t,r){let n=String(m?r.a:s(e));Ot(t,ie(v,n)?n:'__',e,r)}})];else if(h){let t=_e({});t.type='shape';let r,n=[];e(s,((e,a)=>{if(X(e)){r=1,le(n,a),b.add(e);let i=ht(e,[],[Ee(t),De(((e,t,{a:r})=>r[a]=e))]);if(Z(e)){t.current[a]=e.getState();let r=B(e);Le(t,{from:r,field:a,type:'field'}),u('splitMatchStore',r,i)}}})),r&&u('splitBase',t),y=[r&&Ee(t,0,1),Re(((e,t,r)=>{for(let a=0;a<v.length;a++){let i=v[a];if(ie(n,i)?r.a[i]:s[i](e))return void Ot(t,i,e,r)}Ot(t,'__',e,r)}),1)]}else r(0,'expect match to be unit, function or object');let k=a({meta:{op:o},parent:i?[]:l,scope:n,node:y,family:{owners:Array.from(b)},regional:1});if(i&&It(o,i,l,null,k,null,o,c,0,0,0),!p)return n}function C(e,{scope:t,params:r}={}){if(!X(e))return Promise.reject(new Error('first argument should be unit'));if(!(te(e)||ee(e)||Z(e)||ne(e)))return Promise.reject(new Error('first argument accepts only effects, events, stores or scopes'));ne(e)&&(t=e);let n=h();n.parentFork=Xe;let{fxCount:a}=t;le(a.scope.defers,n);let o=[],l=[];return ne(e)||(le(o,e),le(l,te(e)?{params:r,req:{rs(e){n.value={status:'done',value:e}},rj(e){n.value={status:'fail',value:e}}}}:r)),le(o,a),le(l,null),i({target:o,params:l,scope:t}),n.req}function A(e,r){let n=[];(function e(a){ie(n,a)||(le(n,a),"store"===J(a,'op')&&J(a,'sid')&&r(a,J(a,'sid')),t(a.next,e),t(L(a),e),t(T(a),e))})(e)}function I(e,n){let a=Array.isArray(e)?new Map(e):e;if(a instanceof Map){let e={};return t(a,((t,a)=>{r(X(a),'Map key should be a unit'),n&&n(a,t),r(a.sid,'unit should have a sid'),r(!(a.sid in e),'duplicate sid found'),e[a.sid]=t})),e}return a}function q(e,n){let i,o=e;re(e)&&(i=e,o=n);let l=(e=>{let r=a({scope:{defers:[],inFlight:0,fxID:0},node:[De(((e,t,r)=>{U(r)?'dec'===J(U(r).node,'needFxCounter')?t.inFlight-=1:(t.inFlight+=1,t.fxID+=1):t.fxID+=1})),Oe({priority:"sampler",batch:1}),De(((e,r)=>{let{defers:n,fxID:a}=r;r.inFlight>0||0===n.length||Promise.resolve().then((()=>{r.fxID===a&&t(n.splice(0,n.length),(e=>{rt(e.parentFork),e.rs(e.value)}))}))}),0,1)]}),n=a({node:[De(((e,t,r)=>{let n=U(r);if(n){let t=n.node;if(!J(t,'isCombine')||U(n)&&'combine'!==J(U(n).node,'op')){let n=G(r),a=t.scope.state.id,i=J(t,'sid');n.sidIdMap[i]=a,n.sidValuesMap[i]=e;let o=J(t,'serialize');o&&'ignore'!==o&&(n.sidSerializeMap[i]=o.write)}}}))]}),i=a({node:[De(((e,t,r)=>{let n=G(r);if(n){let e=U(r);e&&(!J(e.node,'isCombine')||U(e)&&'combine'!==J(U(e).node,'op'))&&(n.warnSerialize=1)}}))]}),o={cloneOf:e,reg:{},sidValuesMap:{},sidIdMap:{},sidSerializeMap:{},getState(e){if('current'in e)return ot(tt,o,null,e).current;let t=V(e);return ot(tt,o,t,t.scope.state,1).current},kind:"scope",graphite:a({family:{type:"domain",links:[r,n,i]},meta:{unit:'fork'},scope:{forkInFlightCounter:r}}),additionalLinks:{},handlers:{},fxCount:r,storeChange:n,warnSerializeNode:i,activeEffects:[]};return o})(i);if(o){let e=o.scope;if(e){let r=e.activeEffects;e.activeEffects=[],l.activeEffects=r,t(r,(e=>e.ref=l))}if(o.values){let e=I(o.values,(e=>r(Z(e),'Values map can contain only stores as keys')));Object.assign(l.sidValuesMap,e),l.fromSerialize=!(Array.isArray(o.values)||o.values instanceof Map)}o.handlers&&(l.handlers=I(o.handlers,(e=>r(te(e),"Handlers map can contain only effects as keys"))))}return l}function N(e,{values:t}){r(ke(t),'values property should be an object');let n,a,o,l=I(t),s=Object.getOwnPropertyNames(l),f=[],u=[];ne(e)?(n=e,o=1,r(n.cloneOf,'scope should be created from domain'),a=V(n.cloneOf)):re(e)?a=V(e):r(0,'first argument of hydrate should be domain or scope'),A(a,((e,t)=>{if(ie(s,t)){le(f,e);let r=J(e,'serialize');r&&'ignore'!==r&&(l[t]=r.read(l[t])),le(u,l[t])}})),i({target:f,params:u,scope:n}),o&&Object.assign(n.sidValuesMap,l)}function O(e,{scope:t,safe:n}={}){r(t||Xe||n,'scopeBind cannot be called outside of forked .watch');let a=t||Xe;return te(e)?t=>{let r=h();return i({target:e,params:{params:t,req:r},scope:a}),r.req}:t=>(i({target:e,params:t,scope:a}),t)}function F(t,n={}){t.warnSerialize&&console.error('There is a store without sid in this scope, its value is omitted');let a=n.ignore?n.ignore.map((({sid:e})=>e)):[],i={};return e(t.sidValuesMap,((e,r)=>{if(ie(a,r))return;let n=t.sidIdMap[r];i[r]=(t.sidSerializeMap[r]||Dt)(n&&n in t.reg?t.reg[n].current:e)})),'onlyChanges'in n&&!n.onlyChanges&&(r(t.cloneOf,'scope should be created from domain'),A(V(t.cloneOf),((e,r)=>{r in i||ie(a,r)||J(e,'isCombine')||'ignore'===J(e,'serialize')||(i[r]=t.getState(e))}))),i}function D({unit:e,fn:t,scope:r}){let n=[Pe.run({fn:e=>t(e)})];if(r){let t=a({node:n}),i=e.graphite.id,o=r.additionalLinks,l=o[i]||[];return o[i]=l,l.push(t),E((()=>{let e=l.indexOf(t);-1!==e&&l.splice(e,1),mt(t)}))}{let t=a({node:n,parent:[e],family:{owners:e}});return E((()=>{mt(t)}))}}function E(e){let t=()=>e();return t.unsubscribe=()=>e(),t}let R='undefined'!=typeof Symbol&&Symbol.observable||'@@observable',P='map',_='stack',V=e=>e.graphite||e,L=e=>e.family.owners,T=e=>e.family.links,B=e=>e.stateRef,W=e=>e.value,H=e=>e.subscribers,U=e=>e.parent,G=e=>e.scope,J=(e,t)=>V(e).meta[t],K=(e,t,r)=>V(e).meta[t]=r,Q=e=>e.compositeName,X=e=>(we(e)||ke(e))&&'kind'in e;const Y=e=>t=>X(t)&&t.kind===e;let Z=Y("store"),ee=Y("event"),te=Y("effect"),re=Y("domain"),ne=Y("scope");var ae={__proto__:null,unit:X,store:Z,event:ee,effect:te,domain:re,scope:ne,attached:e=>te(e)&&1==J(e,'attached')};let ie=(e,t)=>e.includes(t),oe=(e,t)=>{let r=e.indexOf(t);-1!==r&&e.splice(r,1)},le=(e,t)=>e.push(t),se=(e,t,r)=>!e&&console.error(`${t} is deprecated${r?`, use ${r} instead`:''}`);const fe=()=>{let e=0;return()=>""+ ++e};let ue=fe(),de=fe(),ce=fe(),pe=fe(),me=null,ge=()=>me&&me.template,he=e=>(e&&me&&me.sidRoot&&(e=`${me.sidRoot}|${e}`),e),ye=({sid:e,name:t,loc:r,method:i,fn:o})=>n(a({meta:{sidRoot:he(e),name:t,loc:r,method:i}}),o),be=(e,r)=>{let n=V(e);t(r,(e=>{let t=V(e);"domain"!==n.family.type&&(t.family.type="crosslink"),le(L(t),n),le(T(n),t)}))},ve=(e=[])=>(Array.isArray(e)?e:[e]).flat().map(V),ke=e=>'object'==typeof e&&null!==e,we=e=>'function'==typeof e,Se=e=>void 0===e,xe=e=>r(ke(e)||we(e),'expect first argument be an object');const ze=(e,t,n,a)=>r(!(!ke(e)&&!we(e)||!('family'in e)&&!('graphite'in e)),`${t}: expect ${n} to be a unit (store, event or effect)${a}`);let Me=(e,r,n)=>{Array.isArray(e)?t(e,((e,t)=>ze(e,r,`${t} item of ${n}`,''))):ze(e,r,n,' or array of units')},$e=(e,r,n="target")=>t(ve(r),(t=>se(!J(t,'derived'),`${e}: derived unit in "${n}"`,"createEvent/createStore"))),je=(e,{fn:t},{a:r})=>t(e,r),Ce=(e,{fn:t},{a:r})=>t(r,e),Ae=(e,{fn:t})=>t(e);const Ie=(e,t,r,n)=>{let a={id:de(),type:e,data:t};return r&&(a.order={priority:r},n&&(a.order.barrierID=++qe)),a};let qe=0,Ne=({from:e="store",store:t,target:r,to:n=(r?"store":_),batch:a,priority:i})=>Ie('mov',{from:e,store:t,to:n,target:r},i,a),Oe=({fn:e,batch:t,priority:r,safe:n=0,filter:a=0,pure:i=0})=>Ie('compute',{fn:e,safe:n,filter:a,pure:i},r,t),Fe=({fn:e})=>Oe({fn:e,priority:"effect"}),De=(e,t,r)=>Oe({fn:e,safe:1,filter:t,priority:r&&"effect"}),Ee=(e,t,r)=>Ne({store:e,to:t?_:"a",priority:r&&"sampler",batch:1}),Re=(e=Ae,t)=>Oe({fn:e,pure:1,filter:t}),Pe={mov:Ne,compute:Oe,filter:({fn:e,pure:t})=>Oe({fn:e,filter:1,pure:t}),run:Fe},_e=e=>({id:de(),current:e}),Ve=({current:e})=>e,Le=(e,t)=>{e.before||(e.before=[]),le(e.before,t)},Te=null;const Be=(e,t)=>{if(!e)return t;if(!t)return e;let r;return(e.v.type===t.v.type&&e.v.id>t.v.id||Ke(e.v.type)>Ke(t.v.type))&&(r=e,e=t,t=r),r=Be(e.r,t),e.r=e.l,e.l=r,e},We=[];let He=0;for(;He<6;)le(We,{first:null,last:null,size:0}),He+=1;const Ue=()=>{for(let e=0;e<6;e++){let t=We[e];if(t.size>0){if(3===e||4===e){t.size-=1;let e=Te.v;return Te=Be(Te.l,Te.r),e}1===t.size&&(t.last=null);let r=t.first;return t.first=r.r,t.size-=1,r.v}}},Ge=(e,t,r,n,a,i,o)=>Je(0,{a:null,b:null,node:r,parent:n,value:a,page:t,scope:i,meta:o},e),Je=(e,t,r,n=0)=>{let a=Ke(r),i=We[a],o={v:{idx:e,stack:t,type:r,id:n},l:null,r:null};3===a||4===a?Te=Be(Te,o):(0===i.size?i.first=o:i.last.r=o,i.last=o),i.size+=1},Ke=e=>{switch(e){case'child':return 0;case'pure':return 1;case'read':return 2;case"barrier":return 3;case"sampler":return 4;case"effect":return 5;default:return-1}},Qe=new Set;let Xe,Ye=1,Ze=0,et=0,tt=null,rt=e=>{Xe=e},nt=e=>{tt=e};const at=(e,t)=>{if(e){for(;e&&!e.reg[t];)e=U(e);if(e)return e}return null};let ot=(e,t,r,n,a)=>{let i=at(e,n.id);return i?i.reg[n.id]:t?(st(t,n,a),t.reg[n.id]):n};const lt=e=>e;let st=(e,r,n,a,i)=>{var o;let l=e.reg,s=r.sid,f=null==r||null===(o=r.meta)||void 0===o?void 0:o.serialize;if(l[r.id])return;let u={id:r.id,current:r.current,meta:r.meta};if(s&&s in e.sidValuesMap&&!(s in e.sidIdMap))u.current=(e.fromSerialize&&'ignore'!==f&&(null==f?void 0:f.read)||lt)(e.sidValuesMap[s]);else if(r.before&&!i){let i=0,o=n||!r.noInit||a;t(r.before,(t=>{switch(t.type){case P:{let r=t.from;if(r||t.fn){r&&st(e,r,n,a);let i=r&&l[r.id].current;o&&(u.current=t.fn?t.fn(i):i)}break}case'field':i||(i=1,u.current=Array.isArray(u.current)?[...u.current]:{...u.current}),st(e,t.from,n,a),o&&(u.current[t.field]=l[l[t.from.id].id].current)}}))}s&&(e.sidIdMap[s]=r.id),l[r.id]=u};const ft=(e,t,r)=>{try{return t(W(r),e.scope,r)}catch(t){console.error(t),e.fail=1}};let ut=(t,r={})=>(ke(t)&&(ut(t.or,r),e(t,((e,t)=>{Se(e)||'or'===t||'and'===t||(r[t]=e)})),ut(t.and,r)),r);const dt=(e,t)=>{oe(e.next,t),oe(L(e),t),oe(T(e),t)},ct=(e,t,r)=>{let n;e.next.length=0,e.seq.length=0,e.scope=null;let a=T(e);for(;n=a.pop();)dt(n,e),(t||r&&'sample'!==J(e,'op')||"crosslink"===n.family.type)&&ct(n,t,'on'!==J(n,'op')&&r);for(a=L(e);n=a.pop();)dt(n,e),r&&"crosslink"===n.family.type&&ct(n,t,'on'!==J(n,'op')&&r)},pt=e=>e.clear();let mt=(e,{deep:t}={})=>{let r=0;if(e.ownerSet&&e.ownerSet.delete(e),Z(e))pt(H(e));else if(re(e)){r=1;let t=e.history;pt(t.events),pt(t.effects),pt(t.stores),pt(t.domains)}ct(V(e),!!t,r)},gt=e=>{let t=()=>mt(e);return t.unsubscribe=t,t},ht=(e,t,r,n,i)=>a({node:r,parent:e,child:t,scope:{fn:i},meta:{op:n},family:{owners:[e,t],links:t},regional:1}),yt=e=>{let t='forward',[{from:r,to:n},i]=f(e,1);return Me(r,t,'"from"'),Me(n,t,'"to"'),$e(t,n,'to'),gt(a({parent:r,child:n,meta:{op:t,config:i},family:{},regional:1}))},bt=(e,t)=>(r(we(t),'.watch argument should be a function'),gt(a({scope:{fn:t},node:[Fe({fn:Ae})],parent:e,meta:{op:'watch'},family:{owners:e},regional:1}))),vt=(e,t,r="event")=>{U(e)&&U(e).hooks[r](t)},kt=(e,t,r)=>{let n=ut(r),a="domain"===e,i=ue(),{sid:o=null,named:l=null,domain:f=null,parent:u=f}=n,d=l||n.name||(a?'':i),c=s(d,u),p={op:t.kind=e,name:t.shortName=d,sid:t.sid=he(o),named:l,unitId:t.id=i,serialize:n.serialize,derived:n.derived,config:n};if(t.parent=u,t.compositeName=c,t.defaultConfig=n,t.thru=e=>(se(0,'thru','js pipe'),e(t)),t.getType=()=>c.fullName,!a){t.subscribe=e=>(xe(e),t.watch(we(e)?e:t=>e.next&&e.next(t))),t[R]=()=>t;let e=ge();e&&(p.nativeTemplate=e)}return p};const wt=(e,t,r,n)=>{let a;ke(r)&&(a=r,r=r.fn);let i=d({name:`${e.shortName} \u2192 *`,derived:1,and:a});return ht(e,i,n,t,r),i},St=(e,t,r,n,a)=>{let i=B(t),o=Ne({store:i,to:"a",priority:'read'});r===P&&(o.data.softRead=1);let l=[o,Re(n)];return u('storeOnMap',i,l,Z(e)&&B(e)),ht(e,t,l,r,a)},xt=(t,n,a,i,l)=>{let s=t?e=>[...e]:e=>({...e}),f=t?[]:{},d=s(f),c=_e(d),m=_e(1);c.type=t?'list':'shape',c.noInit=1,u('combineBase',c,m);let g=p(d,{name:o(a),derived:1,and:i}),h=B(g);h.noInit=1,K(g,'isCombine',1);let y=Ee(c);y.order={priority:'barrier'};let b=[De(((e,t,r)=>(r.scope&&!r.scope.reg[c.id]&&(r.c=1),e))),y,Ne({store:m,to:'b'}),De(((e,{key:t},r)=>{if(r.c||e!==r.a[t])return n&&r.b&&(r.a=s(r.a)),r.a[t]=e,1}),1),Ne({from:"a",target:c}),Ne({from:"value",store:0,target:m}),Ne({from:"value",store:1,target:m,priority:"barrier",batch:1}),Ee(c,1),l&&Re()];return e(a,((e,t)=>{if(!Z(e))return r(!X(e)&&!Se(e),`combine expects a store in a field ${t}`),void(d[t]=f[t]=e);f[t]=e.defaultState,d[t]=e.getState();let n=ht(e,g,b,'combine',l);n.scope.key=t;let a=B(e);Le(c,{type:'field',field:t,from:a}),u('combineField',a,n)})),g.defaultShape=a,Le(h,{type:P,from:c,fn:l}),ge()||(g.defaultState=l?h.current=l(d):f),g};let zt=(e,t,r)=>{try{return[1,e(...r)]}catch(e){return t(e),[0,null]}},Mt=e=>{let t=G(e),r={ref:t};return t&&le(t.activeEffects,r),r},$t=(e,t,r,n,a,o)=>l=>{o.ref&&oe(o.ref.activeEffects,o),i({target:[n,jt],params:[r?{status:'done',params:e,result:l}:{status:'fail',params:e,error:l},{value:l,fn:r?t.rs:t.rj}],defer:1,page:a.page,scope:o.ref,meta:a.meta})};const jt=a({node:[Fe({fn:({fn:e,value:t})=>e(t)})],meta:{op:'fx',fx:'sidechain'}}),Ct=['source','clock','target'],At=(e,t)=>e+`: ${t} should be defined`;let It=(e,t,n,a,i,o,l,s,f,c,g,h)=>{let y=!!i;r(!Se(n)||!Se(t),At(e,'either source or clock'));let b=0;Se(n)?b=1:X(n)||(n=m(n)),Se(t)?t=n:(Me(t,e,'clock'),Array.isArray(t)&&(t=S(t))),b&&(n=t),s||l||(l=n.shortName);let v='none';(g||a)&&(X(a)?v='unit':(r(we(a),'`filter` should be function or unit'),v='fn')),i?(Me(i,e,'target'),$e(e,i)):'none'===v&&c&&Z(n)&&Z(t)?i=p(o?o(Ve(B(n)),Ve(B(t))):Ve(B(n)),{name:l,sid:h,or:s}):(i=d({name:l,derived:1,or:s}),u('sampleTarget',V(i)));let k=_e(),w=[];if('unit'===v){let[r,n]=Nt(a,i,t,k,e);w=[...qt(n),...qt(r)]}let[x,z]=Nt(n,i,t,k,e),M=ht(t,i,[u('sampleSourceLoader'),Ne({from:_,target:k}),...qt(z),Ee(x,1,f),...w,Ee(k),'fn'===v&&Re(((e,t,{a:r})=>a(e,r)),1),o&&Re(je),u('sampleSourceUpward',y)],e,o);return be(n,[M]),Object.assign(M.meta,s,{joint:1}),i};const qt=e=>[Ee(e),De(((e,t,{a:r})=>r),1)],Nt=(e,t,r,n,i)=>{let o=Z(e),l=o?B(e):_e(),s=_e(o);return o||a({parent:e,node:[Ne({from:_,target:l}),Ne({from:"value",store:1,target:s})],family:{owners:[e,t,r],links:t},meta:{op:i},regional:1}),u('sampleSource',s,l,n),[l,s]},Ot=(e,t,r,n)=>{let a=e[t];a&&i({target:a,params:Array.isArray(a)?a.map((()=>r)):r,defer:1,stack:n})},Ft="22.5.0",Dt=e=>e;
+/* unused harmony exports allSettled, attach, combine, createApi, createDomain, createStoreObject, createWatch, fork, forward, fromObservable, guard, hydrate, launch, merge, restore, scopeBind, serialize, setGraphInspector, setInspector, setStoreName, split, version, withFactory, withRegion */
+function e(e,t){for(let r in e)t(e[r],r)}function t(e,t){e.forEach(t)}function r(e,t){if(!e)throw Error(t)}function a(e,t){let r=L(e).meta||{};he={id:L(e).id,parent:he,value:e,template:r.template||be(),sidRoot:r.sidRoot||he&&he.sidRoot,meta:r};try{return t()}finally{ye('region'),he=V(he)}}function n({node:e=[],from:r,source:a,parent:n=r||a,to:i,target:o,child:l=i||o,scope:s={},meta:f={},family:d={type:'regular'},regional:u}={}){let c=Se(n),p=Se(d.links),m=Se(d.owners),g=[];t(e,(e=>e&&le(g,e)));let h={id:pe(),seq:g,next:Se(l),meta:f,scope:s,family:{type:d.type||"crosslink",links:p,owners:m}};return t(p,(e=>le(T(e),h))),t(m,(e=>le(B(e),h))),t(c,(e=>le(e.next,h))),u&&he&&we(H(he),[h]),h}function i(e,r,a){let n,i=nt,o=null,l=et;if(e.target&&(r=e.params,a=e.defer,n=e.meta,i='page'in e?e.page:i,e.stack&&(o=e.stack),l=G(e)||l,e=e.target),l&&et&&l!==et&&(et=null),Array.isArray(e))for(let t=0;t<e.length;t++)Qe('pure',i,L(e[t]),o,r[t],l,n);else Qe('pure',i,L(e),o,r,l,n);if(a&&!tt)return;let s,f,d,u,c,p,m={isRoot:tt,currentPage:nt,scope:et,isWatch:rt,isPure:at};tt=0;e:for(;u=Ke();){let{idx:e,stack:r,type:a}=u;d=r.node,nt=c=r.page,et=G(r),c?p=c.reg:et&&(p=et.reg);let n=!!c,i=!!et,o={fail:0,scope:d.scope};s=f=0;for(let t=e;t<d.seq.length&&!s;t++){let l=d.seq[t];if(l.order){let{priority:n,barrierID:i}=l.order,o=i?c?`${c.fullID}_${i}`:i:0;if(t!==e||a!==n){i?Ze.has(o)||(Ze.add(o),Xe(t,r,n,i)):Xe(t,r,n);continue e}i&&Ze.delete(o)}switch(l.type){case'mov':{let e,t=l.data;switch(t.from){case P:e=H(r);break;case"a":case'b':e=r[t.from];break;case"value":e=t.store;break;case"store":if(p&&!p[t.store.id])if(n){let e=st(c,t.store.id);r.page=c=e,e?p=e.reg:i?(pt(et,t.store,0,1,t.softRead),p=et.reg):p=void 0}else i&&pt(et,t.store,0,1,t.softRead);e=We(p&&p[t.store.id]||t.store)}switch(t.to){case P:r.value=e;break;case"a":case'b':r[t.to]=e;break;case"store":dt(c,et,d,t.target).current=e}break}case'compute':let e=l.data;if(e.fn){rt='watch'===J(d,'op'),at=e.pure;let t=e.safe?(0,e.fn)(H(r),o.scope,r):mt(o,e.fn,r);e.filter?f=!t:r.value=t,rt=m.isWatch,at=m.isPure}}s=o.fail||f}if(ft&&ft(r,o),!s){let e=H(r),a=G(r);if(t(d.next,(t=>{Qe('child',c,t,r,e,a)})),a){J(d,'needFxCounter')&&Qe('child',c,a.fxCount,r,e,a),J(d,'storeChange')&&Qe('child',c,a.storeChange,r,e,a),J(d,'warnSerialize')&&Qe('child',c,a.warnSerializeNode,r,e,a);let n=a.additionalLinks[d.id];n&&t(n,(t=>{Qe('child',c,t,r,e,a)}))}}}tt=m.isRoot,nt=m.currentPage,et=G(m)}function o(t,r="combine"){let a=r+'(',n='',i=0;return e(t,(e=>{i<25&&(null!=e&&(a+=n,a+=X(e)?Q(e).fullName:e.toString()),i+=1,n=', ')})),a+')'}function l(e,t){e.shortName=t,Object.assign(Q(e),s(t,V(e)))}function s(e,t){let r,a,n=e;if(t){let n=Q(t);0===e.length?(r=n.path,a=n.fullName):(r=n.path.concat([e]),a=0===n.fullName.length?e:n.fullName+'/'+e)}else r=0===e.length?[]:[e],a=e;return{shortName:n,fullName:a,path:r}}function f(e,t){let r=t?e:e[0];ze(r);let a=r.or,n=r.and;if(n){let r=t?n:n[0];if(Me(r)&&'and'in r){let r=f(n,t);e=r[0],a={...a,...r[1]}}else e=n}return[e,a]}function d(e,...t){let r=be();if(r){let a=r.handlers[e];if(a)return a(r,...t)}}function u(e,t){let r=gt({or:t,and:'string'==typeof e?{name:e}:e}),a=(e,...t)=>(se(!J(a,'derived'),'call of derived event','createEvent'),se(!at,'unit call from pure function','operators like sample'),nt?((e,t,r,a)=>{let n=nt,i=null;if(t)for(i=nt;i&&i.template!==t;)i=V(i);lt(i);let o=e.create(r,a);return lt(n),o})(a,o,e,t):a.create(e,t)),o=be(),l=Object.assign(a,{graphite:n({meta:$t(r.actualOp||"event",a,r),regional:1}),create:e=>(i({target:a,params:e,scope:et}),e),watch:e=>Mt(a,e),map:e=>zt(a,_,e,[Le()]),filter:e=>zt(a,"filter",e.fn?e:e.fn,[Le(qe,1)]),filterMap:e=>zt(a,'filterMap',e,[Le(),_e((e=>!$e(e)),1)]),prepend(e){let t=u('* \u2192 '+a.shortName,{parent:V(a)});return d('eventPrepend',L(t)),wt(t,a,[Le()],'prepend',e),xt(a,t),t}});return null!=r&&r.domain&&r.domain.hooks.event(l),K(l,'id',l.graphite.id),ye(l.graphite),l}function c(e,a,n,i){return Ce(n,a,'first argument'),r(xe(i),'second argument should be a function'),se(!J(e,'derived'),`${a} in derived store`,`${a} in store created via createStore`),t(Array.isArray(n)?n:[n],(t=>{e.off(t),U(e).set(t,kt(jt(t,e,'on',Oe,i)))})),e}function p(e,a){let o=gt(a),l=Be(e),s=u({named:'updates',derived:1});d('storeBase',l);let f=l.id,m={subscribers:new Map,updates:s,defaultState:e,stateRef:l,getState(){let e,t=l;if(nt){let t=nt;for(;t&&!t.reg[f];)t=V(t);t&&(e=t)}return!e&&et&&(pt(et,l,1),e=et),e&&(t=e.reg[f]),We(t)},setState:e=>i({target:m,params:e,defer:1,scope:et}),reset:(...e)=>(t(e,(e=>c(m,'.reset',e,(()=>m.defaultState)))),m),on:(e,t)=>c(m,'.on',e,t),off(e){let t=U(m).get(e);return t&&(t(),U(m).delete(e)),m},map(e,t){let r,a;Me(e)&&(r=e,e=e.fn),se($e(t),'second argument of store.map','updateFilter');let n=m.getState();be()?a=null:$e(n)||(a=e(n,t));let i=p(a,{name:`${m.shortName} \u2192 *`,derived:1,and:r}),o=jt(m,i,_,Ie,e);return He(W(i),{type:_,fn:e,from:l}),W(i).noInit=1,d('storeMap',l,o),i},watch(e,t){if(!t||!X(e)){let t=Mt(m,e);return d('storeWatch',l,e)||e(m.getState()),t}return r(xe(t),'second argument should be a function'),e.watch((e=>t(m.getState(),e)))}},g=$t("store",m,o),h=m.defaultConfig.updateFilter;m.graphite=n({scope:{state:l,fn:h},node:[_e(((e,t,r)=>(r.scope&&!r.scope.reg[l.id]&&(r.b=1),e))),Pe(l),_e(((e,t,{a:r,b:a})=>!$e(e)&&(e!==r||a)),1),h&&Le(Ie,1),Fe({from:P,target:l})],child:s,meta:{...g,defaultState:e},regional:1}),K(m,'id',m.graphite.id),K(m,'rootStateRefId',f);let y=J(m,'serialize'),b=J(m,'derived'),v='ignore'===y,k=J(m,'sid');return k&&(K(m,'storeChange',1),l.sid=k),k||v||b||K(m,'warnSerialize',1),r(b||!$e(e),"current state can't be undefined, use null instead"),we(m,[s]),null!=o&&o.domain&&o.domain.hooks.store(m),b||(m.reinit=u({named:'reinit'}),m.reset(m.reinit)),l.meta=m.graphite.meta,ye(m.graphite),m}function m(...e){let t,a,n;[e,n]=f(e);let i,o,l,s=e[e.length-1];if(xe(s)?(a=e.slice(0,-1),t=s):a=e,1===a.length){let e=a[0];Z(e)||(i=e,o=1)}if(!o&&(i=a,t)){l=1;let e=t;t=t=>e(...t)}return r(Me(i),'shape should be an object'),Ct(Array.isArray(i),!l,i,n,t)}function g(...e){return se(0,'createStoreObject','combine'),m(...e)}function h(){let e={};return e.req=new Promise(((t,r)=>{e.rs=t,e.rj=r})),e.req.catch((()=>{})),e}function y(e,t={}){let a=gt(xe(e)?{handler:e}:e,t),o=u(xe(e)?{handler:e}:e,{...t,actualOp:"effect"}),l=L(o);K(l,'op',o.kind="effect"),o.use=e=>(r(xe(e),'.use argument should be a function'),g.scope.handler=e,o),o.use.getCurrent=()=>g.scope.handler;let s=o.finally=u({named:'finally',derived:1}),f=o.done=s.filterMap({named:'done',fn({status:e,params:t,result:r}){if('done'===e)return{params:t,result:r}}}),d=o.fail=s.filterMap({named:'fail',fn({status:e,params:t,error:r}){if('fail'===e)return{params:t,error:r}}}),c=o.doneData=f.map({named:'doneData',fn:({result:e})=>e}),m=o.failData=d.map({named:'failData',fn:({error:e})=>e}),g=n({scope:{handler:o.defaultConfig.handler||(()=>r(0,`no handler used in ${o.getType()}`))},node:[_e(((e,t,r)=>{let a=t.handler,n=G(r);if(n){let e=n.handlers.unitMap.get(o)||n.handlers.sidMap[o.sid];e&&(a=e)}return e.handler=a,e}),0,1),_e((({params:e,req:t,handler:r,args:a=[e]},n,i)=>{let o=It(i),l=Ot(e,t,1,s,i,o),f=Ot(e,t,0,s,i,o),[d,u]=At(r,f,a);d&&(Me(u)&&xe(u.then)?u.then(l,f):l(u))}),0,1)],meta:{op:'fx',fx:'runner'}});l.scope.runner=g,le(l.seq,_e(((e,{runner:t},r)=>{let a=V(r)?{params:e,req:{rs(e){},rj(e){}}}:e;return r.meta||(r.meta={fxID:me()}),i({target:t,params:a,defer:1,scope:G(r),meta:r.meta}),a.params}),0,1)),o.create=e=>{let t=h(),r={params:e,req:t};if(et&&!rt){let e=et;t.req.finally((()=>{ot(e)})).catch((()=>{}))}return i({target:o,params:r,scope:et}),t.req};let y=o.inFlight=p(0,{serialize:'ignore',named:(J(o,'name')||o.graphite.id)+'.inFlight'}).on(o,(e=>e+1)).on(s,(e=>e-1)).map({fn:e=>e,named:'inFlight'});K(s,'needFxCounter','dec'),K(o,'needFxCounter',1);let b=o.pending=y.map({fn:e=>e>0,named:'pending'});return we(o,[s,f,d,c,m,b,y]),null!=a&&a.domain&&a.domain.hooks.effect(o),o}function b(e){let t;[e,t]=f(e,1);let{source:r,effect:a,mapParams:n}=e,o=y(e,t);K(o,'attached',1);let l,{runner:d}=L(o).scope,u=_e(((e,t,a)=>{let l,{params:s,req:f,handler:d}=e,u=o.finally,c=It(a),p=Ot(s,f,0,u,a,c),m=a.a,g=te(d),h=1;if(n?[h,l]=At(n,p,[s,m]):l=r&&g?m:s,h){if(!g)return e.args=[m,l],1;i({target:d,params:{params:l,req:{rs:Ot(s,f,1,u,a,c),rj:p}},page:a.page,defer:1,meta:a.meta})}}),1,1);if(r){let e;Z(r)?(e=r,we(e,[o])):(e=m(r),we(o,[e])),l=[Pe(W(e)),u]}else l=[u];d.seq.splice(1,0,...l),o.use(a);let c=V(a);return c&&(Object.assign(Q(o),s(o.shortName,c)),o.defaultConfig.parent=c),xt(a,o,"effect"),o}function v(...t){let[[r,a],n]=f(t),i={};return e(a,((e,t)=>{let a=i[t]=u(t,{parent:V(r),config:n});r.on(a,e),xt(r,a)})),i}function k(r,a){let o=gt({or:a,and:'string'==typeof r?{name:r}:r}),l=n({family:{type:"domain"},regional:1,parent:(null==o?void 0:o.domain)||(null==o?void 0:o.parent)}),s={history:{},graphite:l,hooks:{}};l.meta=$t("domain",s,{parent:(null==o?void 0:o.domain)||(null==o?void 0:o.parent),or:o}),e({Event:u,Effect:y,Store:p,Domain:k},((e,r)=>{let a=r.toLowerCase(),n=u({named:`on${r}`});s.hooks[a]=n;let o=new Set;s.history[`${a}s`]=o,n.create=e=>(i(n,e),e),le(L(n).seq,_e(((e,t,r)=>(r.scope=null,e)))),n.watch((e=>{we(s,[e]),o.add(e),e.ownerSet||(e.ownerSet=o),V(e)||(e.parent=s)})),we(s,[n]),s[`onCreate${r}`]=e=>(t(o,e),n.watch(e)),s[`create${r}`]=s[a]=(t,r)=>{let a=gt({and:r,or:t});return null!=a&&a.domain?e(t,r):n(e(t,{parent:s,or:a}))}}));let f=V(s);return f&&e(s.hooks,((e,t)=>wt(e,f.hooks[t]))),null!=o&&o.domain&&o.domain.hooks.domain(s),s}function w(e){ze(e);let t=E in e?e[E]():e;r(t.subscribe,'expect observable to have .subscribe');let a=u(),n=kt(a);return t.subscribe({next:a,error:n,complete:n}),a}function S(e,t){Ce(e,'merge','first argument');let r=u({name:o(e,'merge'),derived:1,and:t});return wt(e,r,[],'merge'),r}function M(e,a){let n=0;return t(Nt,(t=>{t in e&&(r(null!=e[t],Dt(a,t)),n=1)})),n}function x(...e){let t,r,a,n,[[i,o,l],s]=f(e),d=1;return $e(o)&&Me(i)&&M(i,"sample")&&(o=i.clock,l=i.fn,d=!i.greedy,n=i.filter,t=i.target,r=i.name,a=i.sid,i=i.source),Ft("sample",o,i,n,t,l,r,s,d,1,0,a)}function $(...e){let[[t,r],a]=f(e);return r||(r=t,t=r.source),M(r,'guard'),Ft('guard',r.clock,t,r.filter,r.target,null,r.name,a,!r.greedy,0,1)}function z(t,r,a){if(Z(t))return se(0,'restore($store)'),t;if(ee(t)||te(t)){let e=V(t),n=p(r,{parent:e,name:t.shortName,and:a});return wt(te(t)?t.doneData:t,n),e&&e.hooks.store(n),n}let n=Array.isArray(t)?[]:{};return e(t,((e,t)=>n[t]=Z(e)?e:p(e,{name:t}))),n}function j(...t){let a,i,o='split',[[l,s],c]=f(t),p=!s;p&&(a=l.cases,s=l.match,i=l.clock,l=l.source);let m=Z(s),g=!X(s)&&xe(s),h=!m&&!g&&Me(s);r(X(l),'source must be a unit'),a||(a={}),p?e(a,((e,t)=>Ae(o,e,`cases.${t}`))):(r(h,'match should be an object'),e(s,((e,t)=>a[t]=u({derived:1,named:`cases.${t}`,and:c}))),a.__=u({derived:1,named:'cases.__',and:c}));let y,b=new Set([].concat(l,i||[],Object.values(a))),v=Object.keys(m||g?a:s);if(m||g)m&&b.add(s),y=[m&&Pe(W(s),0,1),Re({safe:m,filter:1,pure:!m,fn(e,t,r){let a=String(m?r.a:s(e));_t(t,ie(v,a)?a:'__',e,r)}})];else if(h){let t=Be({});t.type='shape';let r,a=[];e(s,((e,n)=>{if(X(e)){r=1,le(a,n),b.add(e);let i=wt(e,[],[Pe(t),_e(((e,t,{a:r})=>r[n]=e))]);if(Z(e)){t.current[n]=e.getState();let r=W(e);He(t,{from:r,field:n,type:'field'}),d('splitMatchStore',r,i)}}})),r&&d('splitBase',t),y=[r&&Pe(t,0,1),Le(((e,t,r)=>{for(let n=0;n<v.length;n++){let i=v[n];if(ie(a,i)?r.a[i]:s[i](e))return void _t(t,i,e,r)}_t(t,'__',e,r)}),1)]}else r(0,'expect match to be unit, function or object');let k=n({meta:{op:o},parent:i?[]:l,scope:a,node:y,family:{owners:Array.from(b)},regional:1});if(i&&Ft(o,i,l,null,k,null,o,c,0,0,0),!p)return a}function C(e,{scope:t,params:r}={}){if(!X(e))return Promise.reject(new Error('first argument should be unit'));if(!(te(e)||ee(e)||Z(e)||ae(e)))return Promise.reject(new Error('first argument accepts only effects, events, stores or scopes'));ae(e)&&(t=e);let a=h();a.parentFork=et;let{fxCount:n}=t;le(n.scope.defers,a);let o=[],l=[];return ae(e)||(le(o,e),le(l,te(e)?{params:r,req:{rs(e){a.value={status:'done',value:e}},rj(e){a.value={status:'fail',value:e}}}}:r)),le(o,n),le(l,null),i({target:o,params:l,scope:t}),a.req}function A(e,r,a){let n=[];(function e(i){ie(n,i)||(le(n,i),"store"===J(i,'op')&&(a||J(i,'sid'))&&r(i,J(i,'sid')),t(i.next,e),t(T(i),e),t(B(i),e))})(e)}function I(e,a){let n=Array.isArray(e)?new Map(e):e,i=new Map,o=0;if(n instanceof Map){let e={};return t(n,((t,n)=>{r(X(n),'Map key should be a unit'),a&&a(n,t),n.sid&&(n.sid in e&&(o=1),e[n.sid]=t),i.set(n,t)})),{sidMap:e,unitMap:i,hasSidDoubles:o}}return{sidMap:n,unitMap:i}}function O(e,a){let i,o=e;re(e)&&(i=e,o=a);let l=(e=>{let r=n({scope:{defers:[],inFlight:0,fxID:0},node:[_e(((e,t,r)=>{V(r)?'dec'===J(V(r).node,'needFxCounter')?t.inFlight-=1:(t.inFlight+=1,t.fxID+=1):t.fxID+=1})),Re({priority:"sampler",batch:1}),_e(((e,r)=>{let{defers:a,fxID:n}=r;r.inFlight>0||0===a.length||Promise.resolve().then((()=>{r.fxID===n&&t(a.splice(0,a.length),(e=>{ot(e.parentFork),e.rs(e.value)}))}))}),0,1)]}),a=n({node:[_e(((e,t,r)=>{let a=V(r);if(a){let t=a.node;if(!J(t,'isCombine')||V(a)&&'combine'!==J(V(a).node,'op')){let a=G(r),n=t.scope.state.id,i=J(t,'sid');a.sidIdMap[i]=n,a.values.sidMap[i]=e;let o=J(t,'serialize');o&&a.sidSerializeSettings.set(i,'ignore'===o?{ignore:1}:{ignore:0,write:o.write})}}}))]}),i=n({node:[_e(((e,t,r)=>{let a=G(r);if(a){let e=V(r);e&&(!J(e.node,'isCombine')||V(e)&&'combine'!==J(V(e).node,'op'))&&(a.warnSerialize=1)}}))]}),o={cloneOf:e,reg:{},values:{sidMap:{},idMap:{}},sidIdMap:{},sidSerializeSettings:new Map,getState(e){if('current'in e)return dt(nt,o,null,e).current;let t=L(e);return dt(nt,o,t,t.scope.state,1).current},kind:"scope",graphite:n({family:{type:"domain",links:[r,a,i]},meta:{unit:'fork'},scope:{forkInFlightCounter:r}}),additionalLinks:{},handlers:{sidMap:{},unitMap:new Map},fxCount:r,storeChange:a,warnSerializeNode:i,activeEffects:[]};return o})(i);if(o){let e=o.scope;if(e){let r=e.activeEffects;e.activeEffects=[],l.activeEffects=r,t(r,(e=>e.ref=l))}if(o.values){let{sidMap:e,unitMap:a,hasSidDoubles:n}=I(o.values,(e=>r(Z(e),'Values map can contain only stores as keys')));Object.assign(l.values.sidMap,e),t(a,((e,t)=>{l.values.idMap[t.stateRef.id]=e})),l.fromSerialize=!(Array.isArray(o.values)||o.values instanceof Map),l.hasSidDoubles=n}o.handlers&&(l.handlers=I(o.handlers,(e=>r(te(e),"Handlers map can contain only effects as keys"))))}return l}function q(e,{values:a}){r(Me(a),'values property should be an object');let{sidMap:n,unitMap:o}=I(a),l=Object.getOwnPropertyNames(n),s={};t(o,((e,t)=>{s[t.stateRef.id]=t}));let f,d,u,c=[],p=[];ae(e)?(f=e,u=1,r(f.cloneOf,'scope should be created from domain'),d=L(f.cloneOf)):re(e)?d=L(e):r(0,'first argument of hydrate should be domain or scope'),A(d,((e,t)=>{if(t&&ie(l,t)){le(c,e);let r=J(e,'serialize');r&&'ignore'!==r&&(n[t]=r.read(n[t])),le(p,n[t])}else e.scope.state.id in s&&(le(c,e),le(p,o.get(s[e.scope.state.id])))}),1),i({target:c,params:p,scope:f}),u&&Object.assign(f.values.sidMap,n)}function N(e,{scope:t,safe:a}={}){r(t||et||a,'scopeBind cannot be called outside of forked .watch');let n=t||et;return te(e)?t=>{let r=h();return i({target:e,params:{params:t,req:r},scope:n}),r.req}:t=>(i({target:e,params:t,scope:n}),t)}function D(t,a={}){t.warnSerialize&&console.error('There is a store without sid in this scope, its value is omitted'),r(!t.hasSidDoubles,'duplicate sid found in this scope');let n=a.ignore?a.ignore.map((({sid:e})=>e)):[],i={};return e(t.values.sidMap,((e,r)=>{var a;if(ie(n,r))return;let o=t.sidIdMap[r],l=null!==(a=t.sidSerializeSettings.get(r))&&void 0!==a?a:{ignore:0,write:Lt};l.ignore||(i[r]=(0,l.write)(o&&o in t.reg?t.reg[o].current:e))})),'onlyChanges'in a&&!a.onlyChanges&&(r(t.cloneOf,'scope should be created from domain'),A(L(t.cloneOf),((e,r)=>{r in i||ie(n,r)||J(e,'isCombine')||'ignore'===J(e,'serialize')||(i[r]=t.getState(e))}))),i}function F({unit:e,fn:t,scope:r}){let a=[Te.run({fn:e=>t(e)})];if(r){let t=n({node:a}),i=e.graphite.id,o=r.additionalLinks,l=o[i]||[];return o[i]=l,l.push(t),R((()=>{let e=l.indexOf(t);-1!==e&&l.splice(e,1),vt(t)}))}{let t=n({node:a,parent:[e],family:{owners:e}});return R((()=>{vt(t)}))}}function R(e){let t=()=>e();return t.unsubscribe=()=>e(),t}let E='undefined'!=typeof Symbol&&Symbol.observable||'@@observable',_='map',P='stack',L=e=>e.graphite||e,T=e=>e.family.owners,B=e=>e.family.links,W=e=>e.stateRef,H=e=>e.value,U=e=>e.subscribers,V=e=>e.parent,G=e=>e.scope,J=(e,t)=>L(e).meta[t],K=(e,t,r)=>L(e).meta[t]=r,Q=e=>e.compositeName,X=e=>(xe(e)||Me(e))&&'kind'in e;const Y=e=>t=>X(t)&&t.kind===e;let Z=Y("store"),ee=Y("event"),te=Y("effect"),re=Y("domain"),ae=Y("scope");var ne={__proto__:null,unit:X,store:Z,event:ee,effect:te,domain:re,scope:ae,attached:e=>te(e)&&1==J(e,'attached')};let ie=(e,t)=>e.includes(t),oe=(e,t)=>{let r=e.indexOf(t);-1!==r&&e.splice(r,1)},le=(e,t)=>e.push(t),se=(e,t,r)=>!e&&console.error(`${t} is deprecated${r?`, use ${r} instead`:''}`);const fe=()=>{let e=0;return()=>""+ ++e};let de,ue=fe(),ce=fe(),pe=fe(),me=fe(),ge=e=>{de=e},he=null,ye=e=>{de&&de(e,he)},be=()=>he&&he.template,ve=e=>(e&&he&&he.sidRoot&&(e=`${he.sidRoot}|${e}`),e),ke=({sid:e,name:t,loc:r,method:i,fn:o})=>a(n({meta:{sidRoot:ve(e),sid:e,name:t,loc:r,method:i,type:'factory'}}),o),we=(e,r)=>{let a=L(e);t(r,(e=>{let t=L(e);"domain"!==a.family.type&&(t.family.type="crosslink"),le(T(t),a),le(B(a),t)}))},Se=(e=[])=>(Array.isArray(e)?e:[e]).flat().map(L),Me=e=>'object'==typeof e&&null!==e,xe=e=>'function'==typeof e,$e=e=>void 0===e,ze=e=>r(Me(e)||xe(e),'expect first argument be an object');const je=(e,t,a,n)=>r(!(!Me(e)&&!xe(e)||!('family'in e)&&!('graphite'in e)),`${t}: expect ${a} to be a unit (store, event or effect)${n}`);let Ce=(e,r,a)=>{Array.isArray(e)?t(e,((e,t)=>je(e,r,`${t} item of ${a}`,''))):je(e,r,a,' or array of units')},Ae=(e,r,a="target")=>t(Se(r),(t=>se(!J(t,'derived'),`${e}: derived unit in "${a}"`,"createEvent/createStore"))),Ie=(e,{fn:t},{a:r})=>t(e,r),Oe=(e,{fn:t},{a:r})=>t(r,e),qe=(e,{fn:t})=>t(e);const Ne=(e,t,r,a)=>{let n={id:ce(),type:e,data:t};return r&&(n.order={priority:r},a&&(n.order.barrierID=++De)),n};let De=0,Fe=({from:e="store",store:t,target:r,to:a=(r?"store":P),batch:n,priority:i})=>Ne('mov',{from:e,store:t,to:a,target:r},i,n),Re=({fn:e,batch:t,priority:r,safe:a=0,filter:n=0,pure:i=0})=>Ne('compute',{fn:e,safe:a,filter:n,pure:i},r,t),Ee=({fn:e})=>Re({fn:e,priority:"effect"}),_e=(e,t,r)=>Re({fn:e,safe:1,filter:t,priority:r&&"effect"}),Pe=(e,t,r)=>Fe({store:e,to:t?P:"a",priority:r&&"sampler",batch:1}),Le=(e=qe,t)=>Re({fn:e,pure:1,filter:t}),Te={mov:Fe,compute:Re,filter:({fn:e,pure:t})=>Re({fn:e,filter:1,pure:t}),run:Ee},Be=e=>({id:ce(),current:e}),We=({current:e})=>e,He=(e,t)=>{e.before||(e.before=[]),le(e.before,t)},Ue=null;const Ve=(e,t)=>{if(!e)return t;if(!t)return e;let r;return(e.v.type===t.v.type&&e.v.id>t.v.id||Ye(e.v.type)>Ye(t.v.type))&&(r=e,e=t,t=r),r=Ve(e.r,t),e.r=e.l,e.l=r,e},Ge=[];let Je=0;for(;Je<6;)le(Ge,{first:null,last:null,size:0}),Je+=1;const Ke=()=>{for(let e=0;e<6;e++){let t=Ge[e];if(t.size>0){if(3===e||4===e){t.size-=1;let e=Ue.v;return Ue=Ve(Ue.l,Ue.r),e}1===t.size&&(t.last=null);let r=t.first;return t.first=r.r,t.size-=1,r.v}}},Qe=(e,t,r,a,n,i,o)=>Xe(0,{a:null,b:null,node:r,parent:a,value:n,page:t,scope:i,meta:o},e),Xe=(e,t,r,a=0)=>{let n=Ye(r),i=Ge[n],o={v:{idx:e,stack:t,type:r,id:a},l:null,r:null};3===n||4===n?Ue=Ve(Ue,o):(0===i.size?i.first=o:i.last.r=o,i.last=o),i.size+=1},Ye=e=>{switch(e){case'child':return 0;case'pure':return 1;case'read':return 2;case"barrier":return 3;case"sampler":return 4;case"effect":return 5;default:return-1}},Ze=new Set;let et,tt=1,rt=0,at=0,nt=null,ot=e=>{et=e},lt=e=>{nt=e};const st=(e,t)=>{if(e){for(;e&&!e.reg[t];)e=V(e);if(e)return e}return null};let ft,dt=(e,t,r,a,n)=>{let i=st(e,a.id);return i?i.reg[a.id]:t?(pt(t,a,n),t.reg[a.id]):a},ut=e=>{ft=e};const ct=e=>e;let pt=(e,r,a,n,i)=>{var o;let l=e.reg,s=r.sid,f=null==r||null===(o=r.meta)||void 0===o?void 0:o.serialize,d=e.fromSerialize&&'ignore'!==f&&(null==f?void 0:f.read)||ct;if(l[r.id])return;let u={id:r.id,current:r.current,meta:r.meta};if(u.id in e.values.idMap)u.current=e.values.idMap[u.id];else if(s&&s in e.values.sidMap&&!(s in e.sidIdMap))u.current=d(e.values.sidMap[s]);else if(r.before&&!i){let i=0,o=a||!r.noInit||n;t(r.before,(t=>{switch(t.type){case _:{let r=t.from;if(r||t.fn){r&&pt(e,r,a,n);let i=r&&l[r.id].current;o&&(u.current=t.fn?t.fn(i):i)}break}case'field':i||(i=1,u.current=Array.isArray(u.current)?[...u.current]:{...u.current}),pt(e,t.from,a,n),o&&(u.current[t.field]=l[l[t.from.id].id].current)}}))}s&&(e.sidIdMap[s]=r.id),l[r.id]=u};const mt=(e,t,r)=>{try{return t(H(r),e.scope,r)}catch(t){console.error(t),e.fail=1,e.failReason=t}};let gt=(t,r={})=>(Me(t)&&(gt(t.or,r),e(t,((e,t)=>{$e(e)||'or'===t||'and'===t||(r[t]=e)})),gt(t.and,r)),r);const ht=(e,t)=>{oe(e.next,t),oe(T(e),t),oe(B(e),t)},yt=(e,t,r)=>{let a;e.next.length=0,e.seq.length=0,e.scope=null;let n=B(e);for(;a=n.pop();)ht(a,e),(t||r&&'sample'!==J(e,'op')||"crosslink"===a.family.type)&&yt(a,t,'on'!==J(a,'op')&&r);for(n=T(e);a=n.pop();)ht(a,e),r&&"crosslink"===a.family.type&&yt(a,t,'on'!==J(a,'op')&&r)},bt=e=>e.clear();let vt=(e,{deep:t}={})=>{let r=0;if(e.ownerSet&&e.ownerSet.delete(e),Z(e))bt(U(e));else if(re(e)){r=1;let t=e.history;bt(t.events),bt(t.effects),bt(t.stores),bt(t.domains)}yt(L(e),!!t,r)},kt=e=>{let t=()=>vt(e);return t.unsubscribe=t,t},wt=(e,t,r,a,i)=>n({node:r,parent:e,child:t,scope:{fn:i},meta:{op:a},family:{owners:[e,t],links:t},regional:1}),St=e=>{let t='forward',[{from:r,to:a},i]=f(e,1);return Ce(r,t,'"from"'),Ce(a,t,'"to"'),Ae(t,a,'to'),kt(n({parent:r,child:a,meta:{op:t,config:i},family:{},regional:1}))},Mt=(e,t)=>(r(xe(t),'.watch argument should be a function'),kt(n({scope:{fn:t},node:[Ee({fn:qe})],parent:e,meta:{op:'watch'},family:{owners:e},regional:1}))),xt=(e,t,r="event")=>{V(e)&&V(e).hooks[r](t)},$t=(e,t,r)=>{let a=gt(r),n="domain"===e,i=ue(),{sid:o=null,named:l=null,domain:f=null,parent:d=f}=a,u=l||a.name||(n?'':i),c=s(u,d),p={op:t.kind=e,name:t.shortName=u,sid:t.sid=ve(o),named:l,unitId:t.id=i,serialize:a.serialize,derived:a.derived,config:a};if(t.parent=d,t.compositeName=c,t.defaultConfig=a,t.thru=e=>(se(0,'thru','js pipe'),e(t)),t.getType=()=>c.fullName,!n){t.subscribe=e=>(ze(e),t.watch(xe(e)?e:t=>e.next&&e.next(t))),t[E]=()=>t;let e=be();e&&(p.nativeTemplate=e)}return p};const zt=(e,t,r,a)=>{let n;Me(r)&&(n=r,r=r.fn);let i=u({name:`${e.shortName} \u2192 *`,derived:1,and:n});return wt(e,i,a,t,r),i},jt=(e,t,r,a,n)=>{let i=W(t),o=Fe({store:i,to:"a",priority:'read'});r===_&&(o.data.softRead=1);let l=[o,Le(a)];return d('storeOnMap',i,l,Z(e)&&W(e)),wt(e,t,l,r,n)},Ct=(t,a,n,i,l)=>{let s=t?e=>[...e]:e=>({...e}),f=t?[]:{},u=s(f),c=Be(u),m=Be(1);c.type=t?'list':'shape',c.noInit=1,d('combineBase',c,m);let g=p(u,{name:o(n),derived:1,and:i}),h=W(g);h.noInit=1,K(g,'isCombine',1);let y=Pe(c);y.order={priority:'barrier'};let b=[_e(((e,t,r)=>(r.scope&&!r.scope.reg[c.id]&&(r.c=1),e))),y,Fe({store:m,to:'b'}),_e(((e,{key:t},r)=>{if(r.c||e!==r.a[t])return a&&r.b&&(r.a=s(r.a)),r.a[t]=e,1}),1),Fe({from:"a",target:c}),Fe({from:"value",store:0,target:m}),Fe({from:"value",store:1,target:m,priority:"barrier",batch:1}),Pe(c,1),l&&Le()];return e(n,((e,t)=>{if(!Z(e))return r(!X(e)&&!$e(e),`combine expects a store in a field ${t}`),void(u[t]=f[t]=e);f[t]=e.defaultState,u[t]=e.getState();let a=wt(e,g,b,'combine',l);a.scope.key=t;let n=W(e);He(c,{type:'field',field:t,from:n}),d('combineField',n,a)})),g.defaultShape=n,He(h,{type:_,from:c,fn:l}),be()||(g.defaultState=l?h.current=l(u):f),g};let At=(e,t,r)=>{try{return[1,e(...r)]}catch(e){return t(e),[0,null]}},It=e=>{let t=G(e),r={ref:t};return t&&le(t.activeEffects,r),r},Ot=(e,t,r,a,n,o)=>l=>{o.ref&&oe(o.ref.activeEffects,o),i({target:[a,qt],params:[r?{status:'done',params:e,result:l}:{status:'fail',params:e,error:l},{value:l,fn:r?t.rs:t.rj}],defer:1,page:n.page,scope:o.ref,meta:n.meta})};const qt=n({node:[Ee({fn:({fn:e,value:t})=>e(t)})],meta:{op:'fx',fx:'sidechain'}}),Nt=['source','clock','target'],Dt=(e,t)=>e+`: ${t} should be defined`;let Ft=(e,t,a,n,i,o,l,s,f,c,g,h)=>{let y=!!i;r(!$e(a)||!$e(t),Dt(e,'either source or clock'));let b=0;$e(a)?b=1:X(a)||(a=m(a)),$e(t)?t=a:(Ce(t,e,'clock'),Array.isArray(t)&&(t=S(t))),b&&(a=t),s||l||(l=a.shortName);let v='none';(g||n)&&(X(n)?v='unit':(r(xe(n),'`filter` should be function or unit'),v='fn')),i?(Ce(i,e,'target'),Ae(e,i)):'none'===v&&c&&Z(a)&&Z(t)?i=p(o?o(We(W(a)),We(W(t))):We(W(a)),{name:l,sid:h,or:s}):(i=u({name:l,derived:1,or:s}),d('sampleTarget',L(i)));let k=Be(),w=[];if('unit'===v){let[r,a]=Et(n,i,t,k,e);w=[...Rt(a),...Rt(r)]}let[M,x]=Et(a,i,t,k,e),$=wt(t,i,[d('sampleSourceLoader'),Fe({from:P,target:k}),...Rt(x),Pe(M,1,f),...w,Pe(k),'fn'===v&&Le(((e,t,{a:r})=>n(e,r)),1),o&&Le(Ie),d('sampleSourceUpward',y)],e,o);return we(a,[$]),Object.assign($.meta,s,{joint:1}),i};const Rt=e=>[Pe(e),_e(((e,t,{a:r})=>r),1)],Et=(e,t,r,a,i)=>{let o=Z(e),l=o?W(e):Be(),s=Be(o);return o||n({parent:e,node:[Fe({from:P,target:l}),Fe({from:"value",store:1,target:s})],family:{owners:[e,t,r],links:t},meta:{op:i},regional:1}),d('sampleSource',s,l,a),[l,s]},_t=(e,t,r,a)=>{let n=e[t];n&&i({target:n,params:Array.isArray(n)?n.map((()=>r)):r,defer:1,stack:a})},Pt="22.8.6",Lt=e=>e;
 //# sourceMappingURL=effector.mjs.map
 
 
@@ -22334,12 +26326,15 @@ function e(e,t){for(let r in e)t(e[r],r)}function t(e,t){e.forEach(t)}function r
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
 /******/ 			id: moduleId,
-/******/ 			// no module.loaded needed
+/******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -22380,9 +26375,30 @@ function e(e,t){for(let r in e)t(e[r],r)}function t(e,t){e.forEach(t)}function r
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/node module decorator */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nmd = (module) => {
+/******/ 			module.paths = [];
+/******/ 			if (!module.children) module.children = [];
+/******/ 			return module;
+/******/ 		};
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
@@ -22425,24 +26441,44 @@ var __webpack_exports__ = {};
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _apps_components_widget_settings_panel_description_buttons_LinkSettingsButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6225);
-/* harmony import */ var _apps_components_widget_settings_panel_description_buttons_PrimarySettingsButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9780);
-/* harmony import */ var _apps_SimpleApp_SimpleApp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8248);
-/* harmony import */ var _apps_SubscriptionApp_SubscriptionApp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3138);
-/* harmony import */ var _apps_SubscriptionApp_SubscriptionStatusCheckers_SubscriptionStatus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5420);
+/* harmony import */ var _createWidget__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4471);
+/* harmony import */ var _WidgetComponents_SettingsButtons_SettingsButtonsComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5272);
+/* harmony import */ var _WidgetComponents_SettingsContactForm_SettingsContactFormComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1937);
+/* harmony import */ var _WidgetComponents_SettingsPhoneField_SettingsPhoneFieldComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3703);
+/* harmony import */ var _WidgetComponents_SettingsSaver_SettingsSaverComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1787);
+/* harmony import */ var _WidgetComponents_SubscriptionManager_SubscriptionManagerComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6192);
+/* harmony import */ var _WidgetComponents_VideoInstruction_VideoInstructionComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6994);
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(3871);
+/* harmony import */ var _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(1892);
+/* harmony import */ var _helpers_Request__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(4125);
+/* harmony import */ var _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(6816);
+/* harmony import */ var _WidgetComponents_SettingsFooter_SettingsFooterComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(167);
 
 
 
 
 
-const components = {
-  SimpleApp: _apps_SimpleApp_SimpleApp__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z,
-  SubscriptionApp: _apps_SubscriptionApp_SubscriptionApp__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z,
-  LinkSettingsButton: _apps_components_widget_settings_panel_description_buttons_LinkSettingsButton__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z,
-  PrimarySettingsButton: _apps_components_widget_settings_panel_description_buttons_PrimarySettingsButton__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z,
-  SubscriptionStatus: _apps_SubscriptionApp_SubscriptionStatusCheckers_SubscriptionStatus__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (components);
+
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  VideoInstructionComponent: _WidgetComponents_VideoInstruction_VideoInstructionComponent__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z,
+  SettingsContactFormComponent: _WidgetComponents_SettingsContactForm_SettingsContactFormComponent__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z,
+  SettingsButtonsComponent: _WidgetComponents_SettingsButtons_SettingsButtonsComponent__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z,
+  SubscriptionManagerComponent: _WidgetComponents_SubscriptionManager_SubscriptionManagerComponent__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z,
+  SettingsPhoneFieldComponent: _WidgetComponents_SettingsPhoneField_SettingsPhoneFieldComponent__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z,
+  SettingsSaverComponent: _WidgetComponents_SettingsSaver_SettingsSaverComponent__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z,
+  createWidget: _createWidget__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z,
+  WidgetLifecycleEvents: _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z,
+  WidgetComponent: _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z,
+  Request: _helpers_Request__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z,
+  TemplateRenderHelpers: _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z,
+  SettingsFooterComponent: _WidgetComponents_SettingsFooter_SettingsFooterComponent__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z
+});
 })();
 
 __webpack_exports__ = __webpack_exports__["default"];
