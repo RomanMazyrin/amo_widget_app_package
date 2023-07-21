@@ -1,18 +1,23 @@
+import TemplateRenderHelpers from '../../helpers/TemplateRenderHelpers';
 import WidgetLifecycleEvents from '../../WidgetLifecycleEvents';
 import WidgetComponent from '../WidgetComponent';
 import PhoneField from './PhoneField';
 
 export default class SettingsPhoneFieldComponent extends WidgetComponent {
-    constructor(widget, { langPath = null, phoneFieldOpts = {}, phoneFieldName = 'phone' } = {}) {
+    constructor(widget, {
+        langPath = null, phoneFieldOpts = {}, phoneFieldName = 'phone', cssFilePath = null,
+    } = {}) {
         super(widget);
         this.langPath = langPath ?? 'components.settings_phone_field';
         this.phoneFieldOpts = phoneFieldOpts;
         this.phoneFieldName = phoneFieldName;
+        this.cssFilePath = cssFilePath;
     }
 
     getWidgetEventsCallbacks() {
         return {
             [WidgetLifecycleEvents.EVENT_SETTINGS]: this.settings.bind(this),
+            [WidgetLifecycleEvents.EVENT_INIT]: this.init.bind(this),
         };
     }
 
@@ -44,5 +49,20 @@ export default class SettingsPhoneFieldComponent extends WidgetComponent {
                 return true;
             });
         });
+    }
+
+    loadStyle(src, onload = () => {}) {
+        const link = document.createElement('link');
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        link.href = TemplateRenderHelpers.renderWithWidgetData(src, this.widget);
+        link.onload = onload;
+        document.head.appendChild(link);
+    }
+
+    init() {
+        if (this.cssFilePath) {
+            this.loadStyle(this.cssFilePath);
+        }
     }
 }
