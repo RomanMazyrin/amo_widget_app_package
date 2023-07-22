@@ -10,6 +10,7 @@ import WidgetComponent from './WidgetComponents/WidgetComponent';
 import Request from './helpers/Request';
 import TemplateRenderHelpers from './helpers/TemplateRenderHelpers';
 import SettingsFooterComponent from './WidgetComponents/SettingsFooter/SettingsFooterComponent';
+import ReactDOMRender from './helpers/ReactDOMRender';
 
 export default {
     VideoInstructionComponent,
@@ -24,4 +25,5 @@ export default {
     WidgetComponent,
     Request,
     TemplateRenderHelpers,
+    ReactDOMRender,
 };

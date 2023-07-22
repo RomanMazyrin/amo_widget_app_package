@@ -19,7 +19,7 @@ const createWidget = (config) => {
 
         if (config.events) {
             Object.entries(config.events).forEach(([event, callback]) => {
-                this.on(event, callback);
+                self.on(event, callback);
             });
         }
 

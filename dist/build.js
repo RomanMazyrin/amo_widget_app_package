@@ -1532,7 +1532,7 @@ const createWidget = config => {
     self.components = config.components ? buildComponents(config.components, this) : {};
     if (config.events) {
       Object.entries(config.events).forEach(([event, callback]) => {
-        this.on(event, callback);
+        self.on(event, callback);
       });
     }
     this.component = componentName => this.components[componentName];
@@ -1635,6 +1635,38 @@ class Notificator {
 class ObjectUtils {
   static objMap(obj, func) {
     return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, func(v)]));
+  }
+}
+
+/***/ }),
+
+/***/ 3746:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (/* binding */ ReactDOMRender)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(745);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5893);
+
+
+
+class ReactDOMRender {
+  static appentReactComponent(selector, Component, props, domElementName) {
+    const container = document.querySelector(selector);
+    const domElement = document.createElement(domElementName);
+    container.appendChild(domElement);
+    this.renderInElement(domElement, Component, props);
+  }
+  static renderInElement(domElement, Component, props) {
+    (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__/* .createRoot */ .s)(domElement).render(
+    /*#__PURE__*/
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Component, {
+      ...props
+    }));
   }
 }
 
@@ -26169,11 +26201,13 @@ var __webpack_exports__ = {};
 /* harmony import */ var _WidgetComponents_SettingsSaver_SettingsSaverComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1787);
 /* harmony import */ var _WidgetComponents_SubscriptionManager_SubscriptionManagerComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6192);
 /* harmony import */ var _WidgetComponents_VideoInstruction_VideoInstructionComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6994);
-/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(3871);
-/* harmony import */ var _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(1892);
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(3871);
+/* harmony import */ var _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(1892);
 /* harmony import */ var _helpers_Request__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(4125);
 /* harmony import */ var _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(6816);
 /* harmony import */ var _WidgetComponents_SettingsFooter_SettingsFooterComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(167);
+/* harmony import */ var _helpers_ReactDOMRender__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(3746);
+
 
 
 
@@ -26195,10 +26229,11 @@ var __webpack_exports__ = {};
   SettingsSaverComponent: _WidgetComponents_SettingsSaver_SettingsSaverComponent__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z,
   SettingsFooterComponent: _WidgetComponents_SettingsFooter_SettingsFooterComponent__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z,
   createWidget: _createWidget__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z,
-  WidgetLifecycleEvents: _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z,
-  WidgetComponent: _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z,
+  WidgetLifecycleEvents: _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z,
+  WidgetComponent: _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_12__/* ["default"] */ .Z,
   Request: _helpers_Request__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z,
-  TemplateRenderHelpers: _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z
+  TemplateRenderHelpers: _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z,
+  ReactDOMRender: _helpers_ReactDOMRender__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z
 });
 })();
 
