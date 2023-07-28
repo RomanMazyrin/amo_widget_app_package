@@ -1,4 +1,3 @@
-import TemplateRenderHelpers from '../../helpers/TemplateRenderHelpers';
 import WidgetLifecycleEvents from '../../WidgetLifecycleEvents';
 import WidgetComponent from '../WidgetComponent';
 import PhoneField from './PhoneField';
@@ -49,15 +48,6 @@ export default class SettingsPhoneFieldComponent extends WidgetComponent {
                 return true;
             });
         });
-    }
-
-    loadStyle(src, onload = () => {}) {
-        const link = document.createElement('link');
-        link.type = 'text/css';
-        link.rel = 'stylesheet';
-        link.href = TemplateRenderHelpers.renderWithWidgetData(src, this.widget);
-        link.onload = onload;
-        document.head.appendChild(link);
     }
 
     init() {

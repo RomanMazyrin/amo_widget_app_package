@@ -1,3 +1,5 @@
+import TemplateRenderHelpers from '../helpers/TemplateRenderHelpers';
+
 export default class WidgetComponent {
     constructor(widget) {
         this.widget = widget;
@@ -16,5 +18,18 @@ export default class WidgetComponent {
                 this.widget.on(event, callback);
             });
         }
+    }
+
+    loadStyle(src, onload = () => {}) {
+        const link = document.createElement('link');
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        link.href = TemplateRenderHelpers.renderWithWidgetData(src, this.widget);
+        link.onload = onload;
+        document.head.appendChild(link);
+    }
+
+    getDomain() {
+        return this.widget.system().domain;
     }
 }

@@ -11,6 +11,8 @@ import Request from './helpers/Request';
 import TemplateRenderHelpers from './helpers/TemplateRenderHelpers';
 import SettingsFooterComponent from './WidgetComponents/SettingsFooter/SettingsFooterComponent';
 import ReactDOMRender from './helpers/ReactDOMRender';
+import ObjectUtils from './helpers/ObjectUtils';
+import Formatters from './helpers/Formatters';
 
 export default {
     VideoInstructionComponent,
@@ -26,4 +28,6 @@ export default {
     Request,
     TemplateRenderHelpers,
     ReactDOMRender,
+    ObjectUtils,
+    Formatters,
 };
