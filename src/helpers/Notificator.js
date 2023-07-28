@@ -1,5 +1,15 @@
-import toastr from 'toastr';
-import 'toastr/toastr.scss';
+import Toastify from 'toastify-js/src/toastify';
+import 'toastify-js/src/toastify.css';
+
+const BASE_STYLE = {
+    'font-size': '16px',
+};
+
+const TYPE_STYLES = {
+    error: {
+        background: 'red',
+    },
+};
 
 export default class Notificator {
     constructor({ header }) {
@@ -7,22 +17,14 @@ export default class Notificator {
     }
 
     showMessage(type, text) {
-        toastr[type](text, this.header, {
-            closeButton: false,
-            debug: false,
-            newestOnTop: false,
-            progressBar: false,
-            positionClass: 'toast-bottom-right',
-            preventDuplicates: false,
-            onclick: null,
-            showDuration: '300',
-            hideDuration: '1000',
-            timeOut: '5000',
-            extendedTimeOut: '1000',
-            showEasing: 'swing',
-            hideEasing: 'linear',
-            showMethod: 'slideDown',
-            hideMethod: 'slideUp',
-        });
+        const typeStyle = TYPE_STYLES[type] ?? {};
+        Toastify({
+            text: `<b style="font-weight:900">${this.header}</b>: ${text}`,
+            gravity: 'bottom',
+            position: 'right',
+            duration: 15000,
+            style: { ...BASE_STYLE, ...typeStyle },
+            escapeMarkup: false,
+        }).showToast();
     }
 }

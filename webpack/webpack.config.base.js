@@ -33,6 +33,28 @@ module.exports = {
         ]
     },
 
+    externals: {
+        react: {
+            commonjs: "react",
+            commonjs2: "react",
+            amd: "react",
+            root: "React"
+        },
+        "react-dom": {
+            commonjs: "react-dom",
+            commonjs2: "react-dom",
+            amd: "react-dom",
+            root: "ReactDOM"
+        },
+
+        "react-dom/client": {
+            commonjs: "react-dom/client",
+            commonjs2: "react-dom/client",
+            amd: "react-dom/client",
+            root: "ReactDOMClient"
+        },
+    },
+
     resolve: {
 		extensions: ['.js', '.jsx', 'json', '.riot', '.css', '.scss', '.gif', '.svg']
 	},
