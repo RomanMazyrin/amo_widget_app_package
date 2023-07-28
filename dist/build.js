@@ -1626,8 +1626,8 @@ const Formatters = {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Z: () => (/* binding */ Notificator)
 /* harmony export */ });
-/* harmony import */ var toastify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8588);
-/* harmony import */ var toastify_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(toastify_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var toastify_js_src_toastify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8588);
+/* harmony import */ var toastify_js_src_toastify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(toastify_js_src_toastify__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var toastify_js_src_toastify_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5082);
 
 
@@ -1647,7 +1647,7 @@ class Notificator {
   }
   showMessage(type, text) {
     const typeStyle = TYPE_STYLES[type] ?? {};
-    toastify_js__WEBPACK_IMPORTED_MODULE_0___default()({
+    toastify_js_src_toastify__WEBPACK_IMPORTED_MODULE_0___default()({
       text: `<b style="font-weight:900">${this.header}</b>: ${text}`,
       gravity: 'bottom',
       position: 'right',

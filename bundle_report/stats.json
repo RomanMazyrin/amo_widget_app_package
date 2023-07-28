@@ -1,8 +1,8 @@
 {
-  "hash": "d1264a1c1f071fd9f789",
+  "hash": "a756a8f4f7dafc2dab5b",
   "version": "5.88.2",
-  "time": 4638,
-  "builtAt": 1690559716515,
+  "time": 4277,
+  "builtAt": 1690561474117,
   "publicPath": "auto",
   "outputPath": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/dist",
   "assetsByChunkName": {
@@ -17,13 +17,13 @@
     {
       "type": "asset",
       "name": "build.js",
-      "size": 780890,
+      "size": 780942,
       "emitted": true,
       "comparedForEmit": false,
       "cached": false,
       "info": {
         "javascriptModule": false,
-        "size": 780890
+        "size": 780942
       },
       "chunkNames": [
         "build"
@@ -72,9 +72,9 @@
       "initial": true,
       "entry": true,
       "recorded": false,
-      "size": 705119,
+      "size": 705132,
       "sizes": {
-        "javascript": 704077,
+        "javascript": 704090,
         "runtime": 1042
       },
       "names": [
@@ -88,7 +88,7 @@
         "build.min.js"
       ],
       "auxiliaryFiles": [],
-      "hash": "96a972d4fc06f17e992d",
+      "hash": "8e77ab99eb995590a51a",
       "childrenByOrder": {},
       "id": 582,
       "siblings": [],
@@ -12500,8 +12500,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
-          "issuerName": "./node_modules/qs/lib/stringify.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
+          "issuerName": "./node_modules/qs/lib/parse.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -12519,16 +12519,16 @@
               "id": 129
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
-              "name": "./node_modules/qs/lib/stringify.js",
-              "id": 8261
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
+              "name": "./node_modules/qs/lib/parse.js",
+              "id": 5235
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2769,
-          "issuerId": 8261,
+          "issuerId": 5235,
           "chunks": [
             582,
             807
@@ -14249,8 +14249,8 @@
               "type": "harmony side effect evaluation",
               "active": true,
               "explanation": "",
-              "userRequest": "toastify-js",
-              "loc": "1:0-35",
+              "userRequest": "toastify-js/src/toastify",
+              "loc": "1:0-48",
               "moduleId": 7791,
               "resolvedModuleId": 7791
             },
@@ -14263,7 +14263,7 @@
               "type": "harmony import specifier",
               "active": true,
               "explanation": "",
-              "userRequest": "toastify-js",
+              "userRequest": "toastify-js/src/toastify",
               "loc": "19:4-12",
               "moduleId": 7791,
               "resolvedModuleId": 7791
@@ -16471,8 +16471,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -16490,16 +16490,16 @@
               "id": 9200
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-              "id": 1098
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+              "id": 1408
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2161,
-          "issuerId": 1098,
+          "issuerId": 1408,
           "chunks": [
             582,
             807
@@ -18866,9 +18866,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 634,
+          "size": 647,
           "sizes": {
-            "javascript": 634
+            "javascript": 647
           },
           "built": true,
           "codeGenerated": true,
@@ -20963,9 +20963,9 @@
       "initial": true,
       "entry": true,
       "recorded": false,
-      "size": 705119,
+      "size": 705132,
       "sizes": {
-        "javascript": 704077,
+        "javascript": 704090,
         "runtime": 1042
       },
       "names": [
@@ -20979,7 +20979,7 @@
         "build.js"
       ],
       "auxiliaryFiles": [],
-      "hash": "43ba5769e4b055660ba3",
+      "hash": "9419d620ba61756c0689",
       "childrenByOrder": {},
       "id": 807,
       "siblings": [],
@@ -33391,8 +33391,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
-          "issuerName": "./node_modules/qs/lib/stringify.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
+          "issuerName": "./node_modules/qs/lib/parse.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -33410,16 +33410,16 @@
               "id": 129
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
-              "name": "./node_modules/qs/lib/stringify.js",
-              "id": 8261
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
+              "name": "./node_modules/qs/lib/parse.js",
+              "id": 5235
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2769,
-          "issuerId": 8261,
+          "issuerId": 5235,
           "chunks": [
             582,
             807
@@ -35140,8 +35140,8 @@
               "type": "harmony side effect evaluation",
               "active": true,
               "explanation": "",
-              "userRequest": "toastify-js",
-              "loc": "1:0-35",
+              "userRequest": "toastify-js/src/toastify",
+              "loc": "1:0-48",
               "moduleId": 7791,
               "resolvedModuleId": 7791
             },
@@ -35154,7 +35154,7 @@
               "type": "harmony import specifier",
               "active": true,
               "explanation": "",
-              "userRequest": "toastify-js",
+              "userRequest": "toastify-js/src/toastify",
               "loc": "19:4-12",
               "moduleId": 7791,
               "resolvedModuleId": 7791
@@ -37362,8 +37362,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -37381,16 +37381,16 @@
               "id": 9200
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-              "id": 1098
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+              "id": 1408
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2161,
-          "issuerId": 1098,
+          "issuerId": 1408,
           "chunks": [
             582,
             807
@@ -39757,9 +39757,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 634,
+          "size": 647,
           "sizes": {
-            "javascript": 634
+            "javascript": 647
           },
           "built": true,
           "codeGenerated": true,
@@ -47441,9 +47441,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 634,
+      "size": 647,
       "sizes": {
-        "javascript": 634
+        "javascript": 647
       },
       "built": true,
       "codeGenerated": true,
@@ -54932,8 +54932,8 @@
           "type": "harmony side effect evaluation",
           "active": true,
           "explanation": "",
-          "userRequest": "toastify-js",
-          "loc": "1:0-35",
+          "userRequest": "toastify-js/src/toastify",
+          "loc": "1:0-48",
           "moduleId": 7791,
           "resolvedModuleId": 7791
         },
@@ -54946,7 +54946,7 @@
           "type": "harmony import specifier",
           "active": true,
           "explanation": "",
-          "userRequest": "toastify-js",
+          "userRequest": "toastify-js/src/toastify",
           "loc": "19:4-12",
           "moduleId": 7791,
           "resolvedModuleId": 7791
@@ -55694,8 +55694,8 @@
       "cacheable": true,
       "optional": false,
       "orphan": false,
-      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
-      "issuerName": "./node_modules/qs/lib/stringify.js",
+      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
+      "issuerName": "./node_modules/qs/lib/parse.js",
       "issuerPath": [
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -55713,16 +55713,16 @@
           "id": 129
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
-          "name": "./node_modules/qs/lib/stringify.js",
-          "id": 8261
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
+          "name": "./node_modules/qs/lib/parse.js",
+          "id": 5235
         }
       ],
       "failed": false,
       "errors": 0,
       "warnings": 0,
       "id": 2769,
-      "issuerId": 8261,
+      "issuerId": 5235,
       "chunks": [
         582,
         807
@@ -58570,8 +58570,8 @@
       "cacheable": true,
       "optional": false,
       "orphan": false,
-      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-      "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+      "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
       "issuerPath": [
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -58589,16 +58589,16 @@
           "id": 9200
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-          "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-          "id": 1098
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+          "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+          "id": 1408
         }
       ],
       "failed": false,
       "errors": 0,
       "warnings": 0,
       "id": 2161,
-      "issuerId": 1098,
+      "issuerId": 1408,
       "chunks": [
         582,
         807
@@ -63167,11 +63167,11 @@
       "assets": [
         {
           "name": "build.js",
-          "size": 780890
+          "size": 780942
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 780890,
+      "assetsSize": 780942,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
@@ -63209,11 +63209,11 @@
       "assets": [
         {
           "name": "build.js",
-          "size": 780890
+          "size": 780942
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 780890,
+      "assetsSize": 780942,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
