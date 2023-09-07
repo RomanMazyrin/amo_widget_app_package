@@ -7,14 +7,14 @@ export default class WidgetMock {
     constructor(amoSubdomain) {
         this.amoSubdomain = amoSubdomain;
         this.params = {
-            path: ''
-        }
+            path: '',
+        };
     }
 
     system() {
         return {
             subdomain: this.amoSubdomain,
-            domain: `${this.amoSubdomain}.amocrm.ru`
+            domain: `${this.amoSubdomain}.amocrm.ru`,
         };
     }
 
@@ -25,5 +25,16 @@ export default class WidgetMock {
     render({data}, params) {
         const template = twig.twig({data});
         return template.render(params);
+    }
+
+    renderTmpl(tmpl, data) {
+        return this.render(
+            { data: tmpl },
+            data,
+        );
+    }
+
+    get langs() {
+        return lang;
     }
 }

@@ -3,6 +3,7 @@ const {merge} = require("webpack-merge");
 
 const path = require('path');
 const TerserPlugin = require("terser-webpack-plugin");
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const PROJECT_ROOT = path.resolve(__dirname, '../');
 const ENTRY_FILE = path.resolve(PROJECT_ROOT, '/src/index.js');
@@ -34,5 +35,16 @@ module.exports = merge(BaseConfig, {
             extractComments: false,
             include: /\.min\.js$/,
         })],
-    }
+    },
+
+    plugins: [
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'static',
+            openAnalyzer: false,
+            reportFilename: path.resolve(__dirname, '../bundle_report/report.html'),
+            generateStatsFile: true,
+            statsFilename: path.resolve(__dirname, '../bundle_report/stats.json')
+
+        }),
+    ]
 });

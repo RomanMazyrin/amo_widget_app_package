@@ -1,52 +1,65 @@
 {
     "widget": {
-        "name": "Поиск дублей",
-        "short_description": "Поиск дублей",
-        "description": "Условия поиска выставляются в настройках виджета (в данном окне после установки)<br><br>Виджет поможет вам найти:<br>- дубли сделок по прикрепленному контакту/компании<br>- дубли сделок по полям сделок<br>- дубли контактов по полям контакта<br>- дубли компаний по полям компаний<br><br>Будьте внимательны, виджет не запускается в разделе \"Все контакты и компании\"",
-        "tour_description": "Условия поиска выставляются в настройках виджета (в данном окне после установки)<br><br>Виджет поможет вам найти:<br>- дубли сделок по прикрепленному контакту/компании<br>- дубли сделок по полям сделок<br>- дубли контактов по полям контакта<br>- дубли компаний по полям компаний<br><br>Будьте внимательны, виджет не запускается в разделе \"Все контакты и компании\""
+        "name": "Тестовый виджет",
+        "short_description": "Тестовый виджет",
+        "description": "Тестовый виджет",
+        "tour_description": "Тестовый виджет"
     },
+    
     "settings": {
         "phone": "Телефон"
     },
-    "settings_panel": {
-        "video_instruction_title": "Видео-инструкция",
-        "video_instruction_link": "https://www.youtube.com/embed/j33JVmOpe14",
-        "help_form": {
-            "success_msg": "Мы скоро с вами свяжемся! ;)",
-            "submit_button_text": "Решить вопрос",
-            "title_text": "Есть вопросы по настройке, установке или оплате? Свяжитесь с нами или оставьте свой телефон",
-            "contacts": {
-                "phone": "+7 999 333-15-42",
+
+    "components": {
+        "video_instruction": {
+            "title": "Видео-инструкция",
+            "link": "https://www.youtube.com/embed/oNjq8SUArRU"
+        },
+        "settings_phone_field": {
+            "need_to_fill": "Необходимо корректно заполнить поле"
+        },
+        "settings_buttons": {
+            "auth_btn": "Авторизовать виджет"
+        },
+        "settings_contact_form": {
+            "text": "Есть вопросы по настройке, установке или оплате? Свяжитесь с нами или оставьте свой телефон",
+            "buttons": {
                 "telegram": {
-                    "label": "Telegram @DeltasalesBot",
-                    "username": "DeltasalesBot"
+                    "text": "Telegram Bot",
+                    "username": "mazyrin"
+                },
+                "whatsapp": {
+                    "text": "Whats App",
+                    "phone": "79258449201"
+                },
+                "email": {
+                    "text": "Почта",
+                    "email": "info@deltasales.ru"
+                },
+                "site": {
+                    "text": "Сайт",
+                    "link": "https://deltasales.ru"
                 }
+            },
+            "callback_form": {
+                "success_text": "Мы скоро с вами свяжемся!",
+                "fail_text": "Что-то пошло не так...",
+                "send_button_text": "Свяжитесь со мной",
+                "phone_field_placeholder": "+7 (999) 999-99-999"
             }
         },
-        "buttons": {
-            "auth_btn":  {
-                "text": "Авторизация",
-                "link": "https://deltasales.ru"
-            }
+        "subscription_manager": {
+            "statuses_texts": {
+                "demo": "Демо-период виджета до",
+                "free": "Виджет доступен",
+                "purchased": "Виджет приобретен",
+                "not_purchased": "Виджет не приобретен",
+                "subscription": "Срок действия виджета до"
+            },
+            "need_to_fill_settings_error": "Необходимо заполнить данные в настройках"
         },
         "settings_footer": {
-            "text": "По всем вопросам обращайтесь на сайт или почту",
-            "email": "info@deltasales.ru"
-        }
-    },
-    "errors": {
-        "need_to_fill_settings_error": "Необходимо заполнить данные в панели настроек виджета",
-        "need_to_fill_phone_field": "Введите корректный номер телефона"
-    },
-    "subscription_status_messages": {
-        "demo": "Демо-период виджета до",
-        "free": "Виджет доступен",
-        "purchased": "Виджет приобретен",
-        "not_purchased": "Виджет не приобретен",
-        "subscription": "Срок действия виджета до",
-        "subscription_info_model": {
-            "expired_text": "Виджет не активен",
-            "not_expired_text": "Виджет активен"
+            "text": "По любым вопросам обращайтесь на нашу почту или на сайте"
         }
     }
 }
