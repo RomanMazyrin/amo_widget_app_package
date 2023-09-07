@@ -1651,7 +1651,7 @@ class Notificator {
       text: `<b style="font-weight:900">${this.header}</b>: ${text}`,
       gravity: 'bottom',
       position: 'right',
-      duration: 15000,
+      duration: 5000,
       style: {
         ...BASE_STYLE,
         ...typeStyle
@@ -15024,14 +15024,16 @@ var __webpack_exports__ = {};
 /* harmony import */ var _WidgetComponents_SettingsSaver_SettingsSaverComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1787);
 /* harmony import */ var _WidgetComponents_SubscriptionManager_SubscriptionManagerComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6192);
 /* harmony import */ var _WidgetComponents_VideoInstruction_VideoInstructionComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6994);
-/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(3871);
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(3871);
 /* harmony import */ var _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1892);
 /* harmony import */ var _helpers_Request__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(4125);
 /* harmony import */ var _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(6816);
 /* harmony import */ var _WidgetComponents_SettingsFooter_SettingsFooterComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(167);
 /* harmony import */ var _helpers_ReactDOMRender__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(3746);
-/* harmony import */ var _helpers_ObjectUtils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(854);
+/* harmony import */ var _helpers_ObjectUtils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(854);
 /* harmony import */ var _helpers_Formatters__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(2867);
+/* harmony import */ var _EventMixin__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(3556);
+
 
 
 
@@ -15056,13 +15058,14 @@ var __webpack_exports__ = {};
   SettingsSaverComponent: _WidgetComponents_SettingsSaver_SettingsSaverComponent__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z,
   SettingsFooterComponent: _WidgetComponents_SettingsFooter_SettingsFooterComponent__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z,
   createWidget: _createWidget__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z,
-  WidgetLifecycleEvents: _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z,
+  WidgetLifecycleEvents: _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_14__/* ["default"] */ .Z,
   WidgetComponent: _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z,
   Request: _helpers_Request__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z,
   TemplateRenderHelpers: _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z,
   ReactDOMRender: _helpers_ReactDOMRender__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z,
-  ObjectUtils: _helpers_ObjectUtils__WEBPACK_IMPORTED_MODULE_14__/* ["default"] */ .Z,
-  Formatters: _helpers_Formatters__WEBPACK_IMPORTED_MODULE_12__/* ["default"] */ .Z
+  ObjectUtils: _helpers_ObjectUtils__WEBPACK_IMPORTED_MODULE_15__/* ["default"] */ .Z,
+  Formatters: _helpers_Formatters__WEBPACK_IMPORTED_MODULE_12__/* ["default"] */ .Z,
+  EventMixin: _EventMixin__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z
 });
 })();
 

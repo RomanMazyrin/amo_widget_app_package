@@ -1,8 +1,8 @@
 {
-  "hash": "a756a8f4f7dafc2dab5b",
+  "hash": "871a7db67d512a86277e",
   "version": "5.88.2",
-  "time": 4277,
-  "builtAt": 1690561474117,
+  "time": 4170,
+  "builtAt": 1694103799654,
   "publicPath": "auto",
   "outputPath": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/dist",
   "assetsByChunkName": {
@@ -17,13 +17,13 @@
     {
       "type": "asset",
       "name": "build.js",
-      "size": 780942,
+      "size": 781115,
       "emitted": true,
       "comparedForEmit": false,
       "cached": false,
       "info": {
         "javascriptModule": false,
-        "size": 780942
+        "size": 781115
       },
       "chunkNames": [
         "build"
@@ -42,14 +42,14 @@
     {
       "type": "asset",
       "name": "build.min.js",
-      "size": 423620,
+      "size": 423644,
       "emitted": true,
       "comparedForEmit": false,
       "cached": false,
       "info": {
         "javascriptModule": false,
         "minimized": true,
-        "size": 423620
+        "size": 423644
       },
       "chunkNames": [
         "build.min"
@@ -72,9 +72,9 @@
       "initial": true,
       "entry": true,
       "recorded": false,
-      "size": 705132,
+      "size": 705184,
       "sizes": {
-        "javascript": 704090,
+        "javascript": 704142,
         "runtime": 1042
       },
       "names": [
@@ -88,7 +88,7 @@
         "build.min.js"
       ],
       "auxiliaryFiles": [],
-      "hash": "8e77ab99eb995590a51a",
+      "hash": "d9f2cb75fca566282ccb",
       "childrenByOrder": {},
       "id": 582,
       "siblings": [],
@@ -14728,25 +14728,20 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
-          "issuerName": "./src/createWidget.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+          "issuerName": "./src/index.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
               "name": "./src/index.js",
               "id": 5579
-            },
-            {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
-              "name": "./src/createWidget.js",
-              "id": 4471
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 3556,
-          "issuerId": 4471,
+          "issuerId": 5579,
           "chunks": [
             582,
             807
@@ -14780,6 +14775,34 @@
               "loc": "13:24-34",
               "moduleId": 4471,
               "resolvedModuleId": 4471
+            },
+            {
+              "moduleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "resolvedModuleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+              "resolvedModule": "./src/index.js",
+              "type": "harmony side effect evaluation",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./EventMixin",
+              "loc": "16:0-38",
+              "moduleId": 5579,
+              "resolvedModuleId": 5579
+            },
+            {
+              "moduleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "resolvedModuleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+              "resolvedModule": "./src/index.js",
+              "type": "harmony import specifier",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./EventMixin",
+              "loc": "33:2-12",
+              "moduleId": 5579,
+              "resolvedModuleId": 5579
             }
           ],
           "usedExports": [
@@ -14791,7 +14814,7 @@
           "optimizationBailout": [
             "Statement (VariableDeclaration) with side effects in source code at 1:0-26:2"
           ],
-          "depth": 2
+          "depth": 1
         },
         {
           "type": "module",
@@ -14860,7 +14883,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SettingsButtons/SettingsButtonsComponent",
-              "loc": "19:2-26",
+              "loc": "20:2-26",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -15454,7 +15477,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SettingsContactForm/SettingsContactFormComponent",
-              "loc": "18:2-30",
+              "loc": "19:2-30",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -15630,7 +15653,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SettingsFooter/SettingsFooterComponent",
-              "loc": "23:2-25",
+              "loc": "24:2-25",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -15889,7 +15912,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SettingsPhoneField/SettingsPhoneFieldComponent",
-              "loc": "21:2-29",
+              "loc": "22:2-29",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -15972,7 +15995,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SettingsSaver/SettingsSaverComponent",
-              "loc": "22:2-24",
+              "loc": "23:2-24",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -16055,7 +16078,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SubscriptionManager/SubscriptionManagerComponent",
-              "loc": "20:2-30",
+              "loc": "21:2-30",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -16471,8 +16494,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
-          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -16490,16 +16513,16 @@
               "id": 9200
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
-              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
-              "id": 1408
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+              "id": 1098
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2161,
-          "issuerId": 1408,
+          "issuerId": 1098,
           "chunks": [
             582,
             807
@@ -16990,7 +17013,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/VideoInstruction/VideoInstructionComponent",
-              "loc": "17:2-27",
+              "loc": "18:2-27",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -17357,7 +17380,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/WidgetComponent",
-              "loc": "26:2-17",
+              "loc": "27:2-17",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -17762,7 +17785,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetLifecycleEvents",
-              "loc": "25:2-23",
+              "loc": "26:2-23",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -18763,7 +18786,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./createWidget",
-              "loc": "24:2-14",
+              "loc": "25:2-14",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -18846,7 +18869,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./helpers/Formatters",
-              "loc": "31:2-12",
+              "loc": "32:2-12",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -18866,9 +18889,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 647,
+          "size": 646,
           "sizes": {
-            "javascript": 647
+            "javascript": 646
           },
           "built": true,
           "codeGenerated": true,
@@ -19045,7 +19068,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./helpers/ObjectUtils",
-              "loc": "30:2-13",
+              "loc": "31:2-13",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -19126,7 +19149,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./helpers/ReactDOMRender",
-              "loc": "29:2-16",
+              "loc": "30:2-16",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -19293,7 +19316,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./helpers/Request",
-              "loc": "27:2-9",
+              "loc": "28:2-9",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -19758,7 +19781,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./helpers/TemplateRenderHelpers",
-              "loc": "28:2-23",
+              "loc": "29:2-23",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -19778,9 +19801,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 1524,
+          "size": 1577,
           "sizes": {
-            "javascript": 1524
+            "javascript": 1577
           },
           "built": true,
           "codeGenerated": true,
@@ -19873,7 +19896,7 @@
             "default"
           ],
           "optimizationBailout": [
-            "Statement (ExportDefaultDeclaration) with side effects in source code at 16:0-32:2"
+            "Statement (ExportDefaultDeclaration) with side effects in source code at 17:0-34:2"
           ],
           "depth": 0
         },
@@ -20963,9 +20986,9 @@
       "initial": true,
       "entry": true,
       "recorded": false,
-      "size": 705132,
+      "size": 705184,
       "sizes": {
-        "javascript": 704090,
+        "javascript": 704142,
         "runtime": 1042
       },
       "names": [
@@ -20979,7 +21002,7 @@
         "build.js"
       ],
       "auxiliaryFiles": [],
-      "hash": "9419d620ba61756c0689",
+      "hash": "32e88ba9509f5e4b3cdc",
       "childrenByOrder": {},
       "id": 807,
       "siblings": [],
@@ -35619,25 +35642,20 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
-          "issuerName": "./src/createWidget.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+          "issuerName": "./src/index.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
               "name": "./src/index.js",
               "id": 5579
-            },
-            {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
-              "name": "./src/createWidget.js",
-              "id": 4471
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 3556,
-          "issuerId": 4471,
+          "issuerId": 5579,
           "chunks": [
             582,
             807
@@ -35671,6 +35689,34 @@
               "loc": "13:24-34",
               "moduleId": 4471,
               "resolvedModuleId": 4471
+            },
+            {
+              "moduleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "resolvedModuleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+              "resolvedModule": "./src/index.js",
+              "type": "harmony side effect evaluation",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./EventMixin",
+              "loc": "16:0-38",
+              "moduleId": 5579,
+              "resolvedModuleId": 5579
+            },
+            {
+              "moduleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "resolvedModuleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+              "resolvedModule": "./src/index.js",
+              "type": "harmony import specifier",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./EventMixin",
+              "loc": "33:2-12",
+              "moduleId": 5579,
+              "resolvedModuleId": 5579
             }
           ],
           "usedExports": [
@@ -35682,7 +35728,7 @@
           "optimizationBailout": [
             "Statement (VariableDeclaration) with side effects in source code at 1:0-26:2"
           ],
-          "depth": 2
+          "depth": 1
         },
         {
           "type": "module",
@@ -35751,7 +35797,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SettingsButtons/SettingsButtonsComponent",
-              "loc": "19:2-26",
+              "loc": "20:2-26",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -36345,7 +36391,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SettingsContactForm/SettingsContactFormComponent",
-              "loc": "18:2-30",
+              "loc": "19:2-30",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -36521,7 +36567,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SettingsFooter/SettingsFooterComponent",
-              "loc": "23:2-25",
+              "loc": "24:2-25",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -36780,7 +36826,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SettingsPhoneField/SettingsPhoneFieldComponent",
-              "loc": "21:2-29",
+              "loc": "22:2-29",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -36863,7 +36909,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SettingsSaver/SettingsSaverComponent",
-              "loc": "22:2-24",
+              "loc": "23:2-24",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -36946,7 +36992,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/SubscriptionManager/SubscriptionManagerComponent",
-              "loc": "20:2-30",
+              "loc": "21:2-30",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -37362,8 +37408,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
-          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -37381,16 +37427,16 @@
               "id": 9200
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
-              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
-              "id": 1408
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+              "id": 1098
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2161,
-          "issuerId": 1408,
+          "issuerId": 1098,
           "chunks": [
             582,
             807
@@ -37881,7 +37927,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/VideoInstruction/VideoInstructionComponent",
-              "loc": "17:2-27",
+              "loc": "18:2-27",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -38248,7 +38294,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetComponents/WidgetComponent",
-              "loc": "26:2-17",
+              "loc": "27:2-17",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -38653,7 +38699,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./WidgetLifecycleEvents",
-              "loc": "25:2-23",
+              "loc": "26:2-23",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -39654,7 +39700,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./createWidget",
-              "loc": "24:2-14",
+              "loc": "25:2-14",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -39737,7 +39783,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./helpers/Formatters",
-              "loc": "31:2-12",
+              "loc": "32:2-12",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -39757,9 +39803,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 647,
+          "size": 646,
           "sizes": {
-            "javascript": 647
+            "javascript": 646
           },
           "built": true,
           "codeGenerated": true,
@@ -39936,7 +39982,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./helpers/ObjectUtils",
-              "loc": "30:2-13",
+              "loc": "31:2-13",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -40017,7 +40063,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./helpers/ReactDOMRender",
-              "loc": "29:2-16",
+              "loc": "30:2-16",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -40184,7 +40230,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./helpers/Request",
-              "loc": "27:2-9",
+              "loc": "28:2-9",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -40649,7 +40695,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./helpers/TemplateRenderHelpers",
-              "loc": "28:2-23",
+              "loc": "29:2-23",
               "moduleId": 5579,
               "resolvedModuleId": 5579
             }
@@ -40669,9 +40715,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 1524,
+          "size": 1577,
           "sizes": {
-            "javascript": 1524
+            "javascript": 1577
           },
           "built": true,
           "codeGenerated": true,
@@ -40764,7 +40810,7 @@
             "default"
           ],
           "optimizationBailout": [
-            "Statement (ExportDefaultDeclaration) with side effects in source code at 16:0-32:2"
+            "Statement (ExportDefaultDeclaration) with side effects in source code at 17:0-34:2"
           ],
           "depth": 0
         },
@@ -41855,9 +41901,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 1524,
+      "size": 1577,
       "sizes": {
-        "javascript": 1524
+        "javascript": 1577
       },
       "built": true,
       "codeGenerated": true,
@@ -41949,7 +41995,7 @@
         "default"
       ],
       "optimizationBailout": [
-        "Statement (ExportDefaultDeclaration) with side effects in source code at 16:0-32:2"
+        "Statement (ExportDefaultDeclaration) with side effects in source code at 17:0-34:2"
       ],
       "depth": 0
     },
@@ -42019,7 +42065,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./createWidget",
-          "loc": "24:2-14",
+          "loc": "25:2-14",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -42032,6 +42078,116 @@
       ],
       "optimizationBailout": [
         "Dependency (harmony side effect evaluation) with side effects at 1:0-38"
+      ],
+      "depth": 1
+    },
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "layer": null,
+      "size": 742,
+      "sizes": {
+        "javascript": 742
+      },
+      "built": true,
+      "codeGenerated": true,
+      "buildTimeExecuted": false,
+      "cached": false,
+      "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/EventMixin.js",
+      "name": "./src/EventMixin.js",
+      "nameForCondition": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/EventMixin.js",
+      "index": 2,
+      "preOrderIndex": 2,
+      "index2": 0,
+      "postOrderIndex": 0,
+      "cacheable": true,
+      "optional": false,
+      "orphan": false,
+      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+      "issuerName": "./src/index.js",
+      "issuerPath": [
+        {
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+          "name": "./src/index.js",
+          "id": 5579
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": 3556,
+      "issuerId": 5579,
+      "chunks": [
+        582,
+        807
+      ],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
+          "module": "./src/createWidget.js",
+          "moduleName": "./src/createWidget.js",
+          "resolvedModuleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
+          "resolvedModule": "./src/createWidget.js",
+          "type": "harmony side effect evaluation",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./EventMixin",
+          "loc": "1:0-38",
+          "moduleId": 4471,
+          "resolvedModuleId": 4471
+        },
+        {
+          "moduleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
+          "module": "./src/createWidget.js",
+          "moduleName": "./src/createWidget.js",
+          "resolvedModuleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
+          "resolvedModule": "./src/createWidget.js",
+          "type": "harmony import specifier",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./EventMixin",
+          "loc": "13:24-34",
+          "moduleId": 4471,
+          "resolvedModuleId": 4471
+        },
+        {
+          "moduleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "resolvedModuleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+          "resolvedModule": "./src/index.js",
+          "type": "harmony side effect evaluation",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./EventMixin",
+          "loc": "16:0-38",
+          "moduleId": 5579,
+          "resolvedModuleId": 5579
+        },
+        {
+          "moduleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "resolvedModuleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
+          "resolvedModule": "./src/index.js",
+          "type": "harmony import specifier",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./EventMixin",
+          "loc": "33:2-12",
+          "moduleId": 5579,
+          "resolvedModuleId": 5579
+        }
+      ],
+      "usedExports": [
+        "default"
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [
+        "Statement (VariableDeclaration) with side effects in source code at 1:0-26:2"
       ],
       "depth": 1
     },
@@ -42129,7 +42285,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./helpers/ObjectUtils",
-          "loc": "30:2-13",
+          "loc": "31:2-13",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -42531,7 +42687,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./WidgetLifecycleEvents",
-          "loc": "25:2-23",
+          "loc": "26:2-23",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -42611,7 +42767,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./WidgetComponents/SettingsButtons/SettingsButtonsComponent",
-          "loc": "19:2-26",
+          "loc": "20:2-26",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -42875,7 +43031,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./helpers/TemplateRenderHelpers",
-          "loc": "28:2-23",
+          "loc": "29:2-23",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -43153,7 +43309,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./WidgetComponents/WidgetComponent",
-          "loc": "26:2-17",
+          "loc": "27:2-17",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -43235,7 +43391,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./WidgetComponents/SettingsContactForm/SettingsContactFormComponent",
-          "loc": "18:2-30",
+          "loc": "19:2-30",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -43401,7 +43557,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./helpers/Request",
-          "loc": "27:2-9",
+          "loc": "28:2-9",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -43483,7 +43639,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./WidgetComponents/SettingsPhoneField/SettingsPhoneFieldComponent",
-          "loc": "21:2-29",
+          "loc": "22:2-29",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -43565,7 +43721,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./WidgetComponents/SettingsSaver/SettingsSaverComponent",
-          "loc": "22:2-24",
+          "loc": "23:2-24",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -43647,7 +43803,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./WidgetComponents/SubscriptionManager/SubscriptionManagerComponent",
-          "loc": "20:2-30",
+          "loc": "21:2-30",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -43729,7 +43885,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./WidgetComponents/VideoInstruction/VideoInstructionComponent",
-          "loc": "17:2-27",
+          "loc": "18:2-27",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -43811,7 +43967,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./WidgetComponents/SettingsFooter/SettingsFooterComponent",
-          "loc": "23:2-25",
+          "loc": "24:2-25",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -43893,7 +44049,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./helpers/ReactDOMRender",
-          "loc": "29:2-16",
+          "loc": "30:2-16",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -43975,7 +44131,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./helpers/Formatters",
-          "loc": "31:2-12",
+          "loc": "32:2-12",
           "moduleId": 5579,
           "resolvedModuleId": 5579
         }
@@ -43990,93 +44146,6 @@
         "Statement (VariableDeclaration) with side effects in source code at 10:0-12:2"
       ],
       "depth": 1
-    },
-    {
-      "type": "module",
-      "moduleType": "javascript/auto",
-      "layer": null,
-      "size": 742,
-      "sizes": {
-        "javascript": 742
-      },
-      "built": true,
-      "codeGenerated": true,
-      "buildTimeExecuted": false,
-      "cached": false,
-      "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/EventMixin.js",
-      "name": "./src/EventMixin.js",
-      "nameForCondition": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/EventMixin.js",
-      "index": 2,
-      "preOrderIndex": 2,
-      "index2": 0,
-      "postOrderIndex": 0,
-      "cacheable": true,
-      "optional": false,
-      "orphan": false,
-      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
-      "issuerName": "./src/createWidget.js",
-      "issuerPath": [
-        {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
-          "name": "./src/index.js",
-          "id": 5579
-        },
-        {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
-          "name": "./src/createWidget.js",
-          "id": 4471
-        }
-      ],
-      "failed": false,
-      "errors": 0,
-      "warnings": 0,
-      "id": 3556,
-      "issuerId": 4471,
-      "chunks": [
-        582,
-        807
-      ],
-      "assets": [],
-      "reasons": [
-        {
-          "moduleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
-          "module": "./src/createWidget.js",
-          "moduleName": "./src/createWidget.js",
-          "resolvedModuleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
-          "resolvedModule": "./src/createWidget.js",
-          "type": "harmony side effect evaluation",
-          "active": true,
-          "explanation": "",
-          "userRequest": "./EventMixin",
-          "loc": "1:0-38",
-          "moduleId": 4471,
-          "resolvedModuleId": 4471
-        },
-        {
-          "moduleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
-          "module": "./src/createWidget.js",
-          "moduleName": "./src/createWidget.js",
-          "resolvedModuleIdentifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/createWidget.js",
-          "resolvedModule": "./src/createWidget.js",
-          "type": "harmony import specifier",
-          "active": true,
-          "explanation": "",
-          "userRequest": "./EventMixin",
-          "loc": "13:24-34",
-          "moduleId": 4471,
-          "resolvedModuleId": 4471
-        }
-      ],
-      "usedExports": [
-        "default"
-      ],
-      "providedExports": [
-        "default"
-      ],
-      "optimizationBailout": [
-        "Statement (VariableDeclaration) with side effects in source code at 1:0-26:2"
-      ],
-      "depth": 2
     },
     {
       "type": "module",
@@ -47441,9 +47510,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 647,
+      "size": 646,
       "sizes": {
-        "javascript": 647
+        "javascript": 646
       },
       "built": true,
       "codeGenerated": true,
@@ -58570,8 +58639,8 @@
       "cacheable": true,
       "optional": false,
       "orphan": false,
-      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
-      "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+      "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
       "issuerPath": [
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -58589,16 +58658,16 @@
           "id": 9200
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
-          "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
-          "id": 1408
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "id": 1098
         }
       ],
       "failed": false,
       "errors": 0,
       "warnings": 0,
       "id": 2161,
-      "issuerId": 1408,
+      "issuerId": 1098,
       "chunks": [
         582,
         807
@@ -63167,11 +63236,11 @@
       "assets": [
         {
           "name": "build.js",
-          "size": 780942
+          "size": 781115
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 780942,
+      "assetsSize": 781115,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
@@ -63187,11 +63256,11 @@
       "assets": [
         {
           "name": "build.min.js",
-          "size": 423620
+          "size": 423644
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 423620,
+      "assetsSize": 423644,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
@@ -63209,11 +63278,11 @@
       "assets": [
         {
           "name": "build.js",
-          "size": 780942
+          "size": 781115
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 780942,
+      "assetsSize": 781115,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
@@ -63229,11 +63298,11 @@
       "assets": [
         {
           "name": "build.min.js",
-          "size": 423620
+          "size": 423644
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 423620,
+      "assetsSize": 423644,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
@@ -63247,15 +63316,15 @@
   "warnings": [
     {
       "message": "asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).\nThis can impact web performance.\nAssets: \n  build.js (763 KiB)\n  build.min.js (414 KiB)",
-      "stack": "AssetsOverSizeLimitWarning: asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).\nThis can impact web performance.\nAssets: \n  build.js (763 KiB)\n  build.min.js (414 KiB)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/performance/SizeLimitsPlugin.js:134:7\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:9:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/Hook.js:18:14)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:882:27\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:2818:7\n    at done (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:3522:9)\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:6:1)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:736:33\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:143:16\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:61:14\n    at FSReqCallback.oncomplete (node:fs:187:23)"
+      "stack": "AssetsOverSizeLimitWarning: asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).\nThis can impact web performance.\nAssets: \n  build.js (763 KiB)\n  build.min.js (414 KiB)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/performance/SizeLimitsPlugin.js:134:7\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:9:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/Hook.js:18:14)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:882:27\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:2818:7\n    at done (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:3522:9)\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:6:1)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:736:33\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:143:16\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:61:14\n    at FSReqCallback.oncomplete (node:fs:200:23)"
     },
     {
       "message": "entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.\nEntrypoints:\n  build (763 KiB)\n      build.js\n  build.min (414 KiB)\n      build.min.js\n",
-      "stack": "EntrypointsOverSizeLimitWarning: entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.\nEntrypoints:\n  build (763 KiB)\n      build.js\n  build.min (414 KiB)\n      build.min.js\n\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/performance/SizeLimitsPlugin.js:142:7\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:9:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/Hook.js:18:14)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:882:27\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:2818:7\n    at done (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:3522:9)\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:6:1)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:736:33\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:143:16\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:61:14\n    at FSReqCallback.oncomplete (node:fs:187:23)"
+      "stack": "EntrypointsOverSizeLimitWarning: entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.\nEntrypoints:\n  build (763 KiB)\n      build.js\n  build.min (414 KiB)\n      build.min.js\n\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/performance/SizeLimitsPlugin.js:142:7\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:9:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/Hook.js:18:14)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:882:27\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:2818:7\n    at done (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:3522:9)\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:6:1)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:736:33\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:143:16\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:61:14\n    at FSReqCallback.oncomplete (node:fs:200:23)"
     },
     {
       "message": "webpack performance recommendations: \nYou can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.\nFor more info visit https://webpack.js.org/guides/code-splitting/",
-      "stack": "NoAsyncChunksWarning: webpack performance recommendations: \nYou can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.\nFor more info visit https://webpack.js.org/guides/code-splitting/\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/performance/SizeLimitsPlugin.js:156:21\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:9:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/Hook.js:18:14)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:882:27\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:2818:7\n    at done (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:3522:9)\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:6:1)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:736:33\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:143:16\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:61:14\n    at FSReqCallback.oncomplete (node:fs:187:23)"
+      "stack": "NoAsyncChunksWarning: webpack performance recommendations: \nYou can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.\nFor more info visit https://webpack.js.org/guides/code-splitting/\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/performance/SizeLimitsPlugin.js:156:21\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:9:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/Hook.js:18:14)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:882:27\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:2818:7\n    at done (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/neo-async/async.js:3522:9)\n    at Hook.eval [as callAsync] (eval at create (/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:6:1)\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/webpack/lib/Compiler.js:736:33\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:143:16\n    at /Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/graceful-fs/graceful-fs.js:61:14\n    at FSReqCallback.oncomplete (node:fs:200:23)"
     }
   ],
   "warningsCount": 3,

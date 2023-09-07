@@ -22,7 +22,7 @@ export default class Notificator {
             text: `<b style="font-weight:900">${this.header}</b>: ${text}`,
             gravity: 'bottom',
             position: 'right',
-            duration: 15000,
+            duration: 5000,
             style: { ...BASE_STYLE, ...typeStyle },
             escapeMarkup: false,
         }).showToast();

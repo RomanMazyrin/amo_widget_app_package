@@ -13,6 +13,7 @@ import SettingsFooterComponent from './WidgetComponents/SettingsFooter/SettingsF
 import ReactDOMRender from './helpers/ReactDOMRender';
 import ObjectUtils from './helpers/ObjectUtils';
 import Formatters from './helpers/Formatters';
+import EventMixin from './EventMixin';
 
 export default {
     VideoInstructionComponent,
@@ -30,4 +31,5 @@ export default {
     ReactDOMRender,
     ObjectUtils,
     Formatters,
+    EventMixin,
 };

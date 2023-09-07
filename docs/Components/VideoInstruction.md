@@ -1,37 +1,37 @@
 # Video Instruction Component
 
-## Описание
+## Description
 
-Компонент для рендеринга видеоинструкции в панели настроек виджета.
+Component for the only goal - to render video-instruction (youtube iframe) in the widget settings panel.
 
-## Параметры конфигурации
+## Configuration params
 
-- langPath - путь в языковом файле через dot-нотацию до языковых настроек компонента. По-умолчанию равен **'components.video_instruction'**.
+- langPath - dot-notated path to the component's texts in lang file . By default is equal to **'components.video_instruction'**.
 
-### *Пример*
+### *Example*
 
 ```json
-//файл виджета i18n/ru.json
+//Widget's file i18n/en.json
 
 {
     "widget": {
-        "name": "Тестовый виджет",
-        "short_description": "Тестовый виджет",
-        "description": "Тестовый виджет",
-        "tour_description": "Тестовый виджет"
+        "name": "Test widget",
+        "short_description": "Test widget",
+        "description": "Test widget",
+        "tour_description": "Test widget"
     },
     
     "settings": {
-        "phone": "Телефон"
+        "phone": "Phone number"
     },
 
     "components": {
         "instruction_for_dummies": {
-            "title": "Видео-инструкция",
+            "title": "Video-instruction",
             "link": "https://www.youtube.com/embed/oNjq8SUArRU"
         },
         "settings_phone_field": {
-            "need_to_fill": "Необходимо корректно заполнить поле"
+            "need_to_fill": "Field must be fulfilled properly"
         },
         // ...
     }
@@ -39,9 +39,9 @@
 
 ```
 
-При такой структуре языкового файла, параметр ```langPath``` должен быть 'components.instruction_for_dummies'. Либо можно в языковом файле создать путь **'components.video_instruction'** и параметр langPath не передавать.
+With the lang file configuration as above ```langPath``` parameter must be 'components.instruction_for_dummies'. The other way is to create lang texts under the path **'components.video_instruction'** in the lang files and do not pass param langPath at all, because it will be equal to **'components.video_instruction'** by default.
 
-## Параметры языкового файла
+## Lang files params
 
-- title - Заголовок компонента. Текст который выведется над iframe видео
-- link - Ссылка на встраиваемое видео на youtube.
+- title - Component title. The text above the video iframe.
+- link - Link of the youtube video that need to be embedded.

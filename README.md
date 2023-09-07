@@ -1,6 +1,6 @@
 # Amocrm widget framework
 
-Библиотека предназначенная для того, чтобы ускорить и облегчить разработку виджетов для amoCRM.
+Library to make amoCRM widgets development easier and faster. Includes often used components that essential for widget core functionality.
 
 <br>
 
@@ -15,32 +15,32 @@
 
 <br>
 
-## Содержание
-- [Установка](#установка)
-- [Использование в проекте](#использование-в-проекте)
-- [Как устроена и работает библиотека](#как-устроена-и-работает-библиотека)
-- [Пример конфигурации](#пример-конфигурации)
-- [Компоненты](#компоненты)
-  - [Что такое компонент](#что-такое-компонент)
-  - [Конфигурация компонента](#конфигурация-компонента)
-  - [Готовые компоненты библиотеки](#готовые-компоненты-библиотеки)
-  - [Создание своего компонента](#создание-своего-компонента)
-- [События виджета](#события-виджета)
-  - [Список событий виджета](#список-событий-виджета)
-  - [Аргументы коллбека события](#аргументы-коллбека-события)
+## Table of contents
+- [Install](#Install)
+- [Using](#Using)
+- [How it works](#how-the-library-works)
+- [Configuration example](#configuration-example)
+- [Components](#components)
+  - [What is a component](#what-is-a-component)
+  - [Component's configuration](#component's-configuration)
+  - [Built-in library components](#built-in-library-components )
+  - [Custom component creating](#custom-component-creating)
+- [Widget events](#widget-events)
+  - [Widget events list](#widget-events-list)
+  - [Event handler arguments](#event-handler-arguments)
 
 
-## Установка
+## Install
 
-Установка производится с помощью менеджера пакетов [npm](https://www.npmjs.com/)
+Installation by NPM package manager [npm](https://www.npmjs.com/)
 
 ```bash
 npm install --save amocrm_widget_framework
 ```
 
-## Использование в проекте
+## Using
 
-Конечный файл библиотеки собирается в формате UMD, что означает, что вы можете использовать его с любой модульной системой. Здесь и далее все инструкции будут показаны на примере модулей ES6.
+Destination main file of the lib is built in UMD format. That means you can use this lib with any module system you are used to work with. All the next documentation examples are shown for ES6 modules.
 
 ```js
 import {
@@ -55,24 +55,24 @@ import {
 } from 'amocrm_widget_framework';
 ```
 
-Но так же можно подключать данную библиотеку через AMD (define/require), CommonJS (require) и даже напрямую на странице (будет доступна как глобальная переменная ```amocrm_widget_lib```).
+But you can import this lib via  AMD (define/require), CommonJS (require) and even include destination script direct on a web page and use components via global variable ```amocrm_widget_lib```).
 
-## Как устроена и работает библиотека
+## How the library works
 
-В основе библиотеки лежит функция ```createWidget(config)```. Данная функция создает на основе переданной в нее конфигурации функцию-конструктор виджета, которая затем экспортируется в файле script.js.
+There is a core function inside the lib ```createWidget(config)```. That function creates and returns another constructor-function founded on the passed configuration. Result constructor-function has to be imported in script.js file.
 
-Конфигурация виджета содержит следующее:
+Widget configuration includes:
 
-1. Компоненты виджета (components)
-1. Обработчики событий виджета (events)
+1. Widget components (components)
+1. Widget lifecycle events handlers (events)
 
-При инициализации виджета внутри amoCRM (то бишь при создании экземпляра виджета) происходит несколько вещей:
+During the widget initialization inside amoCRM (i. e. widget instance is being creating) some things happen:
 
-1. Создаются экземпляры компонентов переданные в конфигурации. Данные экземпляры подписываются на события виджета.
-1. Переданные в конфигурации обработчики событий (events) так же подписываются на события виджета.
-1. Создается набор коллбеков. Внутри коллбеков происходит всего лишь вызов определенного события, соответствующего коллбеку, и внутрь события передается название события и инстанс виджета.
+1. Instances of components from the configuration is being creating. Those instances subscribes on widget events after that.
+1. Events handlers from configuration subscribes on widget events as well.
+1. All neccessary callbacks is being creating in the widget instance attribute 'callbacks'. The only thing happens inside those callbacks is to call the exact event corresponpding to that callback and pass the event name and widget instance inside that event.
 
-## Пример конфигурации
+## Configuration example
 
 ```javascript
 const config = {
@@ -185,34 +185,34 @@ const config = {
 };
 ```
 
-## Компоненты
+## Components
 
-### Что такое компонент
+### What is a component?
 
-Компонент в рамках данной библиотеки - это сущность, которая инициализируется один раз при создании виджета, подписывается на его события и затем реагирует на срабатывание событий. Инстанс компонента доступен из инстанса виджета через метод ```component(componentName)```.
+By "component" inside this lib we mean some instance that initializes once during the widget creation, subscribes on widget events and handles events triggers after that. Components instances are available by calling widget method ```component(componentName)```.
 
 ```javascript
 const sm = widget.component('subscriptionManager');
 const status = await sm.getStatus();
 ```
 
-При создании инстанса компонента (которое происходит во время создания экземпляра виджета) в конструктор компонента первым аргументом передается экземпляр самого виджета, и вторым аргументом набор параметров указанных в конфигурации под ключом ```params```.
+During the component creation (which happens in the middle of widget instance creating process) two arguments are passed in the component constructor. The first - instance of the widget itself. The second - set of parametees from configuration under the ```params``` key.
 
-По сути компонент это то, что:
+In one word, component is a thing which:
 
-1. Должно быть в одном экземпляре.
-1. Должно быть доступно глобально в рамках виджета.
-1. Умеет (но не обязан) подписываться на события виджета и запускать свой функционал в ответ на события.
+1. Has to be instantiated only once.
+1. Has to be available globally within widget.
+1. Can (but not must) subscribe on widget events and execute handlers on those events.
 
-### Конфигурация компонента
+### Component's configuration
 
-Конфигурация компонента состоит из трех вещей:
+Component's configuration consists of 3 main parts:
 
-1. Ключ компонента в конфигруации. По данному ключу данный компонент затем будет доступен при вызове его из виджета ```widget.component('subscriptionManager')```.
-1. Параметр ```class```. В данный параметр следуюет передавать класс, который наследуется от класса WidgetComponent.
-1. Параметр ```params```. Данный параметр является объектом, который передается в конструктор компонента вторым аргументом в том же виде, в котором он представлен в конфигурации.
+1. Components's key in configuration. That key is neccessary for further component getting from the widget by ```widget.component('keyFromConfiguration')``` method.
+1. Parameter ```class```. This parameter accepts class that is inherited from WidgetComponent class.
+1. Parameter ```params```. This parameter is an object which is passed to the component's constructor in the exact same structure it is presented in configuration.
 
-**Пример конфигурации отдельного компонента:**
+**Component configuration example:**
 
 ```javascript
 settingsFooter: {
@@ -226,9 +226,9 @@ settingsFooter: {
 }
 ```
 
-При инициализации виджета, будет создан экземпляр класса SettingsFooterComponent, указанный под ключом ```class```. При создании экземпляра в него будет передан инстанс виджета и объект, который содержится под ключом ```params```. В дальнейшем можно будет обращаться к данному компоненту через ```widget.component('settingsFooter')```.
+The instance of class SettingsFooterComponent will be created on widget initialization. While instance is being creating it accepts widget instance and an object under the key ```params```. In further you can retrieve component instance by calling  ```widget.component('settingsFooter')```.
 
-### Готовые компоненты библиотеки
+### Built-in library components
 
 - [VideoInstruction](docs/Components/VideoInstruction.md)
 - SettingsContactForm
@@ -239,12 +239,12 @@ settingsFooter: {
 - SettingsSaver
 - SettingsFooter
 
-Подробная инструкция по каждому отдельному компоненту доступна по ссылкам.
+Detailed instructions of each component are available on links.
 
-### Создание своего компонента
+### Custom component creating
 
-1. Создать класс компонента. Унаследовать его от ```WidgetComponent```
-1. Переопределить метод ```getWidgetEventsCallbacks()```.
+1. Create component class. Inherit it from ```WidgetComponent```
+1. Override the method ```getWidgetEventsCallbacks()```.
 
 ```javascript
 import WidgetLifecycleEvents from 'amocrm_widget_framework';
@@ -268,7 +268,7 @@ class MyOwnComponent extends WidgetComponent {
 }
 ```
 
-3. Для дальнейшего использования в проекте необходимо добавить новый компонент в конфигурацию при создании через ```createWidget```
+3. For further using you have to add your new component in the configuration of ```createWidget``` method;
 
 ```javascript
 const config = {
@@ -285,37 +285,37 @@ const config = {
 };
 ```
 
-## События виджета
+## Widget events
 
-Виджет в amoCRM работает на основе вызова коллбеков в определенные моменты времени. Подробнее об этом можно почитать в [основной документации к разработке виджетов](https://www.amocrm.ru/developers/content/integrations/script_js).
+AmoCRM widgets are working on callbacks runnig system. You can deep dive into that in the [major documentation] on the official amoCRM site(https://www.amocrm.ru/developers/content/integrations/script_js).
 
-Мы хотим, чтобы различные компоненты (зачастую не связанные между собой) могли слушать одни и те же события. Для этого был реализован механизм "событий". Когда вызывается определенный коллбек, виджет просто "излучает" событие, и те кто на него подписан, выполняют свой функционал.
+But we want different components (which often are not related with each other) to listen same events. For that purposes the "Events" mechanism was developed. When particular callback is called the widget just emit the "event" and those listeners which are subscribed on that event run their functional.
 
-Чтобы явно подписаться на определенные события виджета, в [конфигурации виджета](#пример-конфигурации) есть объект ```events```.
+There is an object ```events``` to subscribe on the particular widget events in the [configuration](#configuration-example).
 
-Ключами данного объекта являются события, на которые нужно подписаться, а значениями являются коллбеки, которые будут вызываться.
+Keys of that object are events names, and values are callbacks for those events.
 
-> **Важно!** Cначала на события реагируют компоненты, затем уже пользовательские коллбеки в ```events```
+> **Important!** Components handle events first, and only then ```events```.
 
-Подписаться на события можно двумя путями:
+There are two ways to subscribe on events:
 
-1. Создать свой компонент, прописать в нем коллбеки на определенные события, прописать компонент в конфиге.
-1. Создать коллбеки в объекте ```events```
+1. Create custom component with callbacks on particular events, pass component to configuration.
+1. Create callbacks in the ```events``` object;
 
-### Список событий виджета
+### Widget events list
 
-- EVENT_RENDER - срабатывает при вызове коллбека render()
-- EVENT_INIT - срабатывает при вызове коллбека init()
-- EVENT_SETTINGS - срабатывает при вызове коллбека settings()
-- EVENT_DP - срабатывает при вызове коллбека dpSettings()
-- EVENT_TAB - срабатывает при вызове коллбека loadPreloadedData()
-- EVENT_SAVE - срабатывает при вызове коллбека onSave()
+- EVENT_RENDER - Emited on render() callback
+- EVENT_INIT - Emited on init() callback
+- EVENT_SETTINGS - Emited on settings() callback
+- EVENT_DP - Emited on dpSettings() callback
+- EVENT_TAB - Emited on loadPreloadedData() callback
+- EVENT_SAVE - Emited on onSave() callback
 
-Все эти события прописаны в виде констант в объекте ```WidgetLifecycleEvents```
+All this events exists as constants in the object ```WidgetLifecycleEvents```
 
-### Аргументы коллбека события
+### Event handler arguments
 
-При срабатывании события в коллбек передается два аргумента:
+When handler handle event it accepts two arguments:
 
-1. Название события (см. список выше)
-1. Инстанс виджета.
+1. Event name (from the [list above](#widget-events-list))
+1. Widget instance.
