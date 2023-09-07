@@ -38,6 +38,8 @@ Installation by NPM package manager [npm](https://www.npmjs.com/)
 npm install --save amocrm_widget_framework
 ```
 
+You must include react in your project as well. Usually react is installed automatically as peer-dependency during ```npm install``` process. However, you must include React in your project explicitly, either in ES6 modules via ```import``` statement or in ```require``` function as a dependency or directly include react on a web page as third-party package.
+
 ## Using
 
 Destination main file of the lib is built in UMD format. That means you can use this lib with any module system you are used to work with. All the next documentation examples are shown for ES6 modules.
