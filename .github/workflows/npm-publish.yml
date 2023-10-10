@@ -1,0 +1,31 @@
+name: Publish NPM package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.release.target_commitish }}
+    - name: Use Node.js 18
+      uses: actions/setup-node@v1
+      with:
+        node-version: 18
+        registry-url: https://registry.npmjs.org/
+    - run: git config --global user.name "npm publish workflow bot"
+    - run: git config --global user.email "npm-publish-wf-bot@example.com"
+    - run: npm ci
+    - run: npm run build
+    - run: npm run test
+    - run: git commit --amend
+    - run: npm version ${{ github.event.release.tag_name }}
+    - run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - run: git push --follow-tags
+      env:
+        github-token: ${{ secrets.GITHUB_TOKEN }}

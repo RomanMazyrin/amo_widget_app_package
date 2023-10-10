@@ -1,13 +1,14 @@
 {
-    "name": "amocrm_widget_framework",
-    "version": "0.0.1",
-    "description": "",
+    "name": "@romanmazyrin/amocrm_widget_framework",
+    "version": "0.0.2",
+    "description": "Ready-to-use library to easy start your widget for amoCRM",
     "main": "./dist/build.min.js",
     "author": "Roman Mazyrin",
     "license": "MIT",
     "files": [
         "README.md",
-        "dist/"
+        "dist/",
+        "docs/"
     ],
     "scripts": {
         "prepare": "husky install",

@@ -1,6 +1,6 @@
 # Amocrm widget framework
 
-Library to make amoCRM widgets development easier and faster. Includes often used components that essential for widget core functionality.
+Library to make amoCRM widgets development easier and faster. Includes often used components that are essential for widget core functionality.
 
 <br>
 

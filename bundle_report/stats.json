@@ -1,8 +1,8 @@
 {
   "hash": "871a7db67d512a86277e",
   "version": "5.88.2",
-  "time": 4170,
-  "builtAt": 1694103799654,
+  "time": 4055,
+  "builtAt": 1696933506811,
   "publicPath": "auto",
   "outputPath": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/dist",
   "assetsByChunkName": {
@@ -16494,8 +16494,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -16513,16 +16513,16 @@
               "id": 9200
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-              "id": 1098
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+              "id": 1408
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2161,
-          "issuerId": 1098,
+          "issuerId": 1408,
           "chunks": [
             582,
             807
@@ -19355,8 +19355,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-          "issuerName": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+          "issuerName": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -19364,16 +19364,16 @@
               "id": 5579
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "id": 5272
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "id": 1937
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 9304,
-          "issuerId": 5272,
+          "issuerId": 1937,
           "chunks": [
             582,
             807
@@ -37408,8 +37408,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -37427,16 +37427,16 @@
               "id": 9200
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-              "id": 1098
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+              "id": 1408
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2161,
-          "issuerId": 1098,
+          "issuerId": 1408,
           "chunks": [
             582,
             807
@@ -40269,8 +40269,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-          "issuerName": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+          "issuerName": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -40278,16 +40278,16 @@
               "id": 5579
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "id": 5272
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "id": 1937
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 9304,
-          "issuerId": 5272,
+          "issuerId": 1937,
           "chunks": [
             582,
             807
@@ -44169,8 +44169,8 @@
       "cacheable": true,
       "optional": false,
       "orphan": false,
-      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-      "issuerName": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
+      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+      "issuerName": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
       "issuerPath": [
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -44178,16 +44178,16 @@
           "id": 5579
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-          "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-          "id": 5272
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+          "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+          "id": 1937
         }
       ],
       "failed": false,
       "errors": 0,
       "warnings": 0,
       "id": 9304,
-      "issuerId": 5272,
+      "issuerId": 1937,
       "chunks": [
         582,
         807
@@ -58639,8 +58639,8 @@
       "cacheable": true,
       "optional": false,
       "orphan": false,
-      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-      "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+      "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
       "issuerPath": [
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -58658,16 +58658,16 @@
           "id": 9200
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-          "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
-          "id": 1098
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+          "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/SubscriptionStatusChecker.js",
+          "id": 1408
         }
       ],
       "failed": false,
       "errors": 0,
       "warnings": 0,
       "id": 2161,
-      "issuerId": 1098,
+      "issuerId": 1408,
       "chunks": [
         582,
         807
