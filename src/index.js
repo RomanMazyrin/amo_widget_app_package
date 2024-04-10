@@ -4,6 +4,7 @@ import SettingsContactFormComponent from './WidgetComponents/SettingsContactForm
 import SettingsPhoneFieldComponent from './WidgetComponents/SettingsPhoneField/SettingsPhoneFieldComponent';
 import SettingsSaverComponent from './WidgetComponents/SettingsSaver/SettingsSaverComponent';
 import SubscriptionManagerComponent from './WidgetComponents/SubscriptionManager/SubscriptionManagerComponent';
+import SubscriptionStatus from './WidgetComponents/SubscriptionManager/SubscriptionStatus';
 import VideoInstructionComponent from './WidgetComponents/VideoInstruction/VideoInstructionComponent';
 import WidgetLifecycleEvents from './WidgetLifecycleEvents';
 import WidgetComponent from './WidgetComponents/WidgetComponent';
@@ -20,6 +21,7 @@ export default {
     SettingsContactFormComponent,
     SettingsButtonsComponent,
     SubscriptionManagerComponent,
+    SubscriptionStatus,
     SettingsPhoneFieldComponent,
     SettingsSaverComponent,
     SettingsFooterComponent,

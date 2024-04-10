@@ -69,6 +69,10 @@ const createWidget = (config) => {
                 self.trigger(WidgetLifecycleEvents.EVENT_DP, self);
             },
         };
+
+        if (config.afterBuild) {
+            config.afterBuild(this);
+        }
     }
 
     return WIDGET_CONSTRUCTOR;

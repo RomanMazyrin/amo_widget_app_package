@@ -1282,8 +1282,10 @@ class WidgetLifecycleEvents {
 /* harmony export */ });
 /* harmony import */ var _buttonModels_EmailButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(237);
 /* harmony import */ var _buttonModels_LinkButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5747);
+/* harmony import */ var _buttonModels_RegularButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5705);
 /* harmony import */ var _buttonModels_TelegramButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9090);
 /* harmony import */ var _buttonModels_WhatsappButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5454);
+
 
 
 
@@ -1292,7 +1294,8 @@ const BUTTONS_TYPES_CLASSES = {
   link: _buttonModels_LinkButton__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z,
   telegram: _buttonModels_TelegramButton__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z,
   whatsapp: _buttonModels_WhatsappButton__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z,
-  email: _buttonModels_EmailButton__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z
+  email: _buttonModels_EmailButton__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z,
+  button: _buttonModels_RegularButton__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z
 };
 class ButtonModelFactory {
   static createFromConfig(config) {
@@ -1475,6 +1478,27 @@ class LinkButton extends _ButtonModel__WEBPACK_IMPORTED_MODULE_0__/* ["default"]
 
 /***/ }),
 
+/***/ 5705:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (/* binding */ RegularButton)
+/* harmony export */ });
+/* harmony import */ var _ButtonModel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6686);
+
+class RegularButton extends _ButtonModel__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z {
+  constructor({
+    onClick,
+    ...base
+  } = {}) {
+    super(base);
+    this.onClick = onClick.bind(this);
+  }
+}
+
+/***/ }),
+
 /***/ 9090:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1589,6 +1613,9 @@ const createWidget = config => {
         self.trigger(_WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z.EVENT_DP, self);
       }
     };
+    if (config.afterBuild) {
+      config.afterBuild(this);
+    }
   }
   return WIDGET_CONSTRUCTOR;
 };
@@ -15023,16 +15050,18 @@ var __webpack_exports__ = {};
 /* harmony import */ var _WidgetComponents_SettingsPhoneField_SettingsPhoneFieldComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3703);
 /* harmony import */ var _WidgetComponents_SettingsSaver_SettingsSaverComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1787);
 /* harmony import */ var _WidgetComponents_SubscriptionManager_SubscriptionManagerComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6192);
-/* harmony import */ var _WidgetComponents_VideoInstruction_VideoInstructionComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6994);
-/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(3871);
-/* harmony import */ var _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1892);
-/* harmony import */ var _helpers_Request__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(4125);
-/* harmony import */ var _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(6816);
-/* harmony import */ var _WidgetComponents_SettingsFooter_SettingsFooterComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(167);
-/* harmony import */ var _helpers_ReactDOMRender__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(3746);
-/* harmony import */ var _helpers_ObjectUtils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(854);
-/* harmony import */ var _helpers_Formatters__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(2867);
-/* harmony import */ var _EventMixin__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(3556);
+/* harmony import */ var _WidgetComponents_SubscriptionManager_SubscriptionStatus__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9200);
+/* harmony import */ var _WidgetComponents_VideoInstruction_VideoInstructionComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(6994);
+/* harmony import */ var _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(3871);
+/* harmony import */ var _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1892);
+/* harmony import */ var _helpers_Request__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(4125);
+/* harmony import */ var _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(6816);
+/* harmony import */ var _WidgetComponents_SettingsFooter_SettingsFooterComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(167);
+/* harmony import */ var _helpers_ReactDOMRender__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(3746);
+/* harmony import */ var _helpers_ObjectUtils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(854);
+/* harmony import */ var _helpers_Formatters__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(2867);
+/* harmony import */ var _EventMixin__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(3556);
+
 
 
 
@@ -15050,22 +15079,23 @@ var __webpack_exports__ = {};
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  VideoInstructionComponent: _WidgetComponents_VideoInstruction_VideoInstructionComponent__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z,
+  VideoInstructionComponent: _WidgetComponents_VideoInstruction_VideoInstructionComponent__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z,
   SettingsContactFormComponent: _WidgetComponents_SettingsContactForm_SettingsContactFormComponent__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z,
   SettingsButtonsComponent: _WidgetComponents_SettingsButtons_SettingsButtonsComponent__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z,
   SubscriptionManagerComponent: _WidgetComponents_SubscriptionManager_SubscriptionManagerComponent__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z,
+  SubscriptionStatus: _WidgetComponents_SubscriptionManager_SubscriptionStatus__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z,
   SettingsPhoneFieldComponent: _WidgetComponents_SettingsPhoneField_SettingsPhoneFieldComponent__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z,
   SettingsSaverComponent: _WidgetComponents_SettingsSaver_SettingsSaverComponent__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z,
-  SettingsFooterComponent: _WidgetComponents_SettingsFooter_SettingsFooterComponent__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z,
+  SettingsFooterComponent: _WidgetComponents_SettingsFooter_SettingsFooterComponent__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z,
   createWidget: _createWidget__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z,
-  WidgetLifecycleEvents: _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_14__/* ["default"] */ .Z,
-  WidgetComponent: _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z,
-  Request: _helpers_Request__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z,
-  TemplateRenderHelpers: _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z,
-  ReactDOMRender: _helpers_ReactDOMRender__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z,
-  ObjectUtils: _helpers_ObjectUtils__WEBPACK_IMPORTED_MODULE_15__/* ["default"] */ .Z,
-  Formatters: _helpers_Formatters__WEBPACK_IMPORTED_MODULE_12__/* ["default"] */ .Z,
-  EventMixin: _EventMixin__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z
+  WidgetLifecycleEvents: _WidgetLifecycleEvents__WEBPACK_IMPORTED_MODULE_15__/* ["default"] */ .Z,
+  WidgetComponent: _WidgetComponents_WidgetComponent__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z,
+  Request: _helpers_Request__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z,
+  TemplateRenderHelpers: _helpers_TemplateRenderHelpers__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z,
+  ReactDOMRender: _helpers_ReactDOMRender__WEBPACK_IMPORTED_MODULE_12__/* ["default"] */ .Z,
+  ObjectUtils: _helpers_ObjectUtils__WEBPACK_IMPORTED_MODULE_16__/* ["default"] */ .Z,
+  Formatters: _helpers_Formatters__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z,
+  EventMixin: _EventMixin__WEBPACK_IMPORTED_MODULE_14__/* ["default"] */ .Z
 });
 })();
 
