@@ -5,6 +5,8 @@ const path = require("path");
 
 const localDevRootFolder = path.resolve(__dirname, '../local');
 
+BaseConfig.externals = {};
+
 module.exports = merge(BaseConfig, {
     context: localDevRootFolder,
     

@@ -6,13 +6,15 @@ export default class ReactDOMRender {
         const container = document.querySelector(selector);
         const domElement = document.createElement(domElementName);
         container.appendChild(domElement);
-        this.renderInElement(domElement, Component, props);
+        return this.renderInElement(domElement, Component, props);
     }
 
     static renderInElement(domElement, Component, props) {
-        createRoot(domElement).render(
+        const root = createRoot(domElement);
+        root.render(
             // eslint-disable-next-line react/jsx-props-no-spreading
             <Component {...props} />,
         );
+        return root;
     }
 }

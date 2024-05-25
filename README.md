@@ -28,6 +28,7 @@ Library to make amoCRM widgets development easier and faster. Includes often use
 - [Widget events](#widget-events)
   - [Widget events list](#widget-events-list)
   - [Event handler arguments](#event-handler-arguments)
+- [Built-in tools](#Built-in-tools)
 
 
 ## Install
@@ -321,3 +322,22 @@ When handler handle event it accepts two arguments:
 
 1. Event name (from the [list above](#widget-events-list))
 1. Widget instance.
+
+## Built-in tools
+
+### Modal
+
+Class for rendering modal window with content inside. Using:
+
+```javascript
+import Modal from 'amocrm_widget_framework';
+
+const modal = new Modal({
+    content: '<b style="font-size:30px">Hello</b>',
+    closeOnOverlayClick: true,
+    afterRender: (instance) => {
+    },
+    afterDestroy: (instance) => {
+    }
+});
+```

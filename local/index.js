@@ -1,7 +1,12 @@
-import Notificator from "../src/helpers/Notificator";
-
+import Modal from "../src/Modal/Modal";
 
 (async () => {
-	const n = new Notificator({header: 'WidgetName'});
-	n.showMessage('error', "Just test With a lot of descripiton about something yuo know!");
+
+    document.getElementById('open-modal').addEventListener('click', () => {
+        const modal = new Modal({
+            content: '<b style="font-size:30px">Hello</b>'
+        });
+    })
+
+    
 })();

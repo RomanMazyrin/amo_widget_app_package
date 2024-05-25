@@ -15,6 +15,7 @@ import ReactDOMRender from './helpers/ReactDOMRender';
 import ObjectUtils from './helpers/ObjectUtils';
 import Formatters from './helpers/Formatters';
 import EventMixin from './EventMixin';
+import Modal from './Modal/Modal';
 
 export default {
     VideoInstructionComponent,
@@ -34,4 +35,5 @@ export default {
     ObjectUtils,
     Formatters,
     EventMixin,
+    Modal,
 };
