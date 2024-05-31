@@ -5,6 +5,8 @@ export default class RegularButton extends ButtonModel {
         onClick, ...base
     } = {}) {
         super(base);
-        this.onClick = onClick.bind(this);
+        this.onClick = (e) => {
+            onClick({ e, widget: this.widget });
+        };
     }
 }

@@ -23,11 +23,13 @@ export default class Modal {
         closeOnOverlayClick = false,
         afterRender = () => {},
         afterDestroy = () => {},
+        containerStyle = {},
     }) {
         this.content = content;
         this.closeOnOverlayClick = closeOnOverlayClick;
         this.afterRender = afterRender;
         this.afterDestroy = afterDestroy;
+        this.containerStyle = containerStyle;
 
         const rootModalElement = document.createElement('div');
         rootModalElement.className = 'modal';
@@ -50,6 +52,7 @@ export default class Modal {
                     }
                 }
             },
+            containerStyle: this.containerStyle,
         });
         closeModal.setRootReact(root);
 

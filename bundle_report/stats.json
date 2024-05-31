@@ -1,8 +1,8 @@
 {
-  "hash": "d9a903c387dd69e1ea35",
+  "hash": "d68219810f936b5ec31e",
   "version": "5.88.2",
-  "time": 4157,
-  "builtAt": 1716672352579,
+  "time": 4702,
+  "builtAt": 1717166937661,
   "publicPath": "auto",
   "outputPath": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/dist",
   "assetsByChunkName": {
@@ -17,13 +17,13 @@
     {
       "type": "asset",
       "name": "build.js",
-      "size": 793654,
+      "size": 794002,
       "emitted": true,
       "comparedForEmit": false,
       "cached": false,
       "info": {
         "javascriptModule": false,
-        "size": 793654
+        "size": 794002
       },
       "chunkNames": [
         "build"
@@ -42,14 +42,14 @@
     {
       "type": "asset",
       "name": "build.min.js",
-      "size": 426846,
+      "size": 427044,
       "emitted": true,
       "comparedForEmit": false,
       "cached": false,
       "info": {
         "javascriptModule": false,
         "minimized": true,
-        "size": 426846
+        "size": 427044
       },
       "chunkNames": [
         "build.min"
@@ -72,9 +72,9 @@
       "initial": true,
       "entry": true,
       "recorded": false,
-      "size": 711653,
+      "size": 712001,
       "sizes": {
-        "javascript": 710611,
+        "javascript": 710959,
         "runtime": 1042
       },
       "names": [
@@ -88,7 +88,7 @@
         "build.min.js"
       ],
       "auxiliaryFiles": [],
-      "hash": "c7f37d6010e0e08719f4",
+      "hash": "53ff7d074757e4cb0dc9",
       "childrenByOrder": {},
       "id": 582,
       "siblings": [],
@@ -10183,14 +10183,9 @@
               "id": 7478
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/callBound.js",
-              "name": "./node_modules/call-bind/callBound.js",
-              "id": 1924
-            },
-            {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/index.js",
-              "name": "./node_modules/call-bind/index.js",
-              "id": 5559
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/get-intrinsic/index.js",
+              "name": "./node_modules/get-intrinsic/index.js",
+              "id": 210
             },
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/function-bind/index.js",
@@ -10269,8 +10264,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/index.js",
-          "issuerName": "./node_modules/call-bind/index.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/get-intrinsic/index.js",
+          "issuerName": "./node_modules/get-intrinsic/index.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -10298,21 +10293,16 @@
               "id": 7478
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/callBound.js",
-              "name": "./node_modules/call-bind/callBound.js",
-              "id": 1924
-            },
-            {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/index.js",
-              "name": "./node_modules/call-bind/index.js",
-              "id": 5559
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/get-intrinsic/index.js",
+              "name": "./node_modules/get-intrinsic/index.js",
+              "id": 210
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 8612,
-          "issuerId": 5559,
+          "issuerId": 210,
           "chunks": [
             582,
             807
@@ -11723,14 +11713,14 @@
               "id": 5579
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "id": 5272
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "id": 1937
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-              "name": "./src/buttons/ButtonsListView.jsx",
-              "id": 9960
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "name": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "id": 3129
             },
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/prop-types/index.js",
@@ -11809,8 +11799,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-          "issuerName": "./src/buttons/ButtonsListView.jsx",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+          "issuerName": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -11818,21 +11808,21 @@
               "id": 5579
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "id": 5272
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "id": 1937
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-              "name": "./src/buttons/ButtonsListView.jsx",
-              "id": 9960
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "name": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "id": 3129
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 5697,
-          "issuerId": 9960,
+          "issuerId": 3129,
           "chunks": [
             582,
             807
@@ -12216,14 +12206,14 @@
               "id": 5579
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "id": 5272
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "id": 1937
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-              "name": "./src/buttons/ButtonsListView.jsx",
-              "id": 9960
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "name": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "id": 3129
             },
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/prop-types/index.js",
@@ -12704,8 +12694,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
-          "issuerName": "./node_modules/qs/lib/parse.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
+          "issuerName": "./node_modules/qs/lib/stringify.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -12723,16 +12713,16 @@
               "id": 129
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
-              "name": "./node_modules/qs/lib/parse.js",
-              "id": 5235
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
+              "name": "./node_modules/qs/lib/stringify.js",
+              "id": 8261
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2769,
-          "issuerId": 5235,
+          "issuerId": 8261,
           "chunks": [
             582,
             807
@@ -12930,7 +12920,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "5:0-48",
+              "loc": "3:0-48",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -12944,7 +12934,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "6:0-50",
+              "loc": "4:0-50",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -12958,7 +12948,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "48:4-8",
+              "loc": "49:4-8",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -12972,7 +12962,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "52:29-34",
+              "loc": "53:29-34",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -12986,7 +12976,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "55:32-36",
+              "loc": "56:32-36",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -13000,7 +12990,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "58:33-37",
+              "loc": "59:33-37",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -13014,7 +13004,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "62:35-39",
+              "loc": "63:35-39",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -13028,7 +13018,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "66:25-29",
+              "loc": "67:25-29",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -15304,9 +15294,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 1691,
+          "size": 1801,
           "sizes": {
-            "javascript": 1691
+            "javascript": 1801
           },
           "built": true,
           "codeGenerated": true,
@@ -15387,9 +15377,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 1916,
+          "size": 1963,
           "sizes": {
-            "javascript": 1916
+            "javascript": 1963
           },
           "built": true,
           "codeGenerated": true,
@@ -15455,7 +15445,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./ModalView",
-              "loc": "39:66-75",
+              "loc": "41:66-75",
               "moduleId": 2335,
               "resolvedModuleId": 2335
             }
@@ -15552,9 +15542,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 1111,
+          "size": 1122,
           "sizes": {
-            "javascript": 1111
+            "javascript": 1122
           },
           "built": true,
           "codeGenerated": true,
@@ -15849,9 +15839,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 916,
+          "size": 909,
           "sizes": {
-            "javascript": 916
+            "javascript": 909
           },
           "built": true,
           "codeGenerated": true,
@@ -17234,8 +17224,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
-          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -17248,16 +17238,16 @@
               "id": 9200
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
-              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
-              "id": 4537
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+              "id": 1098
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2161,
-          "issuerId": 4537,
+          "issuerId": 1098,
           "chunks": [
             582,
             807
@@ -18533,9 +18523,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 910,
+          "size": 1000,
           "sizes": {
-            "javascript": 910
+            "javascript": 1000
           },
           "built": true,
           "codeGenerated": true,
@@ -18858,9 +18848,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 306,
+          "size": 344,
           "sizes": {
-            "javascript": 306
+            "javascript": 344
           },
           "built": true,
           "codeGenerated": true,
@@ -19299,9 +19289,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 212,
+          "size": 271,
           "sizes": {
-            "javascript": 212
+            "javascript": 271
           },
           "built": true,
           "codeGenerated": true,
@@ -19998,7 +19988,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "../helpers/ReactDOMRender",
-              "loc": "39:17-47",
+              "loc": "41:17-47",
               "moduleId": 2335,
               "resolvedModuleId": 2335
             },
@@ -21877,9 +21867,9 @@
       "initial": true,
       "entry": true,
       "recorded": false,
-      "size": 711653,
+      "size": 712001,
       "sizes": {
-        "javascript": 710611,
+        "javascript": 710959,
         "runtime": 1042
       },
       "names": [
@@ -21893,7 +21883,7 @@
         "build.js"
       ],
       "auxiliaryFiles": [],
-      "hash": "31346d6c256f6d338f05",
+      "hash": "17b06ea524a76698a541",
       "childrenByOrder": {},
       "id": 807,
       "siblings": [],
@@ -31988,14 +31978,9 @@
               "id": 7478
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/callBound.js",
-              "name": "./node_modules/call-bind/callBound.js",
-              "id": 1924
-            },
-            {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/index.js",
-              "name": "./node_modules/call-bind/index.js",
-              "id": 5559
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/get-intrinsic/index.js",
+              "name": "./node_modules/get-intrinsic/index.js",
+              "id": 210
             },
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/function-bind/index.js",
@@ -32074,8 +32059,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/index.js",
-          "issuerName": "./node_modules/call-bind/index.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/get-intrinsic/index.js",
+          "issuerName": "./node_modules/get-intrinsic/index.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -32103,21 +32088,16 @@
               "id": 7478
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/callBound.js",
-              "name": "./node_modules/call-bind/callBound.js",
-              "id": 1924
-            },
-            {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/index.js",
-              "name": "./node_modules/call-bind/index.js",
-              "id": 5559
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/get-intrinsic/index.js",
+              "name": "./node_modules/get-intrinsic/index.js",
+              "id": 210
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 8612,
-          "issuerId": 5559,
+          "issuerId": 210,
           "chunks": [
             582,
             807
@@ -33528,14 +33508,14 @@
               "id": 5579
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "id": 5272
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "id": 1937
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-              "name": "./src/buttons/ButtonsListView.jsx",
-              "id": 9960
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "name": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "id": 3129
             },
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/prop-types/index.js",
@@ -33614,8 +33594,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-          "issuerName": "./src/buttons/ButtonsListView.jsx",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+          "issuerName": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -33623,21 +33603,21 @@
               "id": 5579
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "id": 5272
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "id": 1937
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-              "name": "./src/buttons/ButtonsListView.jsx",
-              "id": 9960
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "name": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "id": 3129
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 5697,
-          "issuerId": 9960,
+          "issuerId": 3129,
           "chunks": [
             582,
             807
@@ -34021,14 +34001,14 @@
               "id": 5579
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-              "id": 5272
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+              "id": 1937
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-              "name": "./src/buttons/ButtonsListView.jsx",
-              "id": 9960
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "name": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+              "id": 3129
             },
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/prop-types/index.js",
@@ -34509,8 +34489,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
-          "issuerName": "./node_modules/qs/lib/parse.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
+          "issuerName": "./node_modules/qs/lib/stringify.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -34528,16 +34508,16 @@
               "id": 129
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
-              "name": "./node_modules/qs/lib/parse.js",
-              "id": 5235
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
+              "name": "./node_modules/qs/lib/stringify.js",
+              "id": 8261
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2769,
-          "issuerId": 5235,
+          "issuerId": 8261,
           "chunks": [
             582,
             807
@@ -34735,7 +34715,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "5:0-48",
+              "loc": "3:0-48",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -34749,7 +34729,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "6:0-50",
+              "loc": "4:0-50",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -34763,7 +34743,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "48:4-8",
+              "loc": "49:4-8",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -34777,7 +34757,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "52:29-34",
+              "loc": "53:29-34",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -34791,7 +34771,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "55:32-36",
+              "loc": "56:32-36",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -34805,7 +34785,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "58:33-37",
+              "loc": "59:33-37",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -34819,7 +34799,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "62:35-39",
+              "loc": "63:35-39",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -34833,7 +34813,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "react/jsx-runtime",
-              "loc": "66:25-29",
+              "loc": "67:25-29",
               "moduleId": 4684,
               "resolvedModuleId": 4684
             },
@@ -37109,9 +37089,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 1691,
+          "size": 1801,
           "sizes": {
-            "javascript": 1691
+            "javascript": 1801
           },
           "built": true,
           "codeGenerated": true,
@@ -37192,9 +37172,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 1916,
+          "size": 1963,
           "sizes": {
-            "javascript": 1916
+            "javascript": 1963
           },
           "built": true,
           "codeGenerated": true,
@@ -37260,7 +37240,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "./ModalView",
-              "loc": "39:66-75",
+              "loc": "41:66-75",
               "moduleId": 2335,
               "resolvedModuleId": 2335
             }
@@ -37357,9 +37337,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 1111,
+          "size": 1122,
           "sizes": {
-            "javascript": 1111
+            "javascript": 1122
           },
           "built": true,
           "codeGenerated": true,
@@ -37654,9 +37634,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 916,
+          "size": 909,
           "sizes": {
-            "javascript": 916
+            "javascript": 909
           },
           "built": true,
           "codeGenerated": true,
@@ -39039,8 +39019,8 @@
           "optional": false,
           "orphan": false,
           "dependent": true,
-          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
-          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
+          "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
           "issuerPath": [
             {
               "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -39053,16 +39033,16 @@
               "id": 9200
             },
             {
-              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
-              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
-              "id": 4537
+              "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+              "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+              "id": 1098
             }
           ],
           "failed": false,
           "errors": 0,
           "warnings": 0,
           "id": 2161,
-          "issuerId": 4537,
+          "issuerId": 1098,
           "chunks": [
             582,
             807
@@ -40338,9 +40318,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 910,
+          "size": 1000,
           "sizes": {
-            "javascript": 910
+            "javascript": 1000
           },
           "built": true,
           "codeGenerated": true,
@@ -40663,9 +40643,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 306,
+          "size": 344,
           "sizes": {
-            "javascript": 306
+            "javascript": 344
           },
           "built": true,
           "codeGenerated": true,
@@ -41104,9 +41084,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 212,
+          "size": 271,
           "sizes": {
-            "javascript": 212
+            "javascript": 271
           },
           "built": true,
           "codeGenerated": true,
@@ -41803,7 +41783,7 @@
               "active": true,
               "explanation": "",
               "userRequest": "../helpers/ReactDOMRender",
-              "loc": "39:17-47",
+              "loc": "41:17-47",
               "moduleId": 2335,
               "resolvedModuleId": 2335
             },
@@ -44487,9 +44467,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 1111,
+      "size": 1122,
       "sizes": {
-        "javascript": 1111
+        "javascript": 1122
       },
       "built": true,
       "codeGenerated": true,
@@ -45941,7 +45921,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "../helpers/ReactDOMRender",
-          "loc": "39:17-47",
+          "loc": "41:17-47",
           "moduleId": 2335,
           "resolvedModuleId": 2335
         },
@@ -46071,9 +46051,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 1691,
+      "size": 1801,
       "sizes": {
-        "javascript": 1691
+        "javascript": 1801
       },
       "built": true,
       "codeGenerated": true,
@@ -47183,7 +47163,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "react/jsx-runtime",
-          "loc": "5:0-48",
+          "loc": "3:0-48",
           "moduleId": 4684,
           "resolvedModuleId": 4684
         },
@@ -47197,7 +47177,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "react/jsx-runtime",
-          "loc": "6:0-50",
+          "loc": "4:0-50",
           "moduleId": 4684,
           "resolvedModuleId": 4684
         },
@@ -47211,7 +47191,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "react/jsx-runtime",
-          "loc": "48:4-8",
+          "loc": "49:4-8",
           "moduleId": 4684,
           "resolvedModuleId": 4684
         },
@@ -47225,7 +47205,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "react/jsx-runtime",
-          "loc": "52:29-34",
+          "loc": "53:29-34",
           "moduleId": 4684,
           "resolvedModuleId": 4684
         },
@@ -47239,7 +47219,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "react/jsx-runtime",
-          "loc": "55:32-36",
+          "loc": "56:32-36",
           "moduleId": 4684,
           "resolvedModuleId": 4684
         },
@@ -47253,7 +47233,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "react/jsx-runtime",
-          "loc": "58:33-37",
+          "loc": "59:33-37",
           "moduleId": 4684,
           "resolvedModuleId": 4684
         },
@@ -47267,7 +47247,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "react/jsx-runtime",
-          "loc": "62:35-39",
+          "loc": "63:35-39",
           "moduleId": 4684,
           "resolvedModuleId": 4684
         },
@@ -47281,7 +47261,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "react/jsx-runtime",
-          "loc": "66:25-29",
+          "loc": "67:25-29",
           "moduleId": 4684,
           "resolvedModuleId": 4684
         },
@@ -48118,9 +48098,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 910,
+      "size": 1000,
       "sizes": {
-        "javascript": 910
+        "javascript": 1000
       },
       "built": true,
       "codeGenerated": true,
@@ -50485,9 +50465,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 1916,
+      "size": 1963,
       "sizes": {
-        "javascript": 1916
+        "javascript": 1963
       },
       "built": true,
       "codeGenerated": true,
@@ -50552,7 +50532,7 @@
           "active": true,
           "explanation": "",
           "userRequest": "./ModalView",
-          "loc": "39:66-75",
+          "loc": "41:66-75",
           "moduleId": 2335,
           "resolvedModuleId": 2335
         }
@@ -50936,9 +50916,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 306,
+      "size": 344,
       "sizes": {
-        "javascript": 306
+        "javascript": 344
       },
       "built": true,
       "codeGenerated": true,
@@ -51380,9 +51360,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 212,
+      "size": 271,
       "sizes": {
-        "javascript": 212
+        "javascript": 271
       },
       "built": true,
       "codeGenerated": true,
@@ -51580,8 +51560,8 @@
       "cacheable": true,
       "optional": false,
       "orphan": false,
-      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-      "issuerName": "./src/buttons/ButtonsListView.jsx",
+      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+      "issuerName": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
       "issuerPath": [
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -51589,21 +51569,21 @@
           "id": 5579
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-          "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-          "id": 5272
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+          "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+          "id": 1937
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-          "name": "./src/buttons/ButtonsListView.jsx",
-          "id": 9960
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+          "name": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+          "id": 3129
         }
       ],
       "failed": false,
       "errors": 0,
       "warnings": 0,
       "id": 5697,
-      "issuerId": 9960,
+      "issuerId": 3129,
       "chunks": [
         582,
         807
@@ -57228,9 +57208,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 916,
+      "size": 909,
       "sizes": {
-        "javascript": 916
+        "javascript": 909
       },
       "built": true,
       "codeGenerated": true,
@@ -57801,8 +57781,8 @@
       "cacheable": true,
       "optional": false,
       "orphan": false,
-      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
-      "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
+      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+      "issuerName": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
       "issuerPath": [
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -57815,16 +57795,16 @@
           "id": 9200
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
-          "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/PurchaseStatusChecker.js",
-          "id": 4537
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "name": "./src/WidgetComponents/SubscriptionManager/SubscriptionStatusCheckers/FreeStatusChecker.js",
+          "id": 1098
         }
       ],
       "failed": false,
       "errors": 0,
       "warnings": 0,
       "id": 2161,
-      "issuerId": 4537,
+      "issuerId": 1098,
       "chunks": [
         582,
         807
@@ -58122,14 +58102,14 @@
           "id": 5579
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-          "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-          "id": 5272
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+          "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+          "id": 1937
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-          "name": "./src/buttons/ButtonsListView.jsx",
-          "id": 9960
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+          "name": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+          "id": 3129
         },
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/prop-types/index.js",
@@ -58301,8 +58281,8 @@
       "cacheable": true,
       "optional": false,
       "orphan": false,
-      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
-      "issuerName": "./node_modules/qs/lib/parse.js",
+      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
+      "issuerName": "./node_modules/qs/lib/stringify.js",
       "issuerPath": [
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -58320,16 +58300,16 @@
           "id": 129
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/parse.js",
-          "name": "./node_modules/qs/lib/parse.js",
-          "id": 5235
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/qs/lib/stringify.js",
+          "name": "./node_modules/qs/lib/stringify.js",
+          "id": 8261
         }
       ],
       "failed": false,
       "errors": 0,
       "warnings": 0,
       "id": 2769,
-      "issuerId": 5235,
+      "issuerId": 8261,
       "chunks": [
         582,
         807
@@ -61893,14 +61873,14 @@
           "id": 5579
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-          "name": "./src/WidgetComponents/SettingsButtons/SettingsButtonsComponent.js",
-          "id": 5272
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+          "name": "./src/WidgetComponents/SettingsContactForm/SettingsContactFormComponent.js",
+          "id": 1937
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/buttons/ButtonsListView.jsx",
-          "name": "./src/buttons/ButtonsListView.jsx",
-          "id": 9960
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+          "name": "./src/WidgetComponents/SettingsContactForm/ContactFormView.jsx",
+          "id": 3129
         },
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/prop-types/index.js",
@@ -64135,8 +64115,8 @@
       "cacheable": true,
       "optional": false,
       "orphan": false,
-      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/index.js",
-      "issuerName": "./node_modules/call-bind/index.js",
+      "issuer": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/get-intrinsic/index.js",
+      "issuerName": "./node_modules/get-intrinsic/index.js",
       "issuerPath": [
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/babel-loader/lib/index.js!/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/src/index.js",
@@ -64164,21 +64144,16 @@
           "id": 7478
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/callBound.js",
-          "name": "./node_modules/call-bind/callBound.js",
-          "id": 1924
-        },
-        {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/index.js",
-          "name": "./node_modules/call-bind/index.js",
-          "id": 5559
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/get-intrinsic/index.js",
+          "name": "./node_modules/get-intrinsic/index.js",
+          "id": 210
         }
       ],
       "failed": false,
       "errors": 0,
       "warnings": 0,
       "id": 8612,
-      "issuerId": 5559,
+      "issuerId": 210,
       "chunks": [
         582,
         807
@@ -64832,14 +64807,9 @@
           "id": 7478
         },
         {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/callBound.js",
-          "name": "./node_modules/call-bind/callBound.js",
-          "id": 1924
-        },
-        {
-          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/call-bind/index.js",
-          "name": "./node_modules/call-bind/index.js",
-          "id": 5559
+          "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/get-intrinsic/index.js",
+          "name": "./node_modules/get-intrinsic/index.js",
+          "id": 210
         },
         {
           "identifier": "/Users/romanmazyrin/PhpstormProjects/amo_widget_app_package/node_modules/function-bind/index.js",
@@ -65904,11 +65874,11 @@
       "assets": [
         {
           "name": "build.js",
-          "size": 793654
+          "size": 794002
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 793654,
+      "assetsSize": 794002,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
@@ -65924,11 +65894,11 @@
       "assets": [
         {
           "name": "build.min.js",
-          "size": 426846
+          "size": 427044
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 426846,
+      "assetsSize": 427044,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
@@ -65946,11 +65916,11 @@
       "assets": [
         {
           "name": "build.js",
-          "size": 793654
+          "size": 794002
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 793654,
+      "assetsSize": 794002,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
@@ -65966,11 +65936,11 @@
       "assets": [
         {
           "name": "build.min.js",
-          "size": 426846
+          "size": 427044
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 426846,
+      "assetsSize": 427044,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,

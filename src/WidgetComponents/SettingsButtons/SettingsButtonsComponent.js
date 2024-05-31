@@ -9,7 +9,7 @@ export default class SettingsButtonsComponent extends WidgetComponent {
     constructor(widget, { buttons = [] } = {}) {
         super(widget);
         this.buttons = buttons;
-        this.buttonModelsFactoryClass = new ButtonModelFactory();
+        this.buttonModelsFactoryClass = new ButtonModelFactory(this.widget);
     }
 
     getWidgetEventsCallbacks() {

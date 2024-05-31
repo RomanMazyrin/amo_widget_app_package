@@ -27,7 +27,7 @@ const DEFAULT_PARTICULAR_BUTTON_PARAMS = {
 };
 
 export default class ContactButtonModelsFactory extends ButtonModelFactory {
-    static createFromConfig(config) {
+    createFromConfig(config) {
         const defaultConfigForParticularType = DEFAULT_PARTICULAR_BUTTON_PARAMS[config.type] || {};
         const resultConfig = {
             ...config,

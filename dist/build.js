@@ -79,12 +79,14 @@ class Modal {
     content = '',
     closeOnOverlayClick = false,
     afterRender = () => {},
-    afterDestroy = () => {}
+    afterDestroy = () => {},
+    containerStyle = {}
   }) {
     this.content = content;
     this.closeOnOverlayClick = closeOnOverlayClick;
     this.afterRender = afterRender;
     this.afterDestroy = afterDestroy;
+    this.containerStyle = containerStyle;
     const rootModalElement = document.createElement('div');
     rootModalElement.className = 'modal';
     rootModalElement.style.zIndex = 1000;
@@ -104,7 +106,8 @@ class Modal {
             closeModal.close();
           }
         }
-      }
+      },
+      containerStyle: this.containerStyle
     });
     closeModal.setRootReact(root);
     this.afterRender(this);
@@ -127,13 +130,13 @@ class Modal {
 
 
 
-// eslint-disable-next-line react/prop-types
-
 
 function ModalView({
+  // eslint-disable-next-line react/prop-types
   content,
   closeModal,
-  overlayClick
+  overlayClick,
+  containerStyle = {}
 }) {
   const overlayStyle = {
     position: 'absolute',
@@ -157,7 +160,8 @@ function ModalView({
     position: 'relative',
     margin: '30px auto',
     top: 'auto',
-    left: 'auto'
+    left: 'auto',
+    ...containerStyle
   };
   const actionsBoxStyle = {
     display: 'flex',
@@ -225,7 +229,7 @@ class SettingsButtonsComponent extends _WidgetComponent__WEBPACK_IMPORTED_MODULE
   } = {}) {
     super(widget);
     this.buttons = buttons;
-    this.buttonModelsFactoryClass = new _buttons_ButtonModelFactory__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z();
+    this.buttonModelsFactoryClass = new _buttons_ButtonModelFactory__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z(this.widget);
   }
   getWidgetEventsCallbacks() {
     return {
@@ -459,7 +463,7 @@ const DEFAULT_PARTICULAR_BUTTON_PARAMS = {
   }
 };
 class ContactButtonModelsFactory extends _buttons_ButtonModelFactory__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z {
-  static createFromConfig(config) {
+  createFromConfig(config) {
     const defaultConfigForParticularType = DEFAULT_PARTICULAR_BUTTON_PARAMS[config.type] || {};
     const resultConfig = {
       ...config,
@@ -1450,7 +1454,10 @@ const BUTTONS_TYPES_CLASSES = {
   button: _buttonModels_RegularButton__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z
 };
 class ButtonModelFactory {
-  static createFromConfig(config) {
+  constructor(widget) {
+    this.widget = widget;
+  }
+  createFromConfig(config) {
     const btnConfig = {
       ...config
     };
@@ -1458,10 +1465,13 @@ class ButtonModelFactory {
     if (ButtonClass === undefined) {
       throw new Error(`button type '${btnConfig.type}' does not exist`);
     }
-    return new ButtonClass(btnConfig.params);
+    return new ButtonClass({
+      ...btnConfig.params,
+      widget: this.widget
+    });
   }
   createFromConfigsArray(configsArray = []) {
-    return configsArray.map(this.constructor.createFromConfig);
+    return configsArray.map(this.createFromConfig.bind(this));
   }
 }
 
@@ -1566,13 +1576,15 @@ class ButtonModel {
   constructor({
     text = '',
     style = {},
-    classname = ''
+    classname = '',
+    widget
   }) {
     this.text = text;
     this.style = {
       ...style
     };
     this.classname = classname;
+    this.widget = widget;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -1645,7 +1657,12 @@ class RegularButton extends _ButtonModel__WEBPACK_IMPORTED_MODULE_0__/* ["defaul
     ...base
   } = {}) {
     super(base);
-    this.onClick = onClick.bind(this);
+    this.onClick = e => {
+      onClick({
+        e,
+        widget: this.widget
+      });
+    };
   }
 }
 

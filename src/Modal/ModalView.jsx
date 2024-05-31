@@ -1,8 +1,10 @@
 import React from 'react';
 import './style.scss';
 
-// eslint-disable-next-line react/prop-types
-function ModalView({ content, closeModal, overlayClick }) {
+function ModalView({
+    // eslint-disable-next-line react/prop-types
+    content, closeModal, overlayClick, containerStyle = {},
+}) {
     const overlayStyle = {
         position: 'absolute',
         top: 0,
@@ -27,6 +29,7 @@ function ModalView({ content, closeModal, overlayClick }) {
         margin: '30px auto',
         top: 'auto',
         left: 'auto',
+        ...containerStyle,
     };
 
     const actionsBoxStyle = {
