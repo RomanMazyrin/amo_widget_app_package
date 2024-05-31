@@ -1,6 +1,6 @@
 {
     "name": "@romanmazyrin/amocrm_widget_framework",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Ready-to-use library to easy start your widget for amoCRM",
     "main": "./dist/build.min.js",
     "author": "Roman Mazyrin",
