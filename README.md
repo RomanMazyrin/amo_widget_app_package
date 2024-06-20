@@ -62,7 +62,7 @@ But you can import this lib via  AMD (define/require), CommonJS (require) and ev
 
 ## How the library works
 
-There is a core function inside the lib ```createWidget(config)```. That function creates and returns another constructor-function founded on the passed configuration. Result constructor-function has to be imported in script.js file.
+There is a core function inside the lib ```createWidget(config)```. That function creates and returns another constructor-function based on the passed configuration. Result constructor-function has to be imported in script.js file.
 
 Widget configuration includes:
 
@@ -234,13 +234,12 @@ The instance of class SettingsFooterComponent will be created on widget initiali
 ### Built-in library components
 
 - [VideoInstruction](docs/Components/VideoInstruction.md)
-- SettingsContactForm
-- SettingsButtons
-- SubscriptionManager
-- SettingsPhoneField
-- SettingsSaver
-- SettingsSaver
-- SettingsFooter
+- [SettingsContactForm](docs/Components/SettingsContactForm.md)
+- [SettingsButtons](docs/Components/SettingsButtons.md)
+- [SubscriptionManager](docs/Components/SubscriptionManager.md)
+- [SettingsPhoneField](docs/Components/SettingsPhoneField.md)
+- [SettingsSaver](docs/Components/SettingsSaver.md)
+- [SettingsFooter](docs/Components/SettingsFooter.md)
 
 Detailed instructions of each component are available on links.
 
@@ -341,3 +340,42 @@ const modal = new Modal({
     }
 });
 ```
+
+### Request
+
+Class with static methods for GET and POST requests. Simple wrapper around axios methods.
+
+Request.get(url, data);
+
+Request.post(url, data); // adds header content-type = 'application/x-www-form-urlencoded;charset=utf-8',
+
+**Using example**
+
+```javascript
+// Same with post() method
+const response = await Request.get('https://google.com', {
+    q: 'search string'
+});
+console.log(response.data);
+```
+
+### ReactDOMRender
+
+Class with static methods for rendering react components on the page.
+
+
+**ReactDOMRender.appentReactComponent(selector, Component, props, domElementName)**
+
+- selector - selector of HTML element on the page to render in;
+- Component - react component;
+- props - props for react component;
+- domElementName - element to create which is gonna be container of a component;
+
+Essentially the process looks very easy:
+
+1. Create html element domElementName
+1. Append new html element into element with selector
+1. Render react component in new html element
+
+
+**ReactDOMRender.renderInElement(domElement, Component, props)**
